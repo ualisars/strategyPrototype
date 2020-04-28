@@ -8,8 +8,8 @@ ASP_PlayerCamera::ASP_PlayerCamera()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
-	RootComponent = CameraComp;
+	AutoPossessPlayer = EAutoReceiveInput::Player0;
+	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 }
 
 // Called when the game starts or when spawned
@@ -17,6 +17,18 @@ void ASP_PlayerCamera::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ASP_PlayerCamera::MoveForward(float Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("MoveForward"));
+	AddMovementInput(GetActorForwardVector() * Value);
+}
+
+void ASP_PlayerCamera::MoveRight(float Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("MoveRight"));
+	AddMovementInput(GetActorRightVector() * Value);
 }
 
 // Called every frame
@@ -31,5 +43,7 @@ void ASP_PlayerCamera::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAxis("MoveForward", this, &ASP_PlayerCamera::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ASP_PlayerCamera::MoveRight);
 }
 
