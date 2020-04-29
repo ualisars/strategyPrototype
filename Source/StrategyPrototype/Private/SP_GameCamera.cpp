@@ -11,6 +11,9 @@ ASP_GameCamera::ASP_GameCamera()
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
 	GameCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("GameCamera"));
+	GameCamera->SetupAttachment(RootComponent);
+	GameCamera->SetRelativeLocation(FVector(-250.0f, 0.0f, 200.0f));
+	GameCamera->SetRelativeRotation(FRotator(-30.0f, 0.0f, 0.0f));
 }
 
 // Called when the game starts or when spawned

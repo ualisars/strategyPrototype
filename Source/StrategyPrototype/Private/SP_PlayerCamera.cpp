@@ -9,7 +9,12 @@ ASP_PlayerCamera::ASP_PlayerCamera()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
+
+	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
+	SpringArmComp->SetupAttachment(RootComponent);
+
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
+	PlayerCamera->SetupAttachment(SpringArmComp);
 }
 
 // Called when the game starts or when spawned
