@@ -23,15 +23,20 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere)
+	USceneComponent* VisibleComp;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCameraComponent* PlayerCamera;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
 
-	void MoveForward(float Value);
+	FVector CurrentVelocity;
 
-	void MoveRight(float Value);
+	void Move_XAxis(float AxisValue);
+
+	void Move_YAxis(float AxisValue);
 	
 public:	
 	// Called every frame

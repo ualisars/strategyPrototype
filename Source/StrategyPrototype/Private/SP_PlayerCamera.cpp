@@ -10,11 +10,13 @@ ASP_PlayerCamera::ASP_PlayerCamera()
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
-	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
-	SpringArmComp->SetupAttachment(RootComponent);
-
-	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
-	PlayerCamera->SetupAttachment(SpringArmComp);
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+	UCameraComponent* PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("PlayerCamera"));
+	VisibleComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisibleComp"));
+	PlayerCamera->SetupAttachment(RootComponent);
+	PlayerCamera->SetRelativeLocation(FVector(-250.0f, 0.0f, 200.0f));
+	PlayerCamera->SetRelativeRotation(FRotator(-45.0f, 0.0f, 0.0f));
+	VisibleComp->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -24,16 +26,14 @@ void ASP_PlayerCamera::BeginPlay()
 	
 }
 
-void ASP_PlayerCamera::MoveForward(float Value)
+void ASP_PlayerCamera::Move_XAxis(float AxisValue)
 {
-	UE_LOG(LogTemp, Warning, TEXT("MoveForward"));
-	AddMovementInput(GetActorForwardVector() * Value);
+	CurrentVelocity.X = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
 }
 
-void ASP_PlayerCamera::MoveRight(float Value)
+void ASP_PlayerCamera::Move_YAxis(float AxisValue)
 {
-	UE_LOG(LogTemp, Warning, TEXT("MoveRight"));
-	AddMovementInput(GetActorRightVector() * Value);
+	CurrentVelocity.Y = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
 }
 
 // Called every frame
@@ -41,14 +41,18 @@ void ASP_PlayerCamera::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (!CurrentVelocity.IsZero())
+	{
+		FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
+		SetActorLocation(NewLocation);
+	}
 }
 
 // Called to bind functionality to input
 void ASP_PlayerCamera::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	PlayerInputComponent->BindAxis("MoveForward", this, &ASP_PlayerCamera::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ASP_PlayerCamera::MoveRight);
+	InputComponent->BindAxis("MoveX", this, &ASP_PlayerCamera::Move_XAxis);
+	InputComponent->BindAxis("MoveY", this, &ASP_PlayerCamera::Move_YAxis);
 }
 
