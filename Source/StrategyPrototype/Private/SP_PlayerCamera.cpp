@@ -17,6 +17,7 @@ ASP_PlayerCamera::ASP_PlayerCamera()
 	PlayerCamera->SetRelativeLocation(FVector(-250.0f, 0.0f, 200.0f));
 	PlayerCamera->SetRelativeRotation(FRotator(-45.0f, 0.0f, 0.0f));
 	VisibleComp->SetupAttachment(RootComponent);
+	VisibleComp->SetCanEverAffectNavigation(false);
 }
 
 // Called when the game starts or when spawned

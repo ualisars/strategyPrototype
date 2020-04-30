@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Components/StaticMeshComponent.h"
 #include "SP_Player.generated.h"
 
 UCLASS()

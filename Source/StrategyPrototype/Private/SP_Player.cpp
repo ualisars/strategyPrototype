@@ -9,6 +9,7 @@ ASP_Player::ASP_Player()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
+	MeshComp->SetCanEverAffectNavigation(false);
 	RootComponent = MeshComp;
 }
 
