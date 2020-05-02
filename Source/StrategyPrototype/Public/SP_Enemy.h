@@ -3,19 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
 #include "Components/StaticMeshComponent.h"
-#include "GameFramework/FloatingPawnMovement.h" 
-#include "SP_Player.generated.h"
+#include "AI/NavigationSystemBase.h"
+#include "SP_Enemy.generated.h"
 
 UCLASS()
-class STRATEGYPROTOTYPE_API ASP_Player : public APawn
+class STRATEGYPROTOTYPE_API ASP_Enemy : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	ASP_Player();
+	// Sets default values for this character's properties
+	ASP_Enemy();
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,11 +24,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UStaticMeshComponent* MeshComp;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UFloatingPawnMovement* FloatingPawnMovementComp;
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void MoveToLocation();
+	void Move();
 
 public:	
 	// Called every frame

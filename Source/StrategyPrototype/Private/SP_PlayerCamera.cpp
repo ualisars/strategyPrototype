@@ -29,12 +29,12 @@ void ASP_PlayerCamera::BeginPlay()
 
 void ASP_PlayerCamera::Move_XAxis(float AxisValue)
 {
-	CurrentVelocity.X = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
+	CurrentVelocity.X = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 600.0f; // 100.0f default
 }
 
 void ASP_PlayerCamera::Move_YAxis(float AxisValue)
 {
-	CurrentVelocity.Y = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
+	CurrentVelocity.Y = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 600.0f;
 }
 
 // Called every frame
