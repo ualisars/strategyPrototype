@@ -13,21 +13,31 @@ void ASP_PlayerController::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ASP_PlayerController::LeftMousePressed()
+void ASP_PlayerController::FindPlayerPawn()
 {
-	FHitResult LeftMouseHitResult;
-	GetHitResultUnderCursorByChannel(TraceTypeQuery1, false, LeftMouseHitResult);
-
-	float LocationX = LeftMouseHitResult.Location.X;
-	UE_LOG(LogTemp, Warning, TEXT("LeftMousePressed"));
-	UE_LOG(LogTemp, Warning, TEXT("X: %f, Y: %f, Z: %f"), LeftMouseHitResult.Location.X, LeftMouseHitResult.Location.Y, LeftMouseHitResult.Location.Z);
+	if (PlayerPawn != nullptr)
+		return;
 
 	TSubclassOf<ASP_Player> ClassToFind;
 	ClassToFind = ASP_Player::StaticClass();
 	TArray<AActor*> FoundPlayers;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ClassToFind, FoundPlayers);
+	PlayerPawn = Cast<ASP_Player>(FoundPlayers[0]);
+	if (PlayerPawn == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to cast AActor to SP_Player in PlayerController"));
+	}
+}
 
-	ASP_Player* PlayerPawn = Cast<ASP_Player>(FoundPlayers[0]);
+void ASP_PlayerController::LeftMousePressed()
+{
+	FHitResult LeftMouseHitResult;
+	GetHitResultUnderCursorByChannel(TraceTypeQuery1, false, LeftMouseHitResult);
+	UE_LOG(LogTemp, Warning, TEXT("LeftMousePressed"));
+	UE_LOG(LogTemp, Warning, TEXT("X: %f, Y: %f, Z: %f"), LeftMouseHitResult.Location.X, LeftMouseHitResult.Location.Y, LeftMouseHitResult.Location.Z);
+
+	FindPlayerPawn();
+
 	if (PlayerPawn != nullptr)
 	{
 		PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);

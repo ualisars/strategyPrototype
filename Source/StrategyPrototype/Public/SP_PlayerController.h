@@ -16,6 +16,10 @@ class STRATEGYPROTOTYPE_API ASP_PlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
+	ASP_Player* PlayerPawn;
+
+	void FindPlayerPawn();
+
 protected:
 	void LeftMousePressed();
 
