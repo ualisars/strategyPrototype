@@ -21,6 +21,17 @@ void ASP_PlayerController::LeftMousePressed()
 	float LocationX = LeftMouseHitResult.Location.X;
 	UE_LOG(LogTemp, Warning, TEXT("LeftMousePressed"));
 	UE_LOG(LogTemp, Warning, TEXT("X: %f, Y: %f, Z: %f"), LeftMouseHitResult.Location.X, LeftMouseHitResult.Location.Y, LeftMouseHitResult.Location.Z);
+
+	TSubclassOf<ASP_Player> ClassToFind;
+	ClassToFind = ASP_Player::StaticClass();
+	TArray<AActor*> FoundPlayers;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ClassToFind, FoundPlayers);
+
+	ASP_Player* PlayerPawn = Cast<ASP_Player>(FoundPlayers[0]);
+	if (PlayerPawn != nullptr)
+	{
+		PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
+	}
 }
 
 void ASP_PlayerController::RightMousePressed()

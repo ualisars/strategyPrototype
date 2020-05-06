@@ -18,7 +18,6 @@ ASP_Player::ASP_Player()
 void ASP_Player::BeginPlay()
 {
 	Super::BeginPlay();
-	MoveToLocation();
 }
 
 // Called every frame

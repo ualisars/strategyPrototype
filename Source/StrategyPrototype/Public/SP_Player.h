@@ -26,15 +26,14 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UFloatingPawnMovement* FloatingPawnMovementComp;
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void MoveToLocation();
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void MoveToLocation(const FVector& Location);
 
 };

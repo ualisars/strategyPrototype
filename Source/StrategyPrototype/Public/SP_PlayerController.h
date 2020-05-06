@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Kismet/GameplayStatics.h"
+#include "SP_Player.h"
 #include "SP_PlayerController.generated.h"
 
 /**
