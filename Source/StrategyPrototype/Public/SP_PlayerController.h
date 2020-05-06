@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "ST_PlayerController.generated.h"
+#include "SP_PlayerController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class STRATEGYPROTOTYPE_API AST_PlayerController : public APlayerController
+class STRATEGYPROTOTYPE_API ASP_PlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
@@ -20,7 +20,7 @@ protected:
 	void RightMousePressed();
 
 public:
-	AST_PlayerController();
+	ASP_PlayerController();
 
 	virtual void BeginPlay() override;
 
