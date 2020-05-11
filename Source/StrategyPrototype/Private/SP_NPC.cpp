@@ -36,6 +36,8 @@ void ASP_NPC::BeginPlay()
 	GetAllTowns();
 	if (Towns.Num() != 0)
 	{
+		FVector Location = Towns[0]->GetActorLocation();
+		UE_LOG(LogTemp, Warning, TEXT("NPC is moving to x:%f, y:%f, z:%f"), Location.X, Location.Y, Location.Z);
 		NPC_MoveToActor(Towns[0]);
 	}
 }

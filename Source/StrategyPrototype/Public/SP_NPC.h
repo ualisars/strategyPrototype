@@ -43,6 +43,6 @@ public:
 	void NPC_MoveToLocation(const FVector& Location);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void NPC_MoveToActor(AActor* Town);
+	void NPC_MoveToActor(AActor* Actor);
 
 };
