@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "SP_AnimatedPawn.generated.h"
 
 UCLASS()
@@ -16,9 +17,13 @@ public:
 	// Sets default values for this character's properties
 	ASP_AnimatedPawn();
 
+	void GetAllTowns();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	TArray<AActor*> Towns;
 
 public:	
 	// Called every frame
@@ -26,5 +31,11 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void NPC_MoveToLocation(const FVector& Location);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void NPC_MoveToActor(AActor* Actor);
 
 };
