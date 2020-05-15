@@ -46,7 +46,6 @@ void ASP_NPC::BeginPlay()
 void ASP_NPC::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
