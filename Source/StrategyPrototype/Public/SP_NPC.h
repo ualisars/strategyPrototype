@@ -3,19 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
-#include "Kismet/GameplayStatics.h"
+#include "GameFramework/Character.h"
 #include "Components/StaticMeshComponent.h"
-#include "GameFramework/FloatingPawnMovement.h" 
+#include "Kismet/GameplayStatics.h"
 #include "SP_NPC.generated.h"
 
 UCLASS()
-class STRATEGYPROTOTYPE_API ASP_NPC : public APawn
+class STRATEGYPROTOTYPE_API ASP_NPC : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
+	// Sets default values for this character's properties
 	ASP_NPC();
 
 	void GetAllTowns();
@@ -23,12 +22,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UStaticMeshComponent* MeshComp;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UFloatingPawnMovement* FloatingPawnMovementComp;
 
 	TArray<AActor*> Towns;
 
@@ -44,5 +37,4 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToActor(AActor* Actor);
-
 };
