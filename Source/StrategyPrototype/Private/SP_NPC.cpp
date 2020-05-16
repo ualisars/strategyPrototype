@@ -38,6 +38,9 @@ void ASP_NPC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AA
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Overlap Begin"));
+
+		UpdateCurrentTownIndex();
+		NPC_MoveToActor(Towns[CurrentTownIndex]);
 	}
 }
 
@@ -51,9 +54,14 @@ void ASP_NPC::OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AAct
 
 void ASP_NPC::UpdateCurrentTownIndex()
 {
-	if (CurrentTownIndex >= Towns.Num())
+	if (CurrentTownIndex >= Towns.Num() - 1)
+	{
 		CurrentTownIndex = 0;
-	CurrentTownIndex += 1;
+	}
+	else
+	{
+		CurrentTownIndex += 1;
+	}
 }
 
 void ASP_NPC::GetAllTowns()
@@ -76,14 +84,6 @@ void ASP_NPC::GetAllTowns()
 void ASP_NPC::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	if (GetDistanceTo(Towns[CurrentTownIndex]) < 1.0f)
-	{
-		UpdateCurrentTownIndex();
-		NPC_MoveToActor(Towns[CurrentTownIndex]);
-	}
-
-	
 }
 
 // Called to bind functionality to input
