@@ -9,6 +9,14 @@ ASP_NPC::ASP_NPC()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SetActorScale3D(FVector(0.5f, 0.5f, 0.5f));
+
+	TriggerCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Trigger Capsule"));
+	TriggerCapsule->InitCapsuleSize(55.f, 96.0f);;
+	TriggerCapsule->SetCollisionProfileName(TEXT("Trigger"));
+	TriggerCapsule->SetupAttachment(RootComponent);
+
+	TriggerCapsule->OnComponentBeginOverlap.AddDynamic(this, &ASP_NPC::OnOverlapBegin);
+	TriggerCapsule->OnComponentEndOverlap.AddDynamic(this, &ASP_NPC::OnOverlapEnd);
 }
 
 // Called when the game starts or when spawned
@@ -21,8 +29,31 @@ void ASP_NPC::BeginPlay()
 	{
 		FVector Location = Towns[0]->GetActorLocation();
 		UE_LOG(LogTemp, Warning, TEXT("NPC is moving to x:%f, y:%f, z:%f"), Location.X, Location.Y, Location.Z);
-		NPC_MoveToActor(Towns[0]);
+		NPC_MoveToActor(Towns[CurrentTownIndex]);
 	}
+}
+
+void ASP_NPC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor && (OtherActor != this) && OtherComp)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Overlap Begin"));
+	}
+}
+
+void ASP_NPC::OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (OtherActor && (OtherActor != this) && OtherComp)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Overlap End"));
+	}
+}
+
+void ASP_NPC::UpdateCurrentTownIndex()
+{
+	if (CurrentTownIndex >= Towns.Num())
+		CurrentTownIndex = 0;
+	CurrentTownIndex += 1;
 }
 
 void ASP_NPC::GetAllTowns()
@@ -46,6 +77,13 @@ void ASP_NPC::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (GetDistanceTo(Towns[CurrentTownIndex]) < 1.0f)
+	{
+		UpdateCurrentTownIndex();
+		NPC_MoveToActor(Towns[CurrentTownIndex]);
+	}
+
+	
 }
 
 // Called to bind functionality to input
