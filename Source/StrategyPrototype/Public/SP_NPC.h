@@ -7,6 +7,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "SP_NPC.generated.h"
 
 UCLASS()
@@ -16,6 +17,10 @@ class STRATEGYPROTOTYPE_API ASP_NPC : public ACharacter
 
 	UPROPERTY(VisibleAnywhere, Category = "Trigger Capsule")
 	class UCapsuleComponent* TriggerCapsule;
+
+	float MAX_WALK_SPEED_DEFAULT = 300.0f;
+	float MAX_WALK_SPEED_RODE = 400.0f;
+	float MAX_WALK_SPEED_SWAMP = 100.0f;
 
 public:
 	// Sets default values for this character's properties
@@ -32,6 +37,8 @@ protected:
 	virtual void BeginPlay() override;
 
 	TArray<AActor*> Towns;
+
+	UCharacterMovementComponent* CharacterMovementComp;
 
 public:	
 	// Called every frame

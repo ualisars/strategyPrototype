@@ -17,6 +17,9 @@ ASP_NPC::ASP_NPC()
 
 	TriggerCapsule->OnComponentBeginOverlap.AddDynamic(this, &ASP_NPC::OnOverlapBegin);
 	TriggerCapsule->OnComponentEndOverlap.AddDynamic(this, &ASP_NPC::OnOverlapEnd);
+
+	CharacterMovementComp = GetCharacterMovement();
+	CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_DEFAULT;
 }
 
 // Called when the game starts or when spawned
@@ -39,8 +42,20 @@ void ASP_NPC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AA
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Overlap Begin"));
 
-		UpdateCurrentTownIndex();
-		NPC_MoveToActor(Towns[CurrentTownIndex]);
+		if (OtherActor->ActorHasTag("Town"))
+		{
+			UpdateCurrentTownIndex();
+			NPC_MoveToActor(Towns[CurrentTownIndex]);
+		}
+
+		if (OtherActor->ActorHasTag("Road"))
+		{
+			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_RODE;
+		}
+		else if(OtherActor->ActorHasTag("Swamp"))
+		{
+			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_SWAMP;
+		}
 	}
 }
 
@@ -49,6 +64,9 @@ void ASP_NPC::OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AAct
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Overlap End"));
+
+		if(OtherActor->ActorHasTag("NavigationArea"))
+			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_DEFAULT;
 	}
 }
 
