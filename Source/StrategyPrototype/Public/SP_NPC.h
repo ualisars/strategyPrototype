@@ -3,24 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "Components/StaticMeshComponent.h"
+#include "SP_BaseCharacter.h"
 #include "Kismet/GameplayStatics.h"
-#include "Components/CapsuleComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "SP_NPC.generated.h"
 
 UCLASS()
-class STRATEGYPROTOTYPE_API ASP_NPC : public ACharacter
+class STRATEGYPROTOTYPE_API ASP_NPC : public ASP_BaseCharacter
 {
 	GENERATED_BODY()
-
-	UPROPERTY(VisibleAnywhere, Category = "Trigger Capsule")
-	class UCapsuleComponent* TriggerCapsule;
-
-	float MAX_WALK_SPEED_DEFAULT = 300.0f;
-	float MAX_WALK_SPEED_RODE = 400.0f;
-	float MAX_WALK_SPEED_SWAMP = 100.0f;
 
 public:
 	// Sets default values for this character's properties
@@ -38,8 +28,6 @@ protected:
 
 	TArray<AActor*> Towns;
 
-	UCharacterMovementComponent* CharacterMovementComp;
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -53,9 +41,5 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToActor(AActor* Actor);
 
-	UFUNCTION()
-	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 };

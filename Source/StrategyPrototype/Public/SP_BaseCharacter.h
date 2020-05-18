@@ -21,9 +21,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, Category = "Trigger Capsule")
-	class UCapsuleComponent* TriggerCapsule;
-
 	float MAX_WALK_SPEED_DEFAULT = 300.0f;
 	float MAX_WALK_SPEED_RODE = 400.0f;
 	float MAX_WALK_SPEED_SWAMP = 100.0f;
@@ -37,9 +34,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UFUNCTION()
-	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
-	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 };

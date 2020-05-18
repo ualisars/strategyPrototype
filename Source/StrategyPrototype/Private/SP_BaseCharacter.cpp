@@ -10,13 +10,6 @@ ASP_BaseCharacter::ASP_BaseCharacter()
 
 	SetActorScale3D(FVector(0.5f, 0.5f, 0.5f));
 
-	TriggerCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Trigger Capsule"));
-	TriggerCapsule->SetCollisionProfileName(TEXT("Trigger"));
-	TriggerCapsule->SetupAttachment(RootComponent);
-
-	TriggerCapsule->OnComponentBeginOverlap.AddDynamic(this, &ASP_BaseCharacter::OnOverlapBegin);
-	TriggerCapsule->OnComponentEndOverlap.AddDynamic(this, &ASP_BaseCharacter::OnOverlapEnd);
-
 	CharacterMovementComp = GetCharacterMovement();
 	CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_DEFAULT;
 }
@@ -26,32 +19,6 @@ void ASP_BaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
-}
-
-void ASP_BaseCharacter::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	if (OtherActor && (OtherActor != this) && OtherComp)
-	{
-		if (OtherActor->ActorHasTag("Road"))
-		{
-			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_RODE;
-		}
-		else if (OtherActor->ActorHasTag("Swamp"))
-		{
-			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_SWAMP;
-		}
-	}
-}
-
-void ASP_BaseCharacter::OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	if (OtherActor && (OtherActor != this) && OtherComp)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Overlap End"));
-
-		if (OtherActor->ActorHasTag("NavigationArea"))
-			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_DEFAULT;
-	}
 }
 
 // Called every frame
@@ -65,5 +32,34 @@ void ASP_BaseCharacter::Tick(float DeltaTime)
 void ASP_BaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}
+
+void ASP_BaseCharacter::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorBeginOverlap(OtherActor);
+	UE_LOG(LogTemp, Warning, TEXT("BaseChar start overlap"));
+	if (OtherActor && (OtherActor != this))
+	{
+		if (OtherActor->ActorHasTag("Road"))
+		{
+			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_RODE;
+		}
+		else if (OtherActor->ActorHasTag("Swamp"))
+		{
+			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_SWAMP;
+		}
+	}
+}
+
+void ASP_BaseCharacter::NotifyActorEndOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorEndOverlap(OtherActor);
+
+	UE_LOG(LogTemp, Warning, TEXT("BaseChar end overlap"));
+	if (OtherActor && (OtherActor != this))
+	{
+		if (OtherActor->ActorHasTag("NavigationArea"))
+			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_DEFAULT;
+	}
 }
 
