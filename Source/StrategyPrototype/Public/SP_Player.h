@@ -3,13 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
-#include "Components/StaticMeshComponent.h"
-#include "GameFramework/FloatingPawnMovement.h" 
+#include "SP_BaseCharacter.h"
 #include "SP_Player.generated.h"
 
 UCLASS()
-class STRATEGYPROTOTYPE_API ASP_Player : public APawn
+class STRATEGYPROTOTYPE_API ASP_Player : public ASP_BaseCharacter
 {
 	GENERATED_BODY()
 
@@ -21,11 +19,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UStaticMeshComponent* MeshComp;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UFloatingPawnMovement* FloatingPawnMovementComp;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -35,5 +28,4 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void MoveToLocation(const FVector& Location);
-
 };
