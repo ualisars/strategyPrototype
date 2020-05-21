@@ -39,6 +39,22 @@ void ASP_GameCamera::MoveYAxis(float AxisValue)
 	CurrentVelocity.Y = FMath::Clamp(AxisValue, -1.0f, 1.0f) * CameraSpeed;
 }
 
+void ASP_GameCamera::MouseWheelUp()
+{
+	if (SpringArmComp->TargetArmLength > CameraLowerHeightLimit)
+	{
+		SpringArmComp->TargetArmLength -= ScrollingSpeed;
+	}
+}
+
+void ASP_GameCamera::MouseWheelDown()
+{
+	if (SpringArmComp->TargetArmLength < CameraUpperHeightLimit)
+	{
+		SpringArmComp->TargetArmLength += ScrollingSpeed;
+	}
+}
+
 // Called every frame
 void ASP_GameCamera::Tick(float DeltaTime)
 {
@@ -58,5 +74,8 @@ void ASP_GameCamera::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	InputComponent->BindAxis("MoveX", this, &ASP_GameCamera::MoveXAxis);
 	InputComponent->BindAxis("MoveY", this, &ASP_GameCamera::MoveYAxis);
+
+	InputComponent->BindAction("MouseWheelUp", IE_Pressed, this, &ASP_GameCamera::MouseWheelUp);
+	InputComponent->BindAction("MouseWheelDown", IE_Pressed, this, &ASP_GameCamera::MouseWheelDown);
 }
 

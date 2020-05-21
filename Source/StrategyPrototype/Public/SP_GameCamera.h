@@ -35,11 +35,24 @@ protected:
 	float CameraSpeed = 600.0f;
 
 	UPROPERTY(EditDefaultsOnly)
+	float ScrollingSpeed = 50.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	float CameraUpperHeightLimit = 1500.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	float CameraLowerHeightLimit = 300.0f;
+
+	UPROPERTY(EditDefaultsOnly)
 	FVector CurrentVelocity;
 
 	void MoveXAxis(float AxisValue);
 
 	void MoveYAxis(float AxisValue);
+
+	void MouseWheelUp();
+
+	void MouseWheelDown();
 
 public:	
 	// Called every frame
