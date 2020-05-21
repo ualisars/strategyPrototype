@@ -22,6 +22,12 @@ void ASP_PlayerController::FindPlayerPawn()
 	ClassToFind = ASP_Player::StaticClass();
 	TArray<AActor*> FoundPlayers;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ClassToFind, FoundPlayers);
+	if (FoundPlayers.Num() == 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No player pawn found"));
+		return;
+	}
+
 	PlayerPawn = Cast<ASP_Player>(FoundPlayers[0]);
 	if (PlayerPawn == nullptr)
 	{
