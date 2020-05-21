@@ -5,7 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
+#include "Units/SP_Unit.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Utils/SP_Random.h"
+#include "Characters/SP_CharacterMode.h"
 #include "SP_BaseCharacter.generated.h"
 
 UCLASS()
@@ -20,6 +23,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	SP_CharacterMode Mode;
 
 	float MAX_WALK_SPEED_DEFAULT = 300.0f;
 	float MAX_WALK_SPEED_RODE = 400.0f;
@@ -37,4 +42,16 @@ public:
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
+
+	TArray<SP_Unit*> Units;
+
+	void SetMode(SP_CharacterMode NewMode);
+
+	void AttackUnit(SP_Unit* AttackUnit, SP_Unit* DefendUnit);
+
+	void StartBattle(ASP_BaseCharacter* OtherCharacter);
+
+	void StopMovement();
+
+	SP_CharacterMode GetMode();
 };
