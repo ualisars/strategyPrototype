@@ -38,15 +38,33 @@ void ASP_PlayerController::FindPlayerPawn()
 void ASP_PlayerController::LeftMousePressed()
 {
 	FHitResult LeftMouseHitResult;
-	GetHitResultUnderCursorByChannel(TraceTypeQuery1, false, LeftMouseHitResult);
-	UE_LOG(LogTemp, Warning, TEXT("LeftMousePressed"));
+
+	// Query 1: Default
+	// Query4: Block All
+	// Query4: Overlap all dynamic
+	TArray<TEnumAsByte<EObjectTypeQuery>> Arr = 
+	{ 
+		TEnumAsByte<EObjectTypeQuery>(EObjectTypeQuery::ObjectTypeQuery1),
+		TEnumAsByte<EObjectTypeQuery>(EObjectTypeQuery::ObjectTypeQuery7)
+	};
+
+	GetHitResultUnderCursorForObjects(Arr, false, LeftMouseHitResult);
 	UE_LOG(LogTemp, Warning, TEXT("X: %f, Y: %f, Z: %f"), LeftMouseHitResult.Location.X, LeftMouseHitResult.Location.Y, LeftMouseHitResult.Location.Z);
 
 	FindPlayerPawn();
 
+	PlayerPawn->TownToMove = nullptr;
+
 	if (PlayerPawn != nullptr)
 	{
 		PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
+		AActor* TownActor = LeftMouseHitResult.Actor.Get();
+		ASP_Town* ChosenTown = Cast<ASP_Town>(TownActor);
+		if (ChosenTown != nullptr)
+		{
+			PlayerPawn->TownToMove = ChosenTown;
+			PlayerPawn->Mode = SP_CharacterMode::GoingToTown;
+		}
 	}
 }
 

@@ -54,7 +54,6 @@ void ASP_BaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 void ASP_BaseCharacter::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
-	UE_LOG(LogTemp, Warning, TEXT("BaseChar start overlap"));
 	if (OtherActor && (OtherActor != this))
 	{
 		if (OtherActor->ActorHasTag("Road"))
@@ -89,7 +88,6 @@ void ASP_BaseCharacter::NotifyActorEndOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorEndOverlap(OtherActor);
 
-	UE_LOG(LogTemp, Warning, TEXT("BaseChar end overlap"));
 	if (OtherActor && (OtherActor != this))
 	{
 		if (OtherActor->ActorHasTag("NavigationArea"))
@@ -137,8 +135,6 @@ void ASP_BaseCharacter::StartBattle(ASP_BaseCharacter* OtherCharacter)
 			UE_LOG(LogTemp, Warning, TEXT("Other Character i units after remove is %d"), OtherCharacter->Units.Num());
 		}
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("End of while"));
 
 	if (Units.Num() == 0)
 	{

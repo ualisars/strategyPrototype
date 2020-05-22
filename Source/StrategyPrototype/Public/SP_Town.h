@@ -16,6 +16,9 @@ public:
 	// Sets default values for this actor's properties
 	ASP_Town();
 
+	UPROPERTY(EditAnywhere)
+	FName Name;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -26,5 +29,4 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 };

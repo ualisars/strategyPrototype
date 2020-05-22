@@ -20,7 +20,6 @@ void ASP_NPC::BeginPlay()
 	if (Towns.Num() != 0)
 	{
 		FVector Location = Towns[0]->GetActorLocation();
-		UE_LOG(LogTemp, Warning, TEXT("NPC is moving to x:%f, y:%f, z:%f"), Location.X, Location.Y, Location.Z);
 		NPC_MoveToActor(Towns[CurrentTownIndex]);
 	}
 }
@@ -43,14 +42,12 @@ void ASP_NPC::GetAllTowns()
 	{
 		TArray<AActor*> FoundTowns;
 		UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Town", FoundTowns);
-		UE_LOG(LogTemp, Warning, TEXT("Number of Found towns is %i"), FoundTowns.Num());
 		FoundTowns.Sort([this](const AActor& Town1, const AActor& Town2) 
 		{
 			return GetDistanceTo(&Town1) < GetDistanceTo(&Town2);
 		});
 		Towns = FoundTowns;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Number of towns is %i"), Towns.Num());
 }
 
 // Called every frame
@@ -69,7 +66,6 @@ void ASP_NPC::NotifyActorBeginOverlap(AActor * OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	UE_LOG(LogTemp, Warning, TEXT("NPC start overlap"));
 	if (OtherActor && (OtherActor != this))
 	{
 		if (OtherActor->ActorHasTag("Town"))
