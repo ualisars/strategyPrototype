@@ -42,6 +42,7 @@ void ASP_Player::NotifyActorBeginOverlap(AActor* OtherActor)
 			if (Town != nullptr && TownToMove != nullptr && TownToMove->Name == Town->Name)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Player interating with town"));
+				InteractWithTown();
 			}
 		}
 	}

@@ -36,4 +36,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void MoveToLocation(const FVector& Location);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void InteractWithTown();
 };

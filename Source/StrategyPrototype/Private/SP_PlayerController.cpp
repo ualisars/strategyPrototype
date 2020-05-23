@@ -41,14 +41,14 @@ void ASP_PlayerController::LeftMousePressed()
 
 	// Query 1: Default
 	// Query4: Block All
-	// Query4: Overlap all dynamic
-	TArray<TEnumAsByte<EObjectTypeQuery>> Arr = 
+	// Query7: Overlap all dynamic
+	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes = 
 	{ 
 		TEnumAsByte<EObjectTypeQuery>(EObjectTypeQuery::ObjectTypeQuery1),
 		TEnumAsByte<EObjectTypeQuery>(EObjectTypeQuery::ObjectTypeQuery7)
 	};
 
-	GetHitResultUnderCursorForObjects(Arr, false, LeftMouseHitResult);
+	GetHitResultUnderCursorForObjects(ObjectTypes, false, LeftMouseHitResult);
 	UE_LOG(LogTemp, Warning, TEXT("X: %f, Y: %f, Z: %f"), LeftMouseHitResult.Location.X, LeftMouseHitResult.Location.Y, LeftMouseHitResult.Location.Z);
 
 	FindPlayerPawn();
