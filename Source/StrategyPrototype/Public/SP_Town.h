@@ -16,7 +16,7 @@ public:
 	// Sets default values for this actor's properties
 	ASP_Town();
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName Name;
 
 protected:

@@ -19,6 +19,7 @@ public:
 
 	SP_CharacterMode Mode;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_Town* TownToMove;
 
 protected:

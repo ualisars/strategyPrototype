@@ -8,6 +8,8 @@ ASP_Player::ASP_Player()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Tags.Add(FName("Player"));
+
 	Mode = SP_CharacterMode::Roaming;
 }
 
