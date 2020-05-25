@@ -13,17 +13,3 @@ ASP_Town::ASP_Town()
 	RootComponent = MeshComp;
 }
 
-// Called when the game starts or when spawned
-void ASP_Town::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ASP_Town::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
