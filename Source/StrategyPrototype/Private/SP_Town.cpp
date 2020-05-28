@@ -11,5 +11,14 @@ ASP_Town::ASP_Town()
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
 	MeshComp->SetCanEverAffectNavigation(false);
 	RootComponent = MeshComp;
+
+	FPlayerUnit Fermer = FPlayerUnit("Fermer", 10.0f, 2.0f);
+	FPlayerUnit Villager = FPlayerUnit("Villager", 9.0f, 3.0f);
+	FPlayerUnit Knight = FPlayerUnit("Knight", 50.0f, 12.0f);
+	FPlayerUnit Mercernary = FPlayerUnit("Mercernary", 30.0f, 9.0f);
+	AvailableUnits.Add(Fermer);
+	AvailableUnits.Add(Villager);
+	AvailableUnits.Add(Knight);
+	AvailableUnits.Add(Mercernary);
 }
 

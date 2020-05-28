@@ -19,8 +19,4 @@ public:
 	SP_Unit(const FString& Name, float Health, float Damage);
 
 	~SP_Unit();
-
-	static SP_Unit* CreateUnit(const FString & Name, float Health, float Damage);
-
-	static TMap<FString, FString> PrintUnit();
 };
