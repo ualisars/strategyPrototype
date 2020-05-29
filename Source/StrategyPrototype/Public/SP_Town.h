@@ -14,14 +14,19 @@ struct FPlayerUnit
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Name;
-	float Health;
-	float Damage;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString Health;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString Damage;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString Cost;
 
 	FPlayerUnit() {}
 
-	FPlayerUnit(FString Name, float Health, float Damage)
-		:Name(Name), Health(Health), Damage(Damage) {}
+	FPlayerUnit(FString Name, FString Health, FString Damage, FString Cost)
+		:Name(Name), Health(Health), Damage(Damage), Cost(Cost) {}
 };
 
 UCLASS()

@@ -12,10 +12,11 @@ ASP_Town::ASP_Town()
 	MeshComp->SetCanEverAffectNavigation(false);
 	RootComponent = MeshComp;
 
-	FPlayerUnit Fermer = FPlayerUnit("Fermer", 10.0f, 2.0f);
-	FPlayerUnit Villager = FPlayerUnit("Villager", 9.0f, 3.0f);
-	FPlayerUnit Knight = FPlayerUnit("Knight", 50.0f, 12.0f);
-	FPlayerUnit Mercernary = FPlayerUnit("Mercernary", 30.0f, 9.0f);
+	FPlayerUnit Fermer = FPlayerUnit("Fermer", "10.0", "2.0", "3.0");
+	FPlayerUnit Villager = FPlayerUnit("Villager", "9.0", "3.0", "3.0");
+	FPlayerUnit Knight = FPlayerUnit("Knight", "50.0", "12.0", "50.0");
+	FPlayerUnit Mercernary = FPlayerUnit("Mercernary", "30.0", "9.0", "30.0");
+
 	AvailableUnits.Add(Fermer);
 	AvailableUnits.Add(Villager);
 	AvailableUnits.Add(Knight);
