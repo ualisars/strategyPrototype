@@ -50,3 +50,12 @@ void ASP_Player::NotifyActorBeginOverlap(AActor* OtherActor)
 	}
 }
 
+void ASP_Player::AddUnit(const FPlayerUnit& PlayerUnit)
+{
+	FString UnitName = PlayerUnit.Name;
+	float UnitHealth = FCString::Atof(*PlayerUnit.Health);
+	float UnitDamage = FCString::Atof(*PlayerUnit.Damage);
+	SP_Unit* Unit = new SP_Unit(UnitName, UnitHealth, UnitDamage);
+	Units.Add(Unit);
+}
+

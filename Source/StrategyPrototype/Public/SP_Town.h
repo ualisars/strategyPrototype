@@ -27,6 +27,15 @@ struct FPlayerUnit
 
 	FPlayerUnit(FString Name, FString Health, FString Damage, FString Cost)
 		:Name(Name), Health(Health), Damage(Damage), Cost(Cost) {}
+
+	bool operator==(const FPlayerUnit& OtherPlayerUnit)
+	{
+		if (Name == OtherPlayerUnit.Name)
+		{
+			return true;
+		}
+		return false;
+	}
 };
 
 UCLASS()
@@ -34,8 +43,6 @@ class STRATEGYPROTOTYPE_API ASP_Town : public AActor
 {
 	GENERATED_BODY()
 
-	TArray<SP_Unit*> Units;
-	
 public:	
 	// Sets default values for this actor's properties
 	ASP_Town();
@@ -45,6 +52,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FPlayerUnit> AvailableUnits;
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveFromAvailableUnits(const FPlayerUnit& Unit);
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")

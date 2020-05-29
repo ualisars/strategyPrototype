@@ -23,3 +23,7 @@ ASP_Town::ASP_Town()
 	AvailableUnits.Add(Mercernary);
 }
 
+void ASP_Town::RemoveFromAvailableUnits(const FPlayerUnit& Unit)
+{
+	AvailableUnits.Remove(Unit);
+}

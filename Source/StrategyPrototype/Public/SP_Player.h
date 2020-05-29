@@ -40,4 +40,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void InteractWithTown();
+
+	UFUNCTION(BlueprintCallable)
+	void AddUnit(const FPlayerUnit& PlayerUnit);
 };
