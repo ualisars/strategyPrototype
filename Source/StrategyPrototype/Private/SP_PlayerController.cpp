@@ -3,7 +3,8 @@
 #include "SP_PlayerController.h"
 
 #define CollisionQueryDefault EObjectTypeQuery::ObjectTypeQuery1
-#define CollisionQueryAllDynamic EObjectTypeQuery::ObjectTypeQuery7
+#define CollisionQueryBlockAllDynamic EObjectTypeQuery::ObjectTypeQuery6
+#define CollisionQueryOverlapAllDynamic EObjectTypeQuery::ObjectTypeQuery7
 
 ASP_PlayerController::ASP_PlayerController()
 {
@@ -45,7 +46,8 @@ void ASP_PlayerController::LeftMousePressed()
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes = 
 	{ 
 		TEnumAsByte<EObjectTypeQuery>(CollisionQueryDefault),
-		TEnumAsByte<EObjectTypeQuery>(CollisionQueryAllDynamic)
+		TEnumAsByte<EObjectTypeQuery>(CollisionQueryBlockAllDynamic),
+		TEnumAsByte<EObjectTypeQuery>(CollisionQueryOverlapAllDynamic)
 	};
 
 	GetHitResultUnderCursorForObjects(ObjectTypes, false, LeftMouseHitResult);
@@ -54,12 +56,13 @@ void ASP_PlayerController::LeftMousePressed()
 	FindPlayerPawn();
 
 	PlayerPawn->TownToMove = nullptr;
+	AActor* HitActor = LeftMouseHitResult.Actor.Get();
 
-	if (PlayerPawn != nullptr)
+	// move player if player is present and hit actor is not obstacle
+	if (PlayerPawn != nullptr && Cast<ASP_Obstacle>(HitActor) == nullptr)
 	{
 		PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
-		AActor* TownActor = LeftMouseHitResult.Actor.Get();
-		ASP_Town* ChosenTown = Cast<ASP_Town>(TownActor);
+		ASP_Town* ChosenTown = Cast<ASP_Town>(HitActor);
 		if (ChosenTown != nullptr)
 		{
 			PlayerPawn->TownToMove = ChosenTown;
