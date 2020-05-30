@@ -22,6 +22,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_Town* TownToMove;
 
+	bool bOverlappingWithTown = false;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -34,6 +36,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
+	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void MoveToLocation(const FVector& Location);

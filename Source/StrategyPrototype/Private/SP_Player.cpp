@@ -35,18 +35,25 @@ void ASP_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 void ASP_Player::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
-	if (OtherActor && (OtherActor != this))
+	
+	if (OtherActor && OtherActor != this && OtherActor->ActorHasTag("Town"))
 	{
-		// Interact with town
-		if (OtherActor->ActorHasTag("Town") && Mode == SP_CharacterMode::GoingToTown)
+		ASP_Town* Town = Cast<ASP_Town>(OtherActor);
+		if (Town != nullptr && TownToMove != nullptr && TownToMove->Name == Town->Name)
 		{
-			ASP_Town* Town = Cast<ASP_Town>(OtherActor);
-			if (Town != nullptr && TownToMove != nullptr && TownToMove->Name == Town->Name)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Player interating with town"));
-				InteractWithTown();
-			}
+			InteractWithTown();
 		}
+		bOverlappingWithTown = true;
+	}
+}
+
+void ASP_Player::NotifyActorEndOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorEndOverlap(OtherActor);
+
+	if (OtherActor && OtherActor != this && OtherActor->ActorHasTag("Town"))
+	{
+		bOverlappingWithTown = false;
 	}
 }
 
