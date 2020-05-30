@@ -2,6 +2,9 @@
 
 #include "SP_PlayerController.h"
 
+#define CollisionQueryDefault EObjectTypeQuery::ObjectTypeQuery1
+#define CollisionQueryAllDynamic EObjectTypeQuery::ObjectTypeQuery7
+
 ASP_PlayerController::ASP_PlayerController()
 {
 	bShowMouseCursor = true;
@@ -39,13 +42,10 @@ void ASP_PlayerController::LeftMousePressed()
 {
 	FHitResult LeftMouseHitResult;
 
-	// Query 1: Default
-	// Query4: Block All
-	// Query7: Overlap all dynamic
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes = 
 	{ 
-		TEnumAsByte<EObjectTypeQuery>(EObjectTypeQuery::ObjectTypeQuery1),
-		TEnumAsByte<EObjectTypeQuery>(EObjectTypeQuery::ObjectTypeQuery7)
+		TEnumAsByte<EObjectTypeQuery>(CollisionQueryDefault),
+		TEnumAsByte<EObjectTypeQuery>(CollisionQueryAllDynamic)
 	};
 
 	GetHitResultUnderCursorForObjects(ObjectTypes, false, LeftMouseHitResult);
