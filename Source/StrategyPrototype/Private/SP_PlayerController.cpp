@@ -86,5 +86,7 @@ void ASP_PlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 	InputComponent->BindAction("LeftMouseClick", IE_Pressed, this, &ASP_PlayerController::LeftMousePressed);
 	InputComponent->BindAction("RightMouseClick", IE_Pressed, this, &ASP_PlayerController::RightMousePressed);
+
+	InputComponent->BindAction("OpenInventory", IE_Pressed, this, &ASP_PlayerController::OpenInventory);
 }
 
