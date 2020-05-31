@@ -11,6 +11,11 @@ ASP_Player::ASP_Player()
 	Tags.Add(FName("Player"));
 
 	Mode = SP_CharacterMode::Roaming;
+
+	FSP_Unit* Archer = new FSP_Unit("Archer", 10.0f, 6.0f);
+	FSP_Unit DisplayedUnit = FSP_Unit(Archer->Name, Archer->Health, Archer->Damage);
+	Units.Add(Archer);
+	DisplayedUnits.Add(DisplayedUnit);
 }
 
 // Called when the game starts or when spawned
@@ -60,5 +65,7 @@ void ASP_Player::NotifyActorEndOverlap(AActor* OtherActor)
 void ASP_Player::AddUnit(const FSP_Unit& PlayerUnit)
 {
 	FSP_Unit* Unit = new FSP_Unit(PlayerUnit.Name, PlayerUnit.Health, PlayerUnit.Damage);
+	FSP_Unit DisplayedUnit = FSP_Unit(PlayerUnit.Name, PlayerUnit.Health, PlayerUnit.Damage);
 	Units.Add(Unit);
+	DisplayedUnits.Add(DisplayedUnit);
 }

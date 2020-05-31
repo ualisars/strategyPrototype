@@ -22,6 +22,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_Town* TownToMove;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FSP_Unit> DisplayedUnits;
+
 	bool bOverlappingWithTown = false;
 
 protected:
