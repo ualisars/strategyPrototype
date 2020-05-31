@@ -4,9 +4,6 @@
 
 #include "CoreMinimal.h"
 
-/**
- * 
- */
 class STRATEGYPROTOTYPE_API SP_Unit
 {
 public:

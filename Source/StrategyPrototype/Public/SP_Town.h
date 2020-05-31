@@ -6,37 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Units/SP_Unit.h"
 #include "Components/StaticMeshComponent.h"
-#include "Engine/DataTable.h"
+#include "Objects/SP_Object.h"
 #include "SP_Town.generated.h"
-
-USTRUCT(BlueprintType)
-struct FPlayerUnit
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Name;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Health;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Damage;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Cost;
-
-	FPlayerUnit() {}
-
-	FPlayerUnit(FString Name, FString Health, FString Damage, FString Cost)
-		:Name(Name), Health(Health), Damage(Damage), Cost(Cost) {}
-
-	bool operator==(const FPlayerUnit& OtherPlayerUnit)
-	{
-		if (Name == OtherPlayerUnit.Name)
-		{
-			return true;
-		}
-		return false;
-	}
-};
 
 UCLASS()
 class STRATEGYPROTOTYPE_API ASP_Town : public AActor
@@ -51,10 +22,10 @@ public:
 	FName Name;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FPlayerUnit> AvailableUnits;
+	TArray<FSP_Unit> AvailableUnits;
 
 	UFUNCTION(BlueprintCallable)
-	void RemoveFromAvailableUnits(const FPlayerUnit& Unit);
+	void RemoveFromAvailableUnits(const FSP_Unit& Unit);
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
