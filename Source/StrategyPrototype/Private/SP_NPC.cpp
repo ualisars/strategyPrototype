@@ -7,7 +7,7 @@ ASP_NPC::ASP_NPC()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	SP_Unit* Cavalry = new SP_Unit("Cavalry", 70, 8);
+	FSP_Unit* Cavalry = new FSP_Unit("Cavalry", 70, 8);
 	Units.Add(Cavalry);
 }
 

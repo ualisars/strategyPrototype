@@ -105,16 +105,16 @@ void ASP_BaseCharacter::StartBattle(ASP_BaseCharacter* OtherCharacter)
 	SetMode(SP_CharacterMode::Fighting);
 	OtherCharacter->SetMode(SP_CharacterMode::Fighting);
 
-	TArray<SP_Unit*> CharacterUnitCopy = Units;
-	TArray<SP_Unit*> OtherCharacterUnitCopy = OtherCharacter->Units;
+	TArray<FSP_Unit*> CharacterUnitCopy = Units;
+	TArray<FSP_Unit*> OtherCharacterUnitCopy = OtherCharacter->Units;
 
 	while (Units.Num() != 0 && OtherCharacter->Units.Num() != 0)
 	{
 		int Character1Index = SP_Random::GenerateRandomNumber(0, Units.Num() - 1);
 		int Character2Index = SP_Random::GenerateRandomNumber(0, OtherCharacter->Units.Num() - 1);
 
-		SP_Unit* RandomCharacter1Unit = Units[Character1Index];
-		SP_Unit* RandomCharacter2Unit = OtherCharacter->Units[Character2Index];
+		FSP_Unit* RandomCharacter1Unit = Units[Character1Index];
+		FSP_Unit* RandomCharacter2Unit = OtherCharacter->Units[Character2Index];
 
 		AttackUnit(RandomCharacter1Unit, RandomCharacter2Unit);
 		AttackUnit(RandomCharacter2Unit, RandomCharacter1Unit);
@@ -148,7 +148,7 @@ void ASP_BaseCharacter::StartBattle(ASP_BaseCharacter* OtherCharacter)
 	UE_LOG(LogTemp, Warning, TEXT("Fight is over"));
 }
 
-void ASP_BaseCharacter::AttackUnit(SP_Unit* AttackUnit, SP_Unit* DefendUnit)
+void ASP_BaseCharacter::AttackUnit(FSP_Unit* AttackUnit, FSP_Unit* DefendUnit)
 {
 	if (AttackUnit->Health > 0)
 	{

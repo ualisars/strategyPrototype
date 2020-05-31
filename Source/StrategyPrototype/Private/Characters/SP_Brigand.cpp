@@ -10,7 +10,7 @@ ASP_Brigand::ASP_Brigand()
 
 	SetMode(SP_CharacterMode::Attacking);
 
-	SP_Unit* Brigands = new SP_Unit("Brigand", 120, 5);
+	FSP_Unit* Brigands = new FSP_Unit("Brigand", 120, 5);
 	Units.Add(Brigands);
 }
 

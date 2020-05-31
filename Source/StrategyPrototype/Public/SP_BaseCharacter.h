@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
-#include "Units/SP_Unit.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Utils/SP_Random.h"
+#include "Objects/SP_Object.h"
 #include "Characters/SP_CharacterMode.h"
 #include "SP_BaseCharacter.generated.h"
 
@@ -43,11 +43,11 @@ public:
 
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 
-	TArray<SP_Unit*> Units;
+	TArray<FSP_Unit*> Units;
 
 	void SetMode(SP_CharacterMode NewMode);
 
-	void AttackUnit(SP_Unit* AttackUnit, SP_Unit* DefendUnit);
+	void AttackUnit(FSP_Unit* AttackUnit, FSP_Unit* DefendUnit);
 
 	void StartBattle(ASP_BaseCharacter* OtherCharacter);
 

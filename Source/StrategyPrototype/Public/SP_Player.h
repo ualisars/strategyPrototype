@@ -6,7 +6,6 @@
 #include "SP_BaseCharacter.h"
 #include "SP_Town.h"
 #include "Characters/SP_CharacterMode.h"
-#include "Objects/SP_Object.h"
 #include "SP_Player.generated.h"
 
 UCLASS()

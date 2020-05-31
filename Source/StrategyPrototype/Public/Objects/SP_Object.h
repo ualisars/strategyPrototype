@@ -37,6 +37,13 @@ struct FSP_Unit
 		StrCost = FString::SanitizeFloat(UnitCost);
 	}
 
+	FSP_Unit(FString UnitName, float UnitHealth, float UnitDamage)
+		:Name(UnitName), Health(UnitHealth), Damage(UnitDamage)
+	{
+		StrHealth = FString::SanitizeFloat(UnitHealth);
+		StrDamage = FString::SanitizeFloat(UnitDamage);
+	}
+
 	bool operator==(const FSP_Unit& OtherPlayerUnit)
 	{
 		if (Name == OtherPlayerUnit.Name)
