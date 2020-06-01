@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Units/SP_Unit.h"
 #include "Components/StaticMeshComponent.h"
 #include "Objects/SP_Object.h"
 #include "SP_Town.generated.h"

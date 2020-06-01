@@ -20,6 +20,9 @@ public:
 	// Sets default values for this character's properties
 	ASP_BaseCharacter();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int MAX_INVENTORY_SLOTS = 15;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
