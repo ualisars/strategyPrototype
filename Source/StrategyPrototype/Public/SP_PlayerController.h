@@ -37,4 +37,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OpenInventory();
+
+	UFUNCTION(BlueprintCallable)
+	void SetInputModeToGameOnly();
 };

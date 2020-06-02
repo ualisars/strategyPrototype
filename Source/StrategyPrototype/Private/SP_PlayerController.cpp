@@ -81,6 +81,13 @@ void ASP_PlayerController::RightMousePressed()
 
 }
 
+void ASP_PlayerController::SetInputModeToGameOnly()
+{
+	FInputModeGameOnly InputMode;
+	InputMode.SetConsumeCaptureMouseDown(false);
+	SetInputMode(InputMode);
+}
+
 void ASP_PlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
