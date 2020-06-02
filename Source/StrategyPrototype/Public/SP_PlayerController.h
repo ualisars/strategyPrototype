@@ -21,6 +21,8 @@ class STRATEGYPROTOTYPE_API ASP_PlayerController : public APlayerController
 
 	void FindPlayerPawn();
 
+	bool bPause = false;
+
 protected:
 	void LeftMousePressed();
 
@@ -35,5 +37,4 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OpenInventory();
-	
 };
