@@ -54,6 +54,43 @@ struct FSP_Unit
 	}
 };
 
+UENUM(BlueprintType)
+enum class SP_ItemType : uint8
+{
+	Armory,
+	Food,
+	Jewelry,
+	Resource,
+	Weapon
+};
+
+USTRUCT(BlueprintType)
+struct FSP_Item
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName Name;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Cost;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	SP_ItemType Type;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool Consumable = false;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int NutritionalValue = 0;
+
+	FSP_Item() {}
+
+	~FSP_Item() {}
+
+	FSP_Item(FName Name, float Cost, SP_ItemType Type)
+		:Name(Name), Cost(Cost), Type(Type) {}
+
+	FSP_Item(FName Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue)
+		:Name(Name), Cost(Cost), Type(Type), Consumable(Consumable), NutritionalValue(NutritionalValue) {}
+};
+
 UCLASS()
 class STRATEGYPROTOTYPE_API USP_Object : public UObject
 {

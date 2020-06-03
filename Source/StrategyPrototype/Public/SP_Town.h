@@ -23,6 +23,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FSP_Unit> AvailableUnits;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FSP_Item> Goods;
+
 	UFUNCTION(BlueprintCallable)
 	void RemoveFromAvailableUnits(const FSP_Unit& Unit);
 
