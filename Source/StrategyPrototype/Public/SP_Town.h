@@ -18,6 +18,9 @@ public:
 	ASP_Town();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int MAX_MARKET_SLOTS = 40;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName Name;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

@@ -25,13 +25,17 @@ ASP_Town::ASP_Town()
 	FSP_Item Bread1 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5);
 	FSP_Item Bread2 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5);
 
-	FSP_Item Sword = FSP_Item("Sword", 2.0f, SP_ItemType::Armory);
-	FSP_Item Helmet = FSP_Item("Helmet", 2.0f, SP_ItemType::Jewelry);
+	FSP_Item Sword = FSP_Item("Sword", 2.0f, SP_ItemType::Weapon);
+	FSP_Item Helmet = FSP_Item("Helmet", 2.0f, SP_ItemType::Armory);
+	FSP_Item Iron = FSP_Item("Iron", 2.0f, SP_ItemType::Resource);
+	FSP_Item Copper = FSP_Item("Copper", 2.0f, SP_ItemType::Resource);
 
 	Goods.Add(Bread1);
 	Goods.Add(Bread2);
 	Goods.Add(Sword);
 	Goods.Add(Helmet);
+	Goods.Add(Iron);
+	Goods.Add(Copper);
 }
 
 void ASP_Town::RemoveFromAvailableUnits(const FSP_Unit& Unit)

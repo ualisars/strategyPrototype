@@ -70,7 +70,7 @@ struct FSP_Item
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FName Name;
+	FString Name;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Cost;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -84,10 +84,10 @@ struct FSP_Item
 
 	~FSP_Item() {}
 
-	FSP_Item(FName Name, float Cost, SP_ItemType Type)
+	FSP_Item(FString Name, float Cost, SP_ItemType Type)
 		:Name(Name), Cost(Cost), Type(Type) {}
 
-	FSP_Item(FName Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue)
+	FSP_Item(FString Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue)
 		:Name(Name), Cost(Cost), Type(Type), Consumable(Consumable), NutritionalValue(NutritionalValue) {}
 };
 
