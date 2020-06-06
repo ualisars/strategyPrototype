@@ -88,6 +88,27 @@ void ASP_PlayerController::SetInputModeToGameOnly()
 	SetInputMode(InputMode);
 }
 
+void ASP_PlayerController::SetGameState(SP_GameState NewGameState)
+{
+	if (GameState == SP_GameState::Default)
+	{
+		GameState = NewGameState;
+	}
+	else if (GameState != SP_GameState::Default && NewGameState == SP_GameState::Default)
+	{
+		GameState = NewGameState;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Improper transition to new game state"))
+	}
+}
+
+SP_GameState ASP_PlayerController::GetGameState() const
+{
+	return GameState;
+}
+
 void ASP_PlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();

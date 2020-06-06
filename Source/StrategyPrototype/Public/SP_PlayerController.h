@@ -12,6 +12,15 @@
 /**
  * 
  */
+UENUM(BlueprintType)
+enum class SP_GameState : uint8
+{
+	Default,
+	Inventory,
+	Pause,
+	Interaction
+};
+
 UCLASS()
 class STRATEGYPROTOTYPE_API ASP_PlayerController : public APlayerController
 {
@@ -22,6 +31,8 @@ class STRATEGYPROTOTYPE_API ASP_PlayerController : public APlayerController
 	void FindPlayerPawn();
 
 	bool bPause = false;
+
+	SP_GameState GameState = SP_GameState::Default;
 
 protected:
 	void LeftMousePressed();
@@ -40,4 +51,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetInputModeToGameOnly();
+
+	UFUNCTION(BlueprintCallable)
+	void SetGameState(SP_GameState GameState);
+
+	UFUNCTION(BlueprintCallable)
+	SP_GameState GetGameState() const;
 };
