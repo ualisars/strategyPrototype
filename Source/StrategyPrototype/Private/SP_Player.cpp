@@ -16,6 +16,14 @@ ASP_Player::ASP_Player()
 	FSP_Unit DisplayedUnit = FSP_Unit(Archer->Name, Archer->Health, Archer->Damage);
 	Units.Add(Archer);
 	DisplayedUnits.Add(DisplayedUnit);
+
+	FSP_Item Apple = FSP_Item("Apple", 2.0f, SP_ItemType::Food, true, 5);
+	FSP_Item Axe = FSP_Item("Axe", 5.0f, SP_ItemType::Weapon);
+	FSP_Item Wood = FSP_Item("Wood", 1.0f, SP_ItemType::Resource);
+
+	Goods.Add(Apple);
+	Goods.Add(Axe);
+	Goods.Add(Wood);
 }
 
 // Called when the game starts or when spawned
@@ -47,6 +55,7 @@ void ASP_Player::NotifyActorBeginOverlap(AActor* OtherActor)
 		if (Town != nullptr && TownToMove != nullptr && TownToMove->Name == Town->Name)
 		{
 			InteractWithTown();
+			StopMovement();
 		}
 		bOverlappingWithTown = true;
 	}

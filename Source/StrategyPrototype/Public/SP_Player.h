@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "SP_BaseCharacter.h"
 #include "SP_Town.h"
+#include "Objects/SP_Object.h"
 #include "Characters/SP_CharacterMode.h"
 #include "SP_Player.generated.h"
 
@@ -24,6 +25,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FSP_Unit> DisplayedUnits;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FSP_Item> Goods;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float Gold;
 
 	bool bOverlappingWithTown = false;
 
