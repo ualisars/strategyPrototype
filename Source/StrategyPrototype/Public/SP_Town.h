@@ -32,6 +32,15 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RemoveFromAvailableUnits(const FSP_Unit& Unit);
 
+	UFUNCTION(BlueprintCallable)
+	void AddItem(FSP_Item& Item);
+
+	UFUNCTION(BlueprintCallable)
+	FSP_Item CreateDefaultItem();
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveItem(const FSP_Item& ItemToRemove);
+
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UStaticMeshComponent* MeshComp;

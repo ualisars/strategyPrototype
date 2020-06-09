@@ -22,13 +22,13 @@ ASP_Town::ASP_Town()
 	AvailableUnits.Add(Knight);
 	AvailableUnits.Add(Mercernary);
 
-	FSP_Item Bread1 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5);
-	FSP_Item Bread2 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5);
+	FSP_Item Bread1 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5, this);
+	FSP_Item Bread2 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5, this);
 
-	FSP_Item Sword = FSP_Item("Sword", 2.0f, SP_ItemType::Weapon);
-	FSP_Item Helmet = FSP_Item("Helmet", 2.0f, SP_ItemType::Armory);
-	FSP_Item Iron = FSP_Item("Iron", 2.0f, SP_ItemType::Resource);
-	FSP_Item Copper = FSP_Item("Copper", 2.0f, SP_ItemType::Resource);
+	FSP_Item Sword = FSP_Item("Sword", 2.0f, SP_ItemType::Weapon, this);
+	FSP_Item Helmet = FSP_Item("Helmet", 2.0f, SP_ItemType::Armory, this);
+	FSP_Item Iron = FSP_Item("Iron", 2.0f, SP_ItemType::Resource, this);
+	FSP_Item Copper = FSP_Item("Copper", 2.0f, SP_ItemType::Resource, this);
 
 	Goods.Add(Bread1);
 	Goods.Add(Bread2);
@@ -41,4 +41,20 @@ ASP_Town::ASP_Town()
 void ASP_Town::RemoveFromAvailableUnits(const FSP_Unit& Unit)
 {
 	AvailableUnits.Remove(Unit);
+}
+
+void ASP_Town::AddItem(FSP_Item& Item)
+{
+	Item.SetOwner(this);
+	Goods.Add(Item);
+}
+
+FSP_Item ASP_Town::CreateDefaultItem()
+{
+	return FSP_Item(this);
+}
+
+void ASP_Town::RemoveItem(const FSP_Item& ItemToRemove)
+{
+	Goods.RemoveSingle(ItemToRemove);
 }

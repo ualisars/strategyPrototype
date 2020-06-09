@@ -44,7 +44,7 @@ struct FSP_Unit
 		StrDamage = FString::SanitizeFloat(UnitDamage);
 	}
 
-	bool operator==(const FSP_Unit& OtherPlayerUnit)
+	bool operator==(const FSP_Unit& OtherPlayerUnit) const
 	{
 		if (Name == OtherPlayerUnit.Name)
 		{
@@ -79,16 +79,46 @@ struct FSP_Item
 	bool Consumable = false;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int NutritionalValue = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	AActor* Owner = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bEmpty = true;
 
 	FSP_Item() {}
 
 	~FSP_Item() {}
 
-	FSP_Item(FString Name, float Cost, SP_ItemType Type)
-		:Name(Name), Cost(Cost), Type(Type) {}
+	FSP_Item(AActor* ItemOwner)
+	{
+		Owner = ItemOwner;
+	}
 
-	FSP_Item(FString Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue)
-		:Name(Name), Cost(Cost), Type(Type), Consumable(Consumable), NutritionalValue(NutritionalValue) {}
+	FSP_Item(FString Name, float Cost, SP_ItemType Type, AActor* ItemOwner)
+		:Name(Name), Cost(Cost), Type(Type) 
+	{
+		Owner = ItemOwner;
+		bEmpty = false;
+	}
+
+	FSP_Item(FString Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue, AActor* Owner)
+		:Name(Name), Cost(Cost), Type(Type), Consumable(Consumable), NutritionalValue(NutritionalValue), Owner(Owner), bEmpty(false) {}
+
+	bool operator==(const FSP_Item& OtherItem) const
+	{
+		if (Name == OtherItem.Name && Cost == OtherItem.Cost && Type == OtherItem.Type)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	void SetOwner(AActor* NewOwner)
+	{
+		Owner = NewOwner;
+	}
 };
 
 UCLASS()

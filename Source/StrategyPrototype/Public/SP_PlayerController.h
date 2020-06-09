@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_Obstacle.h"
+#include "Objects/SP_Object.h"
 #include "SP_Player.h"
 #include "SP_PlayerController.generated.h"
 
@@ -51,6 +52,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetInputModeToGameOnly();
+
+	UFUNCTION(BlueprintCallable)
+	void BuySellItem(FSP_Item DraggedItem, FSP_Item DroppedItem);
 
 	UFUNCTION(BlueprintCallable)
 	void SetGameState(SP_GameState GameState);

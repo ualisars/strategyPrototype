@@ -17,9 +17,9 @@ ASP_Player::ASP_Player()
 	Units.Add(Archer);
 	DisplayedUnits.Add(DisplayedUnit);
 
-	FSP_Item Apple = FSP_Item("Apple", 2.0f, SP_ItemType::Food, true, 5);
-	FSP_Item Axe = FSP_Item("Axe", 5.0f, SP_ItemType::Weapon);
-	FSP_Item Wood = FSP_Item("Wood", 1.0f, SP_ItemType::Resource);
+	FSP_Item Apple = FSP_Item("Apple", 2.0f, SP_ItemType::Food, true, 5, this);
+	FSP_Item Axe = FSP_Item("Axe", 5.0f, SP_ItemType::Weapon, this);
+	FSP_Item Wood = FSP_Item("Wood", 1.0f, SP_ItemType::Resource, this);
 
 	Goods.Add(Apple);
 	Goods.Add(Axe);
@@ -77,4 +77,20 @@ void ASP_Player::AddUnit(const FSP_Unit& PlayerUnit)
 	FSP_Unit DisplayedUnit = FSP_Unit(PlayerUnit.Name, PlayerUnit.Health, PlayerUnit.Damage);
 	Units.Add(Unit);
 	DisplayedUnits.Add(DisplayedUnit);
+}
+
+void ASP_Player::RemoveItem(const FSP_Item& Item)
+{
+	Goods.RemoveSingle(Item);
+}
+
+FSP_Item ASP_Player::CreateDefaultItem()
+{
+	return FSP_Item(this);
+}
+
+void ASP_Player::AddItem(FSP_Item& Item)
+{
+	Item.SetOwner(this);
+	Goods.Add(Item);
 }

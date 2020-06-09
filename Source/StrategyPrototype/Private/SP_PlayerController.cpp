@@ -88,6 +88,41 @@ void ASP_PlayerController::SetInputModeToGameOnly()
 	SetInputMode(InputMode);
 }
 
+void ASP_PlayerController::BuySellItem(FSP_Item DraggedItem, FSP_Item DroppedItem)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Dragged Item empty %d"), DraggedItem.bEmpty);
+	UE_LOG(LogTemp, Warning, TEXT("DroppedItem empty %d"), DroppedItem.bEmpty);
+	if (!DraggedItem.bEmpty && DroppedItem.bEmpty)
+	{
+		ASP_Town* Town = PlayerPawn->TownToMove;
+
+		UE_LOG(LogTemp, Warning, TEXT("Dragged not empty and Dropped is empty"));
+
+		UE_LOG(LogTemp, Warning, TEXT("Item cost is %f"), DraggedItem.Cost);
+
+		if (DraggedItem.Owner == nullptr)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Town is nullptr"));
+		}
+		if (DroppedItem.Owner == nullptr)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Player is nullptr"));
+		}
+		// Player buys goods
+		if (Cast<ASP_Town>(DraggedItem.Owner) && Cast<ASP_Player>(DroppedItem.Owner))
+		{
+			PlayerPawn->AddItem(DraggedItem);
+			Town->RemoveItem(DraggedItem);
+		}
+		// town market buys from player
+		else if (Cast<ASP_Player>(DraggedItem.Owner) && Cast<ASP_Town>(DroppedItem.Owner))
+		{
+			Town->AddItem(DraggedItem);
+			PlayerPawn->RemoveItem(DraggedItem);
+		}
+	}
+}
+
 void ASP_PlayerController::SetGameState(SP_GameState NewGameState)
 {
 	if (GameState == SP_GameState::Default)
