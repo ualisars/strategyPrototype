@@ -14,18 +14,29 @@ void ASP_HUD::DrawHUD()
 void ASP_HUD::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if (InventoryWidgetClass)
-	{
-		InGameInterfaceWidget = CreateWidget<USP_InGameInterface>(GetWorld(), InGameInterfaceClass);
-		if (InGameInterfaceWidget)
-		{
-			InGameInterfaceWidget->AddToViewport();
-		}
-	}
 }
 
 void ASP_HUD::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ASP_HUD::DisplayInventory()
+{
+	if (InventoryWidgetClass)
+	{
+		InventoryWidget = CreateWidget<USP_InventoryWidget>(GetWorld(), InventoryWidgetClass);
+	}
+	if (InventoryWidget)
+	{
+		InventoryWidget->AddToViewport();
+	}
+}
+
+void ASP_HUD::HideInventory()
+{
+	if (InventoryWidget)
+	{
+		InventoryWidget->RemoveFromParent();
+	}
 }

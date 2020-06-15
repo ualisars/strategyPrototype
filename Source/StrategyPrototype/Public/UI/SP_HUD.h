@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
 #include "Components/WidgetComponent.h"
-#include "UI/SP_InGameInterface.h"
 #include "UI/Inventory/SP_InventoryWidget.h"
 #include "SP_HUD.generated.h"
 
@@ -27,14 +26,15 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable)
+	void DisplayInventory();
+
+	UFUNCTION(BlueprintCallable)
+	void HideInventory();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> InventoryWidgetClass;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
-	TSubclassOf<UUserWidget> InGameInterfaceClass;
-
 private:
 	USP_InventoryWidget* InventoryWidget;
-
-	USP_InGameInterface* InGameInterfaceWidget;
 };

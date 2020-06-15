@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "SP_Obstacle.h"
 #include "Objects/SP_Object.h"
+#include "UI/SP_HUD.h"
 #include "SP_Player.h"
 #include "SP_PlayerController.generated.h"
 
@@ -35,6 +36,8 @@ class STRATEGYPROTOTYPE_API ASP_PlayerController : public APlayerController
 
 	SP_GameState GameState = SP_GameState::Default;
 
+	ASP_HUD* HUD;
+
 protected:
 	void LeftMousePressed();
 
@@ -47,8 +50,11 @@ public:
 
 	virtual void SetupInputComponent() override;
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable)
 	void OpenInventory();
+
+	UFUNCTION(BlueprintCallable)
+	void CloseInventory();
 
 	UFUNCTION(BlueprintCallable)
 	void SetInputModeToGameOnly();
