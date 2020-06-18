@@ -6,5 +6,11 @@ USP_InventoryWidget::USP_InventoryWidget(const FObjectInitializer& ObjectInitial
 void USP_InventoryWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
+	ButtonClose->OnClicked.AddDynamic(this, &USP_InventoryWidget::HideWidget);
+}
+
+void USP_InventoryWidget::HideWidget()
+{
+	RemoveFromParent();
 }
 
