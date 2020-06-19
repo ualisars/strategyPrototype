@@ -3,7 +3,11 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "Components/ScrollBox.h"
 #include "Kismet/GameplayStatics.h"
+#include "Objects/SP_Object.h"
+#include "SP_Player.h"
+#include "SP_InventoryUnitWidget.h"
 #include "SP_InventoryWidget.generated.h"
 
 UCLASS()
@@ -47,5 +51,11 @@ public:
 	class UButton* ButtonClose;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* TextClose;		
+	class UTextBlock* TextClose;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> InventoryUnitWidgetClass;
+
+	void DisplayPlayerUnits();
+
 };

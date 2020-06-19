@@ -6,9 +6,6 @@
 #include "Blueprint/UserWidget.h"
 #include "SP_InventoryUnitWidget.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class STRATEGYPROTOTYPE_API USP_InventoryUnitWidget : public UUserWidget
 {
@@ -33,5 +30,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* UnitDamage;
-	
 };
