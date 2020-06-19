@@ -2,9 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/Image.h"
-#include "Components/CanvasPanel.h"
-#include "Components/ScrollBox.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_InventoryWidget.generated.h"
