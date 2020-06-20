@@ -38,10 +38,7 @@ void USP_InventoryWidget::DisplayPlayerUnits()
 
 	for (FSP_Unit* Unit : Units)
 	{
-		if (USP_InventoryUnitWidget* UnitWidget = Cast<USP_InventoryUnitWidget>(CreateWidget(this, InventoryUnitWidgetClass)))
-		{
-			ScrollBoxUnits->AddChild(UnitWidget);
-		}
+		CreateInventoryUnitWidget(*Unit);
 	}
 }
 

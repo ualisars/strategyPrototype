@@ -5,10 +5,11 @@
 #include "Components/Button.h"
 #include "Components/ScrollBox.h"
 #include "Kismet/GameplayStatics.h"
-#include "Objects/SP_Object.h"
 #include "SP_Player.h"
 #include "SP_InventoryUnitWidget.h"
 #include "SP_InventoryWidget.generated.h"
+
+struct FSP_Unit;
 
 UCLASS()
 class STRATEGYPROTOTYPE_API USP_InventoryWidget : public UUserWidget
@@ -55,6 +56,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> InventoryUnitWidgetClass;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void CreateInventoryUnitWidget(FSP_Unit Unit);
 
 	void DisplayPlayerUnits();
 
