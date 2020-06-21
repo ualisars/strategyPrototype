@@ -21,5 +21,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UWrapBox* WrapBoxItems;
-	
 };

@@ -6,10 +6,9 @@
 #include "Components/ScrollBox.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_Player.h"
+#include "Objects/SP_Object.h"
 #include "SP_InventoryUnitWidget.h"
 #include "SP_InventoryWidget.generated.h"
-
-struct FSP_Unit;
 
 UCLASS()
 class STRATEGYPROTOTYPE_API USP_InventoryWidget : public UUserWidget
@@ -19,6 +18,10 @@ class STRATEGYPROTOTYPE_API USP_InventoryWidget : public UUserWidget
 private:
 	UFUNCTION(BlueprintCallable)
 	void HideWidget();
+	
+	ASP_Player* Player = nullptr;
+
+	void SetPlayer();
 
 public:
 	USP_InventoryWidget(const FObjectInitializer& ObjectInitializer);
@@ -57,8 +60,16 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> InventoryUnitWidgetClass;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Properties")
+	int SlotsInRow = 4;
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void CreateInventoryUnitWidget(FSP_Unit Unit);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void CreateItemRow(int CurrentSlotsInRow, const TArray<FSP_Item>& GoodsInRow);
+
+	void DisplayPlayerInventory();
 
 	void DisplayPlayerUnits();
 
