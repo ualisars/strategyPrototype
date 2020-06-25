@@ -21,6 +21,12 @@ class STRATEGYPROTOTYPE_API USP_TownWidget : public UUserWidget
 	UFUNCTION()
 	void HideTownWidget();
 
+	UFUNCTION()
+	void DisplayBarracksWidget();
+
+	UFUNCTION()
+	void DisplayMarketWidget();
+
 public:
 	USP_TownWidget(const FObjectInitializer& ObjectInitializer);
 
@@ -55,8 +61,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* TextLeaveTown;
-
-	void DisplayMarketWidget();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> BarracksWidgetClass;
