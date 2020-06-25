@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "UI/SP_HUD.h"
 
 ASP_HUD::ASP_HUD()

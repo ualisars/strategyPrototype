@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,6 +5,8 @@
 #include "Components/Button.h"
 #include "UI/Town/Barracks/SP_BarracksWidget.h"
 #include "UI/Town/Market/SP_MarketWidget.h"
+#include "Kismet/GameplayStatics.h"
+#include "SP_PlayerController.h"
 #include "SP_TownWidget.generated.h"
 
 UCLASS()
@@ -17,6 +17,9 @@ class STRATEGYPROTOTYPE_API USP_TownWidget : public UUserWidget
 	USP_BarracksWidget* BarracksWidget;
 
 	USP_MarketWidget* MarketWidget;
+
+	UFUNCTION()
+	void HideTownWidget();
 
 public:
 	USP_TownWidget(const FObjectInitializer& ObjectInitializer);

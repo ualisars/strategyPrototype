@@ -1,12 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
 #include "Components/WidgetComponent.h"
 #include "UI/Inventory/SP_InventoryWidget.h"
-#include "UI/Town/SP_TownWidget.h"
 #include "SP_HUD.generated.h"
 
 UCLASS()
@@ -15,8 +12,6 @@ class STRATEGYPROTOTYPE_API ASP_HUD : public AHUD
 	GENERATED_BODY()
 
 	USP_InventoryWidget* InventoryWidget;
-
-	USP_TownWidget* TownWidget;
 
 public:
 
@@ -36,7 +31,4 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> InventoryWidgetClass;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
-	TSubclassOf<UUserWidget> TownWidgetClass;
 };
