@@ -96,7 +96,10 @@ void ASP_PlayerController::BuySellItem(FSP_Item DraggedItem, FSP_Item DroppedIte
 	if (!DraggedItem.bEmpty && DroppedItem.bEmpty)
 	{
 		ASP_Town* Town = PlayerPawn->TownToMove;
+
 		// Player buys goods
+
+		/*
 		if (Cast<ASP_Town>(DraggedItem.Owner) && Cast<ASP_Player>(DroppedItem.Owner))
 		{
 			PlayerPawn->AddItem(DraggedItem);
@@ -108,6 +111,7 @@ void ASP_PlayerController::BuySellItem(FSP_Item DraggedItem, FSP_Item DroppedIte
 			Town->AddItem(DraggedItem);
 			PlayerPawn->RemoveItem(DraggedItem);
 		}
+		*/
 	}
 }
 

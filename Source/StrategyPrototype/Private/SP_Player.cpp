@@ -1,13 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "SP_Player.h"
 
-// Sets default values
 ASP_Player::ASP_Player()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
 	Tags.Add(FName("Player"));
 
 	Mode = SP_CharacterMode::Roaming;
@@ -17,29 +11,26 @@ ASP_Player::ASP_Player()
 	Units.Add(Archer);
 	DisplayedUnits.Add(DisplayedUnit);
 
-	FSP_Item Apple = FSP_Item("Apple", 2.0f, SP_ItemType::Food, true, 5, this);
-	FSP_Item Axe = FSP_Item("Axe", 5.0f, SP_ItemType::Weapon, this);
-	FSP_Item Wood = FSP_Item("Wood", 1.0f, SP_ItemType::Resource, this);
+	FSP_Item Apple = FSP_Item("Apple", 2.0f, SP_ItemType::Food, true, 5);
+	FSP_Item Axe = FSP_Item("Axe", 5.0f, SP_ItemType::Weapon);
+	FSP_Item Wood = FSP_Item("Wood", 1.0f, SP_ItemType::Resource);
 
 	Goods.Add(Apple);
 	Goods.Add(Axe);
 	Goods.Add(Wood);
 }
 
-// Called when the game starts or when spawned
 void ASP_Player::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-// Called every frame
 void ASP_Player::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-// Called to bind functionality to input
 void ASP_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -86,11 +77,10 @@ void ASP_Player::RemoveItem(const FSP_Item& Item)
 
 FSP_Item ASP_Player::CreateDefaultItem()
 {
-	return FSP_Item(this);
+	return FSP_Item();
 }
 
 void ASP_Player::AddItem(FSP_Item& Item)
 {
-	Item.SetOwner(this);
 	Goods.Add(Item);
 }

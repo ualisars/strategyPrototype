@@ -1,13 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "SP_Town.h"
 
-// Sets default values
 ASP_Town::ASP_Town()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
 	MeshComp->SetCanEverAffectNavigation(false);
 	RootComponent = MeshComp;
@@ -22,13 +16,13 @@ ASP_Town::ASP_Town()
 	AvailableUnits.Add(Knight);
 	AvailableUnits.Add(Mercernary);
 
-	FSP_Item Bread1 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5, this);
-	FSP_Item Bread2 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5, this);
+	FSP_Item Bread1 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5);
+	FSP_Item Bread2 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, true, 5);
 
-	FSP_Item Sword = FSP_Item("Sword", 2.0f, SP_ItemType::Weapon, this);
-	FSP_Item Helmet = FSP_Item("Helmet", 2.0f, SP_ItemType::Armory, this);
-	FSP_Item Iron = FSP_Item("Iron", 2.0f, SP_ItemType::Resource, this);
-	FSP_Item Copper = FSP_Item("Copper", 2.0f, SP_ItemType::Resource, this);
+	FSP_Item Sword = FSP_Item("Sword", 2.0f, SP_ItemType::Weapon);
+	FSP_Item Helmet = FSP_Item("Helmet", 2.0f, SP_ItemType::Armory);
+	FSP_Item Iron = FSP_Item("Iron", 2.0f, SP_ItemType::Resource);
+	FSP_Item Copper = FSP_Item("Copper", 2.0f, SP_ItemType::Resource);
 
 	Goods.Add(Bread1);
 	Goods.Add(Bread2);
@@ -45,13 +39,12 @@ void ASP_Town::RemoveFromAvailableUnits(const FSP_Unit& Unit)
 
 void ASP_Town::AddItem(FSP_Item& Item)
 {
-	Item.SetOwner(this);
 	Goods.Add(Item);
 }
 
 FSP_Item ASP_Town::CreateDefaultItem()
 {
-	return FSP_Item(this);
+	return FSP_Item();
 }
 
 void ASP_Town::RemoveItem(const FSP_Item& ItemToRemove)

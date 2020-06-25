@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -80,28 +78,20 @@ struct FSP_Item
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int NutritionalValue = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	AActor* Owner = nullptr;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool bEmpty = true;
 
 	FSP_Item() {}
 
 	~FSP_Item() {}
 
-	FSP_Item(AActor* ItemOwner)
-	{
-		Owner = ItemOwner;
-	}
-
-	FSP_Item(FString Name, float Cost, SP_ItemType Type, AActor* ItemOwner)
+	FSP_Item(FString Name, float Cost, SP_ItemType Type)
 		:Name(Name), Cost(Cost), Type(Type) 
 	{
-		Owner = ItemOwner;
 		bEmpty = false;
 	}
 
-	FSP_Item(FString Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue, AActor* Owner)
-		:Name(Name), Cost(Cost), Type(Type), Consumable(Consumable), NutritionalValue(NutritionalValue), Owner(Owner), bEmpty(false) {}
+	FSP_Item(FString Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue)
+		:Name(Name), Cost(Cost), Type(Type), Consumable(Consumable), NutritionalValue(NutritionalValue), bEmpty(false) {}
 
 	bool operator==(const FSP_Item& OtherItem) const
 	{
@@ -113,11 +103,6 @@ struct FSP_Item
 		{
 			return false;
 		}
-	}
-
-	void SetOwner(AActor* NewOwner)
-	{
-		Owner = NewOwner;
 	}
 };
 
