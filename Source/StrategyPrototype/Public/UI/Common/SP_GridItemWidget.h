@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -9,6 +7,7 @@
 #include "Components/ScrollBox.h"
 #include "SP_GridItemWidget.generated.h"
 
+class ASP_Town;
 struct FSP_Item;
 struct FSP_Unit;
 
@@ -17,14 +16,13 @@ class STRATEGYPROTOTYPE_API USP_GridItemWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
+	void SetPlayerAndTown();
+
 protected:
-
 	ASP_Player* Player = nullptr;
-
-	void SetPlayer();
+	ASP_Town* Town = nullptr;
 
 public:
-
 	USP_GridItemWidget(const FObjectInitializer& ObjectInitializer);
 
 	virtual void NativeConstruct() override;
@@ -33,24 +31,37 @@ public:
 	int SlotsInRow = 4;
 
 	template<typename WidgetClass>
-	void DisplayItems(UScrollBox* ScrollBox, void(WidgetClass::*CreateItemRow)(int, const TArray<FSP_Item>&), WidgetClass* WidgetObject)
+	void DisplayItems(AActor* GridItemActor, void(WidgetClass::*CreateItemRow)(int, const TArray<FSP_Item>&), WidgetClass* WidgetObject)
 	{
-		if (Player == nullptr)
-			return;
+		int MaxSlots;
+		TArray<FSP_Item> Goods;
 
-		TArray<FSP_Item> PlayerGoods = Player->Goods;
+		if (Cast<ASP_Player>(GridItemActor))
+		{
+			Goods = Player->Goods;
+			MaxSlots = Player->MAX_INVENTORY_SLOTS;
+		}
+		else if(Cast<ASP_Town>(GridItemActor))
+		{
+			Goods = Town->Goods;
+			MaxSlots = Town->MAX_MARKET_SLOTS;
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("GridItemActor can only be specified of class ASP_Town or ASP_Player"));
+			return;
+		}
+
 		TArray<FSP_Item> GoodsInRow;
 		int CurrentSlotsInRow = 0;
 
-		ScrollBox->ClearChildren();
-
-		for (int i = 0; i < Player->MAX_INVENTORY_SLOTS; ++i)
+		for (int i = 0; i < MaxSlots; ++i)
 		{
-			if (PlayerGoods.Num() != 0)
+			if (Goods.Num() != 0)
 			{
 				if (CurrentSlotsInRow < SlotsInRow)
 				{
-					FSP_Item LastItem = PlayerGoods.Pop();
+					FSP_Item LastItem = Goods.Pop();
 					GoodsInRow.Add(LastItem);
 					CurrentSlotsInRow++;
 				}

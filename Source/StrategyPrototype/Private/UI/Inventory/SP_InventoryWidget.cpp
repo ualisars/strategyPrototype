@@ -7,10 +7,9 @@ USP_InventoryWidget::USP_InventoryWidget(const FObjectInitializer& ObjectInitial
 void USP_InventoryWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	SetPlayer();
 	ButtonClose->OnClicked.AddDynamic(this, &USP_InventoryWidget::HideWidget);
 	DisplayPlayerUnits();
-	DisplayItems<USP_InventoryWidget>(ScrollBoxInventory, &USP_InventoryWidget::CreateItemRow, this);
+	DisplayItems<USP_InventoryWidget>(Player, &USP_InventoryWidget::CreateItemRow, this);
 }
 
 void USP_InventoryWidget::HideWidget()

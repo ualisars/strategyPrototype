@@ -1,8 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "UI/Common/SP_GridItemWidget.h"
 
-void USP_GridItemWidget::SetPlayer()
+void USP_GridItemWidget::SetPlayerAndTown()
 {
 	TArray<AActor*> PlayerActors;
 	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Player", PlayerActors);
@@ -12,6 +10,14 @@ void USP_GridItemWidget::SetPlayer()
 		if (ASP_Player* PlayerPawn = Cast<ASP_Player>(PlayerActors[0]))
 		{
 			Player = PlayerPawn;
+			if (PlayerPawn)
+			{
+				Town = PlayerPawn->TownToMove;
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Player Pawn is nullptr in GridItemWidget"));
+			}
 		}
 		else
 		{
@@ -26,5 +32,6 @@ USP_GridItemWidget::USP_GridItemWidget(const FObjectInitializer& ObjectInitializ
 void USP_GridItemWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
+	SetPlayerAndTown();
 }
 
