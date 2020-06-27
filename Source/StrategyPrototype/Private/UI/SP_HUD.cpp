@@ -24,10 +24,14 @@ void ASP_HUD::DisplayInventory()
 	if (InventoryWidgetClass)
 	{
 		InventoryWidget = CreateWidget<USP_InventoryWidget>(GetWorld(), InventoryWidgetClass);
+		if (InventoryWidget)
+		{
+			InventoryWidget->AddToViewport();
+		}
 	}
-	if (InventoryWidget)
+	else
 	{
-		InventoryWidget->AddToViewport();
+		UE_LOG(LogTemp, Warning, TEXT("Unable to get InventoryWidgetClass in HUD"));
 	}
 }
 
@@ -36,5 +40,33 @@ void ASP_HUD::HideInventory()
 	if (InventoryWidget)
 	{
 		InventoryWidget->RemoveFromParent();
+	}
+}
+
+void ASP_HUD::DisplayTownWidget()
+{
+	if (TownWidgetClass)
+	{
+		TownWidget = CreateWidget<USP_TownWidget>(GetWorld(), TownWidgetClass);
+		if (TownWidget)
+		{
+			TownWidget->AddToViewport();
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Unable to get TownWidgetClass in HUD"));
+	}
+}
+
+void ASP_HUD::UpdateTownMarket()
+{
+	if (TownWidget)
+	{
+		TownWidget->UpdateMarket();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("TownWidget is not specified in HUD"));
 	}
 }

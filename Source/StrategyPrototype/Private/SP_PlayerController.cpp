@@ -110,6 +110,7 @@ void ASP_PlayerController::BuySellItem(FSP_Item DraggedItem, FSP_Item DroppedIte
 			Town->AddItem(DraggedItem);
 			PlayerPawn->RemoveItem(DraggedItem);
 		}
+		HUD->UpdateTownMarket();
 	}
 }
 

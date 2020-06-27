@@ -46,7 +46,6 @@ void ASP_Player::NotifyActorBeginOverlap(AActor* OtherActor)
 		if (Town != nullptr && TownToMove != nullptr && TownToMove->Name == Town->Name)
 		{
 			InteractWithTown();
-			StopMovement();
 		}
 		bOverlappingWithTown = true;
 	}
@@ -82,5 +81,6 @@ FSP_Item ASP_Player::CreateDefaultItem()
 
 void ASP_Player::AddItem(FSP_Item& Item)
 {
+	Item.SetOwner(SP_ItemOwner::Player);
 	Goods.Add(Item);
 }

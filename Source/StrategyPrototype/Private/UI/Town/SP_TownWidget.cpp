@@ -1,13 +1,5 @@
 #include "UI/Town/SP_TownWidget.h"
 
-void USP_TownWidget::HideTownWidget()
-{
-	ASP_PlayerController* PlayerController = Cast<ASP_PlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
-	RemoveFromParent();
-	PlayerController->SetGameState(SP_GameState::Default);
-	PlayerController->SetPause(false);
-}
-
 void USP_TownWidget::DisplayBarracksWidget()
 {
 	if (BarracksWidgetClass)
@@ -58,9 +50,20 @@ void USP_TownWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	ButtonLeaveTown->OnClicked.AddDynamic(this, &USP_TownWidget::HideTownWidget);
 	ButtonBarracks->OnClicked.AddDynamic(this, &USP_TownWidget::DisplayBarracksWidget);
 	ButtonMarket->OnClicked.AddDynamic(this, &USP_TownWidget::DisplayMarketWidget);
+}
+
+void USP_TownWidget::UpdateMarket()
+{
+	if (MarketWidget)
+	{
+		MarketWidget->UpdateGoods();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Cannot update market goods as Market Widget is not valid"));
+	}
 }
 
 

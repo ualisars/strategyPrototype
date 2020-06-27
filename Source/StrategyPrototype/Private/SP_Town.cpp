@@ -39,6 +39,7 @@ void ASP_Town::RemoveFromAvailableUnits(const FSP_Unit& Unit)
 
 void ASP_Town::AddItem(FSP_Item& Item)
 {
+	Item.SetOwner(SP_ItemOwner::Town);
 	Goods.Add(Item);
 }
 

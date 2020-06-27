@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/Common//SP_GridItemWidget.h"
+#include "Components/ScrollBox.h"
 #include "SP_MarketWidget.generated.h"
 
 UCLASS()
@@ -43,4 +44,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void CreatePlayerGoodsRow(int CurrentSlotsInRow, const TArray<FSP_Item>& GoodsInRow);
+
+	UFUNCTION()
+	void UpdateGoods();
 };

@@ -114,6 +114,11 @@ struct FSP_Item
 			return false;
 		}
 	}
+
+	void SetOwner(SP_ItemOwner NewOwner)
+	{
+		Owner = NewOwner;
+	}
 };
 
 UCLASS()
