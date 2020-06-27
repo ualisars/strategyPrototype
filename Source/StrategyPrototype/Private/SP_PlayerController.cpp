@@ -98,20 +98,18 @@ void ASP_PlayerController::BuySellItem(FSP_Item DraggedItem, FSP_Item DroppedIte
 		ASP_Town* Town = PlayerPawn->TownToMove;
 
 		// Player buys goods
-
-		/*
-		if (Cast<ASP_Town>(DraggedItem.Owner) && Cast<ASP_Player>(DroppedItem.Owner))
+		if (DraggedItem.Owner == SP_ItemOwner::Town && DroppedItem.Owner == SP_ItemOwner::Player)
 		{
 			PlayerPawn->AddItem(DraggedItem);
 			Town->RemoveItem(DraggedItem);
 		}
+
 		// Player sells goods
-		else if (Cast<ASP_Player>(DraggedItem.Owner) && Cast<ASP_Town>(DroppedItem.Owner))
+		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::Town)
 		{
 			Town->AddItem(DraggedItem);
 			PlayerPawn->RemoveItem(DraggedItem);
 		}
-		*/
 	}
 }
 

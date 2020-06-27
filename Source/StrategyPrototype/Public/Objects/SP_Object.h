@@ -62,6 +62,13 @@ enum class SP_ItemType : uint8
 	Weapon
 };
 
+UENUM(BlueprintType)
+enum class SP_ItemOwner : uint8
+{
+	Player,
+	Town
+};
+
 USTRUCT(BlueprintType)
 struct FSP_Item
 {
@@ -74,9 +81,12 @@ struct FSP_Item
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	SP_ItemType Type;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	SP_ItemOwner Owner;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool Consumable = false;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int NutritionalValue = 0;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool bEmpty = true;
 
@@ -84,14 +94,14 @@ struct FSP_Item
 
 	~FSP_Item() {}
 
-	FSP_Item(FString Name, float Cost, SP_ItemType Type)
-		:Name(Name), Cost(Cost), Type(Type) 
+	FSP_Item(FString Name, float Cost, SP_ItemType Type, SP_ItemOwner Owner)
+		:Name(Name), Cost(Cost), Type(Type), Owner(Owner)
 	{
 		bEmpty = false;
 	}
 
-	FSP_Item(FString Name, float Cost, SP_ItemType Type, bool Consumable, int NutritionalValue)
-		:Name(Name), Cost(Cost), Type(Type), Consumable(Consumable), NutritionalValue(NutritionalValue), bEmpty(false) {}
+	FSP_Item(FString Name, float Cost, SP_ItemType Type, SP_ItemOwner Owner, bool Consumable, int NutritionalValue)
+		:Name(Name), Cost(Cost), Type(Type), Owner(Owner), Consumable(Consumable), NutritionalValue(NutritionalValue), bEmpty(false) {}
 
 	bool operator==(const FSP_Item& OtherItem) const
 	{
