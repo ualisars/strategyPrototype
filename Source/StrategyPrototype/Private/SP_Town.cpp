@@ -6,6 +6,8 @@ ASP_Town::ASP_Town()
 	MeshComp->SetCanEverAffectNavigation(false);
 	RootComponent = MeshComp;
 
+	Tags.Add(FName("Town"));
+
 	FSP_Unit Fermer = FSP_Unit("Fermer", 10.0f, 2.0f, 3.0f);
 	FSP_Unit Villager = FSP_Unit("Villager", 9.0f, 3.0f, 3.0f);
 	FSP_Unit Knight = FSP_Unit("Knight", 50.0f, 12.0f, 50.0f);

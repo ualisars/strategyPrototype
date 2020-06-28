@@ -14,10 +14,10 @@ class STRATEGYPROTOTYPE_API ASP_Town : public AActor
 public:	
 	ASP_Town();
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MAX_MARKET_SLOTS = 40;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 	FName Name;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
