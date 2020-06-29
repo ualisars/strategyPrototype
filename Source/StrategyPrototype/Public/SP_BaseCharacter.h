@@ -6,6 +6,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Utils/SP_Random.h"
 #include "Objects/SP_Object.h"
+#include "Objects/SP_Goods.h"
 #include "Characters/SP_CharacterMode.h"
 #include "SP_BaseCharacter.generated.h"
 
