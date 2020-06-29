@@ -2,10 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "SP_Goods.generated.h"
+#include "SP_ItemFactory.generated.h"
 
 UENUM(BlueprintType)
-enum class SP_ItemType : uint8
+enum class SP_ItemCategory : uint8
 {
 	Armory,
 	Food,
@@ -31,7 +31,7 @@ struct FSP_Item
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		float Cost;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		SP_ItemType Type;
+		SP_ItemCategory Category;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		SP_ItemOwner Owner;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -46,18 +46,18 @@ struct FSP_Item
 
 	~FSP_Item() {}
 
-	FSP_Item(FString Name, float Cost, SP_ItemType Type, SP_ItemOwner Owner)
-		:Name(Name), Cost(Cost), Type(Type), Owner(Owner)
+	FSP_Item(FString Name, float Cost, SP_ItemCategory Category, SP_ItemOwner Owner)
+		:Name(Name), Cost(Cost), Category(Category), Owner(Owner)
 	{
 		bEmpty = false;
 	}
 
-	FSP_Item(FString Name, float Cost, SP_ItemType Type, SP_ItemOwner Owner, bool Consumable, int NutritionalValue)
-		:Name(Name), Cost(Cost), Type(Type), Owner(Owner), Consumable(Consumable), NutritionalValue(NutritionalValue), bEmpty(false) {}
+	FSP_Item(FString Name, float Cost, SP_ItemCategory Category, SP_ItemOwner Owner, bool Consumable, int NutritionalValue)
+		:Name(Name), Cost(Cost), Category(Category), Owner(Owner), Consumable(Consumable), NutritionalValue(NutritionalValue), bEmpty(false) {}
 
 	bool operator==(const FSP_Item& OtherItem) const
 	{
-		if (Name == OtherItem.Name && Cost == OtherItem.Cost && Type == OtherItem.Type)
+		if (Name == OtherItem.Name && Cost == OtherItem.Cost && Category == OtherItem.Category)
 		{
 			return true;
 		}
@@ -73,9 +73,24 @@ struct FSP_Item
 	}
 };
 
+UENUM(BlueprintType)
+enum class SP_ItemType : uint8
+{
+	Apple,
+	Axe,
+	Bread,
+	Copper,
+	Helmet,
+	Iron,
+	Sword,
+	Wood
+};
+
 UCLASS()
-class STRATEGYPROTOTYPE_API USP_Goods : public UObject
+class STRATEGYPROTOTYPE_API USP_ItemFactory : public UObject
 {
 	GENERATED_BODY()
-	
+
+public:
+	static FSP_Item CreateItem(SP_ItemType Type, SP_ItemOwner Owner);
 };

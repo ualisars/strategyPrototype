@@ -18,20 +18,12 @@ ASP_Town::ASP_Town()
 	AvailableUnits.Add(Knight);
 	AvailableUnits.Add(Mercernary);
 
-	FSP_Item Bread1 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, SP_ItemOwner::Town, true, 5);
-	FSP_Item Bread2 = FSP_Item("Bread", 2.0f, SP_ItemType::Food, SP_ItemOwner::Town, true, 5);
-
-	FSP_Item Sword = FSP_Item("Sword", 2.0f, SP_ItemType::Weapon, SP_ItemOwner::Town);
-	FSP_Item Helmet = FSP_Item("Helmet", 2.0f, SP_ItemType::Armory, SP_ItemOwner::Town);
-	FSP_Item Iron = FSP_Item("Iron", 2.0f, SP_ItemType::Resource, SP_ItemOwner::Town);
-	FSP_Item Copper = FSP_Item("Copper", 2.0f, SP_ItemType::Resource, SP_ItemOwner::Town);
-
-	Goods.Add(Bread1);
-	Goods.Add(Bread2);
-	Goods.Add(Sword);
-	Goods.Add(Helmet);
-	Goods.Add(Iron);
-	Goods.Add(Copper);
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::Town));
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::Town));
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Sword, SP_ItemOwner::Town));
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Helmet, SP_ItemOwner::Town));
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Iron, SP_ItemOwner::Town));
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Copper, SP_ItemOwner::Town));
 }
 
 void ASP_Town::RemoveFromAvailableUnits(const FSP_Unit& Unit)

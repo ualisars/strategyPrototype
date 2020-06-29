@@ -4,7 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
 #include "Objects/SP_Object.h"
-#include "Objects/SP_Goods.h"
+#include "Objects/SP_ItemFactory.h"
 #include "SP_Town.generated.h"
 
 UCLASS()

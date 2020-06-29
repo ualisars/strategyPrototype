@@ -12,7 +12,6 @@ class STRATEGYPROTOTYPE_API ASP_Player : public ASP_BaseCharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	ASP_Player();
 
 	SP_CharacterMode Mode;
@@ -32,14 +31,11 @@ public:
 	bool bOverlappingWithTown = false;
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
