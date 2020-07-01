@@ -37,11 +37,6 @@ void ASP_Town::AddItem(FSP_Item& Item)
 	Goods.Add(Item);
 }
 
-FSP_Item ASP_Town::CreateDefaultItem()
-{
-	return FSP_Item();
-}
-
 void ASP_Town::RemoveItem(const FSP_Item& ItemToRemove)
 {
 	Goods.RemoveSingle(ItemToRemove);

@@ -70,11 +70,6 @@ void ASP_Player::RemoveItem(const FSP_Item& Item)
 	Goods.RemoveSingle(Item);
 }
 
-FSP_Item ASP_Player::CreateDefaultItem()
-{
-	return FSP_Item();
-}
-
 void ASP_Player::AddItem(FSP_Item& Item)
 {
 	Item.SetOwner(SP_ItemOwner::Player);

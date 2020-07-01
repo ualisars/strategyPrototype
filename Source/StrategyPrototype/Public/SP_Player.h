@@ -55,8 +55,5 @@ public:
 	void RemoveItem(const FSP_Item& Item);
 
 	UFUNCTION(BlueprintCallable)
-	FSP_Item CreateDefaultItem();
-
-	UFUNCTION(BlueprintCallable)
 	void AddItem(FSP_Item& Item);
 };

@@ -54,16 +54,18 @@ public:
 
 		TArray<FSP_Item> GoodsInRow;
 		int CurrentSlotsInRow = 0;
+		int CurrentItemIndex = 0;
 
 		for (int i = 0; i < MaxSlots; ++i)
 		{
-			if (Goods.Num() != 0)
+			if (CurrentItemIndex < Goods.Num())
 			{
 				if (CurrentSlotsInRow < SlotsInRow)
 				{
-					FSP_Item LastItem = Goods.Pop();
-					GoodsInRow.Add(LastItem);
+					FSP_Item Item = Goods[CurrentItemIndex];
+					GoodsInRow.Add(Item);
 					CurrentSlotsInRow++;
+					CurrentItemIndex++;
 				}
 				else
 				{
