@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "Components/TextBlock.h"
 #include "UI/Town/Barracks/SP_BarracksWidget.h"
 #include "UI/Town/Market/SP_MarketWidget.h"
 #include "SP_TownWidget.generated.h"
@@ -32,6 +33,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UImage* BackgroundImage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextTownName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UButton* ButtonCastle;
