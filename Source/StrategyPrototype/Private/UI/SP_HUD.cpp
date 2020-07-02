@@ -51,7 +51,7 @@ void ASP_HUD::DisplayTownWidget()
 		if (TownWidget)
 		{
 			TownWidget->AddToViewport();
-		}
+		}	
 	}
 	else
 	{
