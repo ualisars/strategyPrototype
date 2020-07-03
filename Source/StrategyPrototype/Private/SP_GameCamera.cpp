@@ -1,13 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "SP_GameCamera.h"
 
-// Sets default values
 ASP_GameCamera::ASP_GameCamera()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
 	RootScene = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
@@ -22,7 +16,6 @@ ASP_GameCamera::ASP_GameCamera()
 	CameraComp->SetupAttachment(SpringArmComp);
 }
 
-// Called when the game starts or when spawned
 void ASP_GameCamera::BeginPlay()
 {
 	Super::BeginPlay();
@@ -55,7 +48,6 @@ void ASP_GameCamera::MouseWheelDown()
 	}
 }
 
-// Called every frame
 void ASP_GameCamera::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -67,7 +59,6 @@ void ASP_GameCamera::Tick(float DeltaTime)
 	}
 }
 
-// Called to bind functionality to input
 void ASP_GameCamera::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
