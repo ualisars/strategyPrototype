@@ -72,7 +72,7 @@ void ASP_PlayerController::LeftMousePressed()
 			PlayerPawn->TownToMove = ChosenTown;
 			PlayerPawn->Mode = SP_CharacterMode::GoingToTown;
 
-			if (PlayerPawn->bOverlappingWithTown)
+			if (PlayerPawn->OverlappingTown && PlayerPawn->OverlappingTown->Name == ChosenTown->Name)
 			{
 				PlayerPawn->InteractWithTown();
 			}

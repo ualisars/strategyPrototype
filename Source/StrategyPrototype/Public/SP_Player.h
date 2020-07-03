@@ -28,7 +28,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float Gold;
 
-	bool bOverlappingWithTown = false;
+	ASP_Town* OverlappingTown;
 
 protected:
 	virtual void BeginPlay() override;

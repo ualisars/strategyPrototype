@@ -38,12 +38,14 @@ void ASP_Player::NotifyActorBeginOverlap(AActor* OtherActor)
 	
 	if (OtherActor && OtherActor != this && OtherActor->ActorHasTag("Town"))
 	{
-		ASP_Town* Town = Cast<ASP_Town>(OtherActor);
-		if (Town != nullptr && TownToMove != nullptr && TownToMove->Name == Town->Name)
+		if (ASP_Town* Town = Cast<ASP_Town>(OtherActor))
 		{
-			InteractWithTown();
+			if (TownToMove != nullptr && TownToMove->Name == Town->Name)
+			{
+				InteractWithTown();
+			}
+			OverlappingTown = Town;
 		}
-		bOverlappingWithTown = true;
 	}
 }
 
@@ -53,7 +55,7 @@ void ASP_Player::NotifyActorEndOverlap(AActor* OtherActor)
 
 	if (OtherActor && OtherActor != this && OtherActor->ActorHasTag("Town"))
 	{
-		bOverlappingWithTown = false;
+		OverlappingTown = nullptr;
 	}
 }
 
