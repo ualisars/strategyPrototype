@@ -32,6 +32,9 @@ protected:
 
 	UCharacterMovementComponent* CharacterMovementComp;
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Components")
+	UCapsuleComponent* CharacterCollisionComp;
+
 public:	
 	virtual void Tick(float DeltaTime) override;
 
@@ -40,6 +43,9 @@ public:
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
+
+	UFUNCTION()
+	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	TArray<FSP_Unit*> Units;
 

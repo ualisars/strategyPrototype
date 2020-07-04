@@ -4,6 +4,14 @@ ASP_BaseCharacter::ASP_BaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	Tags.Add(FName("Character"));
+
+	CharacterCollisionComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("CharacterCollisionComp"));
+	CharacterCollisionComp->SetGenerateOverlapEvents(true);
+	CharacterCollisionComp->SetupAttachment(RootComponent);
+	CharacterCollisionComp->InitCapsuleSize(88.0f, 80.0f);
+	CharacterCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ASP_BaseCharacter::OnOverlapBegin);
+	
 	SetActorScale3D(FVector(0.5f, 0.5f, 0.5f));
 
 	CharacterMovementComp = GetCharacterMovement();
@@ -85,6 +93,15 @@ void ASP_BaseCharacter::NotifyActorEndOverlap(AActor* OtherActor)
 	{
 		if (OtherActor->ActorHasTag("NavigationArea"))
 			CharacterMovementComp->MaxWalkSpeed = MAX_WALK_SPEED_DEFAULT;
+	}
+}
+
+void ASP_BaseCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	ASP_BaseCharacter* OtherCharacter = Cast<ASP_BaseCharacter>(OtherActor);
+	if (OtherActor && (OtherActor != this) && OtherCharacter)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Character is overplapping with other characters"));
 	}
 }
 
