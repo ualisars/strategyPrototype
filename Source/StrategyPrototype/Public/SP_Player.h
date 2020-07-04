@@ -56,4 +56,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddItem(FSP_Item& Item);
+
+	void InteractWithCharacter() override;
 };

@@ -57,5 +57,7 @@ public:
 
 	void StopMovement();
 
+	virtual void InteractWithCharacter();
+
 	SP_CharacterMode GetMode();
 };

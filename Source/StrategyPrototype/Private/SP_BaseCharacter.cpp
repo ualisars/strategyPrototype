@@ -36,6 +36,11 @@ void ASP_BaseCharacter::StopMovement()
 	CharacterMovementComp->StopMovementImmediately();
 }
 
+void ASP_BaseCharacter::InteractWithCharacter()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Character is overlapping with other characters"));
+}
+
 SP_CharacterMode ASP_BaseCharacter::GetMode()
 {
 	return Mode;
@@ -101,7 +106,10 @@ void ASP_BaseCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 	ASP_BaseCharacter* OtherCharacter = Cast<ASP_BaseCharacter>(OtherActor);
 	if (OtherActor && (OtherActor != this) && OtherCharacter)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Character is overplapping with other characters"));
+		if (!OtherCharacter->ActorHasTag("Player") && OtherCharacter->Mode != SP_CharacterMode::InteractingWithCharacter)
+		{
+			InteractWithCharacter();
+		}
 	}
 }
 

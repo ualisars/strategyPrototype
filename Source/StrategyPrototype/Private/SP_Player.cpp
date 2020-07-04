@@ -77,3 +77,8 @@ void ASP_Player::AddItem(FSP_Item& Item)
 	Item.SetOwner(SP_ItemOwner::Player);
 	Goods.Add(Item);
 }
+
+void ASP_Player::InteractWithCharacter()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Player is overlapping with other characters"));
+}

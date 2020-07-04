@@ -14,4 +14,5 @@ enum class STRATEGYPROTOTYPE_API SP_CharacterMode: unsigned char
 	Fighting,
 	GoingToTown,
 	InteractingWithTown,
+	InteractingWithCharacter
 };
