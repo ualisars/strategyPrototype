@@ -128,6 +128,20 @@ void ASP_PlayerController::CloseInventory()
 	SetPause(false);
 }
 
+void ASP_PlayerController::DisplayNPCInteraction()
+{
+	HUD->DisplayNPCInteractionWidget();
+	SetGameState(SP_GameState::Interaction);
+	SetPause(true);
+}
+
+void ASP_PlayerController::HideDisplayInteraction()
+{
+	HUD->HideNPCInteractionWidget();
+	SetGameState(SP_GameState::Default);
+	SetPause(false);
+}
+
 void ASP_PlayerController::SetGameState(SP_GameState NewGameState)
 {
 	if (GameState == SP_GameState::Default)

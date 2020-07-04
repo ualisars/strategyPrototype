@@ -4,6 +4,7 @@
 #include "GameFramework/HUD.h"
 #include "Components/WidgetComponent.h"
 #include "UI/Inventory/SP_InventoryWidget.h"
+#include "UI/NPCInteraction/SP_NPCInteractionWidget.h"
 #include "UI/Town/SP_TownWidget.h"
 #include "SP_HUD.generated.h"
 
@@ -16,6 +17,8 @@ class STRATEGYPROTOTYPE_API ASP_HUD : public AHUD
 
 	USP_TownWidget* TownWidget;
 
+	USP_NPCInteractionWidget* NPCInteractionWidget;
+
 public:
 
 	ASP_HUD();
@@ -26,17 +29,26 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> InventoryWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> TownWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> NPCInteractionWidgetClass;
+
 	UFUNCTION(BlueprintCallable)
 	void DisplayInventory();
 
 	UFUNCTION(BlueprintCallable)
 	void HideInventory();
 
-	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
-	TSubclassOf<UUserWidget> InventoryWidgetClass;
+	UFUNCTION(BlueprintCallable)
+	void DisplayNPCInteractionWidget();
 
-	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
-	TSubclassOf<UUserWidget> TownWidgetClass;
+	UFUNCTION(BlueprintCallable)
+	void HideNPCInteractionWidget();
 
 	UFUNCTION(BlueprintCallable)
 	void DisplayTownWidget();

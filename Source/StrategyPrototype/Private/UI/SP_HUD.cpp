@@ -43,6 +43,30 @@ void ASP_HUD::HideInventory()
 	}
 }
 
+void ASP_HUD::DisplayNPCInteractionWidget()
+{
+	if (NPCInteractionWidgetClass)
+	{
+		NPCInteractionWidget = CreateWidget<USP_NPCInteractionWidget>(GetWorld(), NPCInteractionWidgetClass);
+		if (NPCInteractionWidget)
+		{
+			NPCInteractionWidget->AddToViewport();
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Unable to get NPCInteractionWidgetClass in HUD"));
+	}
+}
+
+void ASP_HUD::HideNPCInteractionWidget()
+{
+	if (NPCInteractionWidget)
+	{
+		NPCInteractionWidget->RemoveFromParent();
+	}
+}
+
 void ASP_HUD::DisplayTownWidget()
 {
 	if (TownWidgetClass)

@@ -57,6 +57,12 @@ public:
 	void CloseInventory();
 
 	UFUNCTION(BlueprintCallable)
+	void DisplayNPCInteraction();
+
+	UFUNCTION(BlueprintCallable)
+	void HideDisplayInteraction();
+
+	UFUNCTION(BlueprintCallable)
 	void SetInputModeToGameOnly();
 
 	UFUNCTION(BlueprintCallable)
