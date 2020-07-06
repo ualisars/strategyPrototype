@@ -100,7 +100,7 @@ void ASP_PlayerController::LeftMousePressed()
 		// no actors was hit, so move to location
 		else
 		{
-			PlayerPawn->Mode = SP_CharacterMode::Roaming;
+			PlayerPawn->SetMode(SP_CharacterMode::Roaming);
 			PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
 		}
 	}
@@ -165,6 +165,7 @@ void ASP_PlayerController::HideDisplayInteraction()
 {
 	HUD->HideNPCInteractionWidget();
 	SetGameState(SP_GameState::Default);
+	PlayerPawn->SetMode(SP_CharacterMode::Roaming);
 	SetPause(false);
 }
 

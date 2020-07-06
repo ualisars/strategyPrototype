@@ -4,6 +4,9 @@ ASP_NPC::ASP_NPC()
 {
 	FSP_Unit* Cavalry = new FSP_Unit("Cavalry", 70, 8);
 	Units.Add(Cavalry);
+
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::NPC));
+	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Sword, SP_ItemOwner::NPC));
 }
 
 void ASP_NPC::BeginPlay()

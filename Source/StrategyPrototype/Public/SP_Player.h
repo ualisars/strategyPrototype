@@ -14,8 +14,6 @@ class STRATEGYPROTOTYPE_API ASP_Player : public ASP_BaseCharacter
 public:
 	ASP_Player();
 
-	SP_CharacterMode Mode;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_Town* TownToMove;
 
