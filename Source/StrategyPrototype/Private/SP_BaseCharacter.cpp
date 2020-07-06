@@ -11,6 +11,7 @@ ASP_BaseCharacter::ASP_BaseCharacter()
 	CharacterCollisionComp->SetupAttachment(RootComponent);
 	CharacterCollisionComp->InitCapsuleSize(88.0f, 80.0f);
 	CharacterCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ASP_BaseCharacter::OnOverlapBegin);
+	CharacterCollisionComp->OnComponentEndOverlap.AddDynamic(this, &ASP_BaseCharacter::OnOverlapEnd);
 	
 	SetActorScale3D(FVector(0.5f, 0.5f, 0.5f));
 
@@ -44,6 +45,11 @@ void ASP_BaseCharacter::InteractWithCharacter()
 SP_CharacterMode ASP_BaseCharacter::GetMode()
 {
 	return Mode;
+}
+
+FName ASP_BaseCharacter::GetName() const
+{
+	return Name;
 }
 
 void ASP_BaseCharacter::Tick(float DeltaTime)
@@ -106,10 +112,20 @@ void ASP_BaseCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 	ASP_BaseCharacter* OtherCharacter = Cast<ASP_BaseCharacter>(OtherActor);
 	if (OtherActor && (OtherActor != this) && OtherCharacter)
 	{
-		if (!OtherCharacter->ActorHasTag("Player") && OtherCharacter->Mode != SP_CharacterMode::InteractingWithCharacter)
+		if (!OtherCharacter->ActorHasTag("Player") && Mode == SP_CharacterMode::GoingToCharacter && OtherCharacter == CharacterToMove)
 		{
 			InteractWithCharacter();
 		}
+		OverlappingCharacter = OtherCharacter;
+	}
+}
+
+void ASP_BaseCharacter::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
+{
+	ASP_BaseCharacter* OtherCharacter = Cast<ASP_BaseCharacter>(OtherActor);
+	if (OtherActor && (OtherActor != this) && OtherCharacter)
+	{
+		OverlappingCharacter = nullptr;
 	}
 }
 

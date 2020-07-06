@@ -26,6 +26,9 @@ protected:
 
 	SP_CharacterMode Mode;
 
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
+	FName Name;
+
 	float MAX_WALK_SPEED_DEFAULT = 300.0f;
 	float MAX_WALK_SPEED_RODE = 400.0f;
 	float MAX_WALK_SPEED_SWAMP = 100.0f;
@@ -47,6 +50,9 @@ public:
 	UFUNCTION()
 	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	UFUNCTION()
+	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
 	TArray<FSP_Unit*> Units;
 
 	void SetMode(SP_CharacterMode NewMode);
@@ -60,4 +66,10 @@ public:
 	virtual void InteractWithCharacter();
 
 	SP_CharacterMode GetMode();
+
+
+	FName GetName() const;
+
+	ASP_BaseCharacter* OverlappingCharacter;
+	ASP_BaseCharacter* CharacterToMove;
 };

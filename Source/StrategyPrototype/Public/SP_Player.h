@@ -46,6 +46,9 @@ public:
 	void MoveToLocation(const FVector& Location);
 
 	UFUNCTION(BlueprintImplementableEvent)
+	void MoveToCharacter(ASP_BaseCharacter* OtherCharacter);
+
+	UFUNCTION(BlueprintImplementableEvent)
 	void InteractWithTown();
 
 	UFUNCTION(BlueprintCallable)

@@ -4,8 +4,6 @@ ASP_Player::ASP_Player()
 {
 	Tags.Add(FName("Player"));
 
-	Mode = SP_CharacterMode::Roaming;
-
 	FSP_Unit* Archer = new FSP_Unit("Archer", 10.0f, 6.0f);
 	FSP_Unit DisplayedUnit = FSP_Unit(Archer->Name, Archer->Health, Archer->Damage);
 	Units.Add(Archer);

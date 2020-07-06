@@ -60,6 +60,8 @@ void ASP_PlayerController::LeftMousePressed()
 	FindPlayerPawn();
 
 	PlayerPawn->TownToMove = nullptr;
+	PlayerPawn->CharacterToMove = nullptr;
+
 	AActor* HitActor = LeftMouseHitResult.Actor.Get();
 
 	// move player if player is present and hit actor is not obstacle
@@ -67,15 +69,39 @@ void ASP_PlayerController::LeftMousePressed()
 	{
 		PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
 		ASP_Town* ChosenTown = Cast<ASP_Town>(HitActor);
-		if (ChosenTown != nullptr)
+
+		// character was hit, so move player to another character
+		if (ASP_BaseCharacter* HitCharacter = Cast<ASP_BaseCharacter>(HitActor))
+		{
+			PlayerPawn->CharacterToMove = HitCharacter;
+			PlayerPawn->SetMode(SP_CharacterMode::GoingToCharacter);
+			PlayerPawn->MoveToCharacter(HitCharacter);
+
+			if (PlayerPawn->OverlappingCharacter == HitCharacter)
+			{
+				PlayerPawn->InteractWithCharacter();
+			}
+		}
+
+		// town was hit, so move player to a town
+		else if (ASP_Town* ChosenTown = Cast<ASP_Town>(HitActor))
 		{
 			PlayerPawn->TownToMove = ChosenTown;
-			PlayerPawn->Mode = SP_CharacterMode::GoingToTown;
+			PlayerPawn->SetMode(SP_CharacterMode::GoingToTown);
 
 			if (PlayerPawn->OverlappingTown && PlayerPawn->OverlappingTown->Name == ChosenTown->Name)
 			{
 				PlayerPawn->InteractWithTown();
+				return;
 			}
+			PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
+		}
+
+		// no actors was hit, so move to location
+		else
+		{
+			PlayerPawn->Mode = SP_CharacterMode::Roaming;
+			PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
 		}
 	}
 }
