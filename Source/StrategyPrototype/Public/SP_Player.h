@@ -22,12 +22,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FSP_Unit> DisplayedUnits;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FSP_Item> Goods;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float Gold;
-
 	ASP_Town* OverlappingTown;
 
 protected:
@@ -53,12 +47,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddUnit(const FSP_Unit& PlayerUnit);
-
-	UFUNCTION(BlueprintCallable)
-	void RemoveItem(const FSP_Item& Item);
-
-	UFUNCTION(BlueprintCallable)
-	void AddItem(FSP_Item& Item);
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void InteractWithCharacter() override;

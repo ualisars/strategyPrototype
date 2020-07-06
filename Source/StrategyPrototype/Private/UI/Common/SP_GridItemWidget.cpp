@@ -13,6 +13,7 @@ void USP_GridItemWidget::SetPlayerAndTown()
 			if (PlayerPawn)
 			{
 				Town = PlayerPawn->TownToMove;
+				NPC = PlayerPawn->CharacterToMove;
 			}
 			else
 			{

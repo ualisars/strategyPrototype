@@ -6,5 +6,10 @@ USP_NPCTradeWidget::USP_NPCTradeWidget(const FObjectInitializer& ObjectInitializ
 void USP_NPCTradeWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
+
+	ScrollBoxNPCGoods->ClearChildren();
+	ScrollBoxPlayerGoods->ClearChildren();
+	DisplayItems<USP_NPCTradeWidget>(NPC, &USP_NPCTradeWidget::CreateNPCGoodsRow, this);
+	DisplayItems<USP_NPCTradeWidget>(Player, &USP_NPCTradeWidget::CreatePlayerGoodsRow, this);
 }
 

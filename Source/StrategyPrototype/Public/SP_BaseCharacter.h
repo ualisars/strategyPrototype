@@ -21,6 +21,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int MAX_INVENTORY_SLOTS = 15;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FSP_Item> Goods;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float Gold;
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -67,6 +73,11 @@ public:
 
 	SP_CharacterMode GetMode();
 
+	UFUNCTION(BlueprintCallable)
+	void AddItem(FSP_Item& Item);
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveItem(const FSP_Item& Item);
 
 	FName GetName() const;
 

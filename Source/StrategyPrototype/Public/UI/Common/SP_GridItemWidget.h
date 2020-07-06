@@ -20,6 +20,7 @@ class STRATEGYPROTOTYPE_API USP_GridItemWidget : public UUserWidget
 
 protected:
 	ASP_Player* Player = nullptr;
+	ASP_BaseCharacter* NPC = nullptr;
 	ASP_Town* Town = nullptr;
 
 public:
@@ -41,6 +42,11 @@ public:
 			Goods = Player->Goods;
 			MaxSlots = Player->MAX_INVENTORY_SLOTS;
 		}
+		else if (Cast<ASP_BaseCharacter>(GridItemActor))
+		{
+			Goods = NPC->Goods;
+			MaxSlots = NPC->MAX_INVENTORY_SLOTS;
+		}
 		else if(Cast<ASP_Town>(GridItemActor))
 		{
 			Goods = Town->Goods;
@@ -48,7 +54,7 @@ public:
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("GridItemActor can only be specified of class ASP_Town or ASP_Player"));
+			UE_LOG(LogTemp, Warning, TEXT("Unable to cast GridItemActor to class ASP_Town, ASP_Player, ASP_BaseCharacter"));
 			return;
 		}
 

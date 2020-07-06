@@ -21,6 +21,7 @@ UENUM(BlueprintType)
 enum class SP_ItemOwner : uint8
 {
 	Player,
+	NPC,
 	Town
 };
 

@@ -47,6 +47,30 @@ SP_CharacterMode ASP_BaseCharacter::GetMode()
 	return Mode;
 }
 
+void ASP_BaseCharacter::AddItem(FSP_Item & Item)
+{
+	if (ActorHasTag("Player"))
+	{
+		Item.SetOwner(SP_ItemOwner::Player);
+	}
+	else if(ActorHasTag("NPC"))
+	{
+		Item.SetOwner(SP_ItemOwner::NPC);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Charactor should have tag Player or NPC"));
+		return;
+	}
+
+	Goods.Add(Item);
+}
+
+void ASP_BaseCharacter::RemoveItem(const FSP_Item & Item)
+{
+	Goods.RemoveSingle(Item);
+}
+
 FName ASP_BaseCharacter::GetName() const
 {
 	return Name;

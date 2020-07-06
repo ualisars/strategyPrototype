@@ -64,14 +64,3 @@ void ASP_Player::AddUnit(const FSP_Unit& PlayerUnit)
 	Units.Add(Unit);
 	DisplayedUnits.Add(DisplayedUnit);
 }
-
-void ASP_Player::RemoveItem(const FSP_Item& Item)
-{
-	Goods.RemoveSingle(Item);
-}
-
-void ASP_Player::AddItem(FSP_Item& Item)
-{
-	Item.SetOwner(SP_ItemOwner::Player);
-	Goods.Add(Item);
-}

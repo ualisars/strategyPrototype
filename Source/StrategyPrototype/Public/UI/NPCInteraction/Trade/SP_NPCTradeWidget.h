@@ -100,4 +100,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* TextLeave;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void CreateNPCGoodsRow(int CurrentSlotsInRow, const TArray<FSP_Item>& GoodsInRow);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void CreatePlayerGoodsRow(int CurrentSlotsInRow, const TArray<FSP_Item>& GoodsInRow);
 };
