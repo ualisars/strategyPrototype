@@ -36,6 +36,10 @@ class STRATEGYPROTOTYPE_API ASP_PlayerController : public APlayerController
 
 	SP_GameState GameState = SP_GameState::Default;
 
+	void PlayerNPCBuySellItem(FSP_Item DraggedItem, FSP_Item DroppedItem);
+
+	void PlayerTownBuySellItem(FSP_Item DraggedItem, FSP_Item DroppedItem);
+
 	ASP_HUD* HUD;
 
 protected:

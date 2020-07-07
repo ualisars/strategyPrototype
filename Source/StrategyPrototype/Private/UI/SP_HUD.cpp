@@ -74,6 +74,7 @@ void ASP_HUD::DisplayTownWidget()
 		TownWidget = CreateWidget<USP_TownWidget>(GetWorld(), TownWidgetClass);
 		if (TownWidget)
 		{
+
 			TownWidget->AddToViewport();
 		}
 	}
@@ -92,5 +93,17 @@ void ASP_HUD::UpdateTownMarket()
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("TownWidget is not specified in HUD"));
+	}
+}
+
+void ASP_HUD::UpdateNPCTradeGoods()
+{
+	if (NPCInteractionWidget)
+	{
+		NPCInteractionWidget->UpdateTradeGoods();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("NPCInteractionWidget is not specified in HUD"));
 	}
 }

@@ -43,6 +43,57 @@ void ASP_PlayerController::FindPlayerPawn()
 	}
 }
 
+void ASP_PlayerController::PlayerNPCBuySellItem(FSP_Item DraggedItem, FSP_Item DroppedItem)
+{
+	if (ASP_BaseCharacter* NPC = PlayerPawn->CharacterToMove)
+	{
+		// Player buys goods
+		if (DraggedItem.Owner == SP_ItemOwner::NPC && DroppedItem.Owner == SP_ItemOwner::Player)
+		{
+			PlayerPawn->AddItem(DraggedItem);
+			NPC->RemoveItem(DraggedItem);
+		}
+		// Player sells goods
+		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::NPC)
+		{
+			NPC->AddItem(DraggedItem);
+			PlayerPawn->RemoveItem(DraggedItem);
+		}
+
+		HUD->UpdateNPCTradeGoods();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Unable to buy or sell goods as CharacterToMove is nullptr"));
+	}
+}
+
+void ASP_PlayerController::PlayerTownBuySellItem(FSP_Item DraggedItem, FSP_Item DroppedItem)
+{
+	if (ASP_Town* Town = PlayerPawn->TownToMove)
+	{
+		// Player buys goods
+		if (DraggedItem.Owner == SP_ItemOwner::Town && DroppedItem.Owner == SP_ItemOwner::Player)
+		{
+			PlayerPawn->AddItem(DraggedItem);
+			Town->RemoveItem(DraggedItem);
+		}
+
+		// Player sells goods
+		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::Town)
+		{
+			Town->AddItem(DraggedItem);
+			PlayerPawn->RemoveItem(DraggedItem);
+		}
+
+		HUD->UpdateTownMarket();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Unable to buy or sell goods as TownToMove is nullptr"));
+	}
+}
+
 void ASP_PlayerController::LeftMousePressed()
 {
 	FHitResult LeftMouseHitResult;
@@ -121,22 +172,19 @@ void ASP_PlayerController::BuySellItem(FSP_Item DraggedItem, FSP_Item DroppedIte
 {
 	if (!DraggedItem.bEmpty && DroppedItem.bEmpty)
 	{
-		ASP_Town* Town = PlayerPawn->TownToMove;
-
-		// Player buys goods
-		if (DraggedItem.Owner == SP_ItemOwner::Town && DroppedItem.Owner == SP_ItemOwner::Player)
+		if (PlayerPawn->GetMode() == SP_CharacterMode::InteractingWithCharacter)
 		{
-			PlayerPawn->AddItem(DraggedItem);
-			Town->RemoveItem(DraggedItem);
+			PlayerNPCBuySellItem(DraggedItem, DroppedItem);
 		}
-
-		// Player sells goods
-		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::Town)
+		else if (PlayerPawn->GetMode() == SP_CharacterMode::InteractingWithTown)
 		{
-			Town->AddItem(DraggedItem);
-			PlayerPawn->RemoveItem(DraggedItem);
+			PlayerTownBuySellItem(DraggedItem, DroppedItem);
 		}
-		HUD->UpdateTownMarket();
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Unable to buy or sell items: Incorrect Player mode"));
+			return;
+		}
 	}
 }
 
@@ -158,6 +206,7 @@ void ASP_PlayerController::DisplayNPCInteraction()
 {
 	HUD->DisplayNPCInteractionWidget();
 	SetGameState(SP_GameState::Interaction);
+	PlayerPawn->SetMode(SP_CharacterMode::InteractingWithCharacter);
 	SetPause(true);
 }
 

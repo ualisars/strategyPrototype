@@ -7,6 +7,11 @@ void USP_NPCTradeWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	UpdateGoods();
+}
+
+void USP_NPCTradeWidget::UpdateGoods()
+{
 	ScrollBoxNPCGoods->ClearChildren();
 	ScrollBoxPlayerGoods->ClearChildren();
 	DisplayItems<USP_NPCTradeWidget>(NPC, &USP_NPCTradeWidget::CreateNPCGoodsRow, this);

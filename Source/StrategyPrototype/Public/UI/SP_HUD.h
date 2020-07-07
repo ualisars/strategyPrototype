@@ -55,4 +55,7 @@ public:
 
 	UFUNCTION()
 	void UpdateTownMarket();
+
+	UFUNCTION()
+	void UpdateNPCTradeGoods();
 };

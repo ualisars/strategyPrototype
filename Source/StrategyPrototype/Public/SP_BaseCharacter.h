@@ -7,8 +7,19 @@
 #include "Utils/SP_Random.h"
 #include "Objects/SP_Object.h"
 #include "Objects/SP_ItemFactory.h"
-#include "Characters/SP_CharacterMode.h"
 #include "SP_BaseCharacter.generated.h"
+
+UENUM(BlueprintType)
+enum class SP_CharacterMode : uint8
+{
+	Roaming,
+	Attacking,
+	Fighting,
+	GoingToTown,
+	InteractingWithTown,
+	GoingToCharacter,
+	InteractingWithCharacter
+};
 
 UCLASS()
 class STRATEGYPROTOTYPE_API ASP_BaseCharacter : public ACharacter
@@ -61,6 +72,7 @@ public:
 
 	TArray<FSP_Unit*> Units;
 
+	UFUNCTION(BlueprintCallable)
 	void SetMode(SP_CharacterMode NewMode);
 
 	void AttackUnit(FSP_Unit* AttackUnit, FSP_Unit* DefendUnit);

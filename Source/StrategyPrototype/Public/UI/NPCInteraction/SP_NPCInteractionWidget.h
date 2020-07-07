@@ -47,4 +47,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> NPCTradeWidgetClass;
+
+	UFUNCTION()
+	void UpdateTradeGoods();
 };

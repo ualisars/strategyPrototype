@@ -30,3 +30,15 @@ void USP_NPCInteractionWidget::NativeConstruct()
 
 	ButtonTrade->OnClicked.AddDynamic(this, &USP_NPCInteractionWidget::DisplayNPCTradeWidget);
 }
+
+void USP_NPCInteractionWidget::UpdateTradeGoods()
+{
+	if (NPCTradeWidget)
+	{
+		NPCTradeWidget->UpdateGoods();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Cannot update trade goods as NPCTradeWidget is not valid"));
+	}
+}

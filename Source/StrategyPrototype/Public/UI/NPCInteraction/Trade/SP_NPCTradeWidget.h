@@ -106,4 +106,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void CreatePlayerGoodsRow(int CurrentSlotsInRow, const TArray<FSP_Item>& GoodsInRow);
+
+	UFUNCTION()
+	void UpdateGoods();
 };
