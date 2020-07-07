@@ -36,7 +36,13 @@ public:
 	TArray<FSP_Item> Goods;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float Gold;
+	int Gold = 300;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int Food;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int Medicines;
 
 protected:
 	virtual void BeginPlay() override;
@@ -94,5 +100,7 @@ public:
 	FName GetName() const;
 
 	ASP_BaseCharacter* OverlappingCharacter;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_BaseCharacter* CharacterToMove;
 };
