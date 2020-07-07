@@ -36,9 +36,6 @@ public:
 	TArray<FSP_Item> Goods;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	int Gold = 300;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Food;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -51,6 +48,9 @@ protected:
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 	FName Name;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float Gold = 300;
 
 	float MAX_WALK_SPEED_DEFAULT = 300.0f;
 	float MAX_WALK_SPEED_RODE = 400.0f;
@@ -98,6 +98,10 @@ public:
 	void RemoveItem(const FSP_Item& Item);
 
 	FName GetName() const;
+
+	void AddGold(float Value);
+
+	float GetGold() const;
 
 	ASP_BaseCharacter* OverlappingCharacter;
 

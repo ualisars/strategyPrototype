@@ -35,6 +35,7 @@ enum class SP_ItemType : uint8
 	Helmet,
 	Iron,
 	Sword,
+	Necklace,
 	Wood
 };
 

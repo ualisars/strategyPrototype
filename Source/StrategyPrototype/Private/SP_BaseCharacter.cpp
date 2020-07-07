@@ -76,6 +76,16 @@ FName ASP_BaseCharacter::GetName() const
 	return Name;
 }
 
+void ASP_BaseCharacter::AddGold(float Value)
+{
+	Gold += Value;
+}
+
+float ASP_BaseCharacter::GetGold() const
+{
+	return Gold;
+}
+
 void ASP_BaseCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

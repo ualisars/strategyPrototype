@@ -9,6 +9,7 @@ FSP_Item USP_ItemFactory::CreateItem(SP_ItemType Type, SP_ItemOwner Owner)
 	ConstructorHelpers::FObjectFinder<UTexture2D> HelmetTextureTextObj(TEXT("TEXTURE2D'/Game/Textures/helmet.helmet'"));
 	ConstructorHelpers::FObjectFinder<UTexture2D> IronTextureTextObj(TEXT("TEXTURE2D'/Game/Textures/iron.iron'"));
 	ConstructorHelpers::FObjectFinder<UTexture2D> SwordTextureTextObj(TEXT("TEXTURE2D'/Game/Textures/sword.sword'"));
+	ConstructorHelpers::FObjectFinder<UTexture2D> NecklaceTextureTextObj(TEXT("TEXTURE2D'/Game/Textures/necklace.necklace'"));
 	ConstructorHelpers::FObjectFinder<UTexture2D> WoodTextureTextObj(TEXT("TEXTURE2D'/Game/Textures/wood.wood'"));
 	
 	switch (Type)
@@ -27,6 +28,8 @@ FSP_Item USP_ItemFactory::CreateItem(SP_ItemType Type, SP_ItemOwner Owner)
 			return FSP_Item("Iron", Type, 2.0f, SP_ItemCategory::Resource, Owner, IronTextureTextObj.Object);
 		case SP_ItemType::Sword:
 			return FSP_Item("Sword", Type, 2.0f, SP_ItemCategory::Weapon, Owner, SwordTextureTextObj.Object);
+		case SP_ItemType::Necklace:
+			return FSP_Item("Necklace", Type, 700.0f, SP_ItemCategory::Jewelry, Owner, NecklaceTextureTextObj.Object);
 		case SP_ItemType::Wood:
 			return FSP_Item("Wood", Type, 1.0f, SP_ItemCategory::Resource, Owner, WoodTextureTextObj.Object);
 		default:

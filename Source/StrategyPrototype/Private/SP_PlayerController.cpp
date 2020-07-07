@@ -47,17 +47,25 @@ void ASP_PlayerController::PlayerNPCBuySellItem(FSP_Item DraggedItem, FSP_Item D
 {
 	if (ASP_BaseCharacter* NPC = PlayerPawn->CharacterToMove)
 	{
+		float ItemCost = DraggedItem.Cost;
+		float PlayerGold = PlayerPawn->GetGold();
+		float NPCGold = PlayerPawn->GetGold();
+
 		// Player buys goods
-		if (DraggedItem.Owner == SP_ItemOwner::NPC && DroppedItem.Owner == SP_ItemOwner::Player)
+		if (DraggedItem.Owner == SP_ItemOwner::NPC && DroppedItem.Owner == SP_ItemOwner::Player && PlayerGold >= ItemCost)
 		{
 			PlayerPawn->AddItem(DraggedItem);
 			NPC->RemoveItem(DraggedItem);
+			PlayerPawn->AddGold(-ItemCost);
+			NPC->AddGold(ItemCost);
 		}
 		// Player sells goods
-		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::NPC)
+		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::NPC && NPCGold >= ItemCost)
 		{
 			NPC->AddItem(DraggedItem);
 			PlayerPawn->RemoveItem(DraggedItem);
+			PlayerPawn->AddGold(ItemCost);
+			NPC->AddGold(-ItemCost);
 		}
 
 		HUD->UpdateNPCTradeGoods();
@@ -72,6 +80,7 @@ void ASP_PlayerController::PlayerTownBuySellItem(FSP_Item DraggedItem, FSP_Item 
 {
 	if (ASP_Town* Town = PlayerPawn->TownToMove)
 	{
+		float ItemCost = DraggedItem.Cost;
 		// Player buys goods
 		if (DraggedItem.Owner == SP_ItemOwner::Town && DroppedItem.Owner == SP_ItemOwner::Player)
 		{
