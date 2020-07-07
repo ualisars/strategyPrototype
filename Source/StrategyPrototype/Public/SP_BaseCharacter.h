@@ -50,7 +50,7 @@ protected:
 	FName Name;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float Gold = 300;
+	float Gold = 300.0f;
 
 	float MAX_WALK_SPEED_DEFAULT = 300.0f;
 	float MAX_WALK_SPEED_RODE = 400.0f;

@@ -19,8 +19,13 @@ class STRATEGYPROTOTYPE_API USP_GridItemWidget : public UUserWidget
 	void SetPlayerAndTown();
 
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_Player* Player = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_BaseCharacter* NPC = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_Town* Town = nullptr;
 
 public:

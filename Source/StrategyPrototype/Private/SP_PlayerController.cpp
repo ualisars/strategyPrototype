@@ -80,19 +80,26 @@ void ASP_PlayerController::PlayerTownBuySellItem(FSP_Item DraggedItem, FSP_Item 
 {
 	if (ASP_Town* Town = PlayerPawn->TownToMove)
 	{
+		float PlayerGold = PlayerPawn->GetGold();
+		float MarketGold = Town->MarketGold;
 		float ItemCost = DraggedItem.Cost;
+
 		// Player buys goods
-		if (DraggedItem.Owner == SP_ItemOwner::Town && DroppedItem.Owner == SP_ItemOwner::Player)
+		if (DraggedItem.Owner == SP_ItemOwner::Town && DroppedItem.Owner == SP_ItemOwner::Player && PlayerGold >= ItemCost)
 		{
 			PlayerPawn->AddItem(DraggedItem);
 			Town->RemoveItem(DraggedItem);
+			PlayerPawn->AddGold(-ItemCost);
+			Town->MarketGold += ItemCost;
 		}
 
 		// Player sells goods
-		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::Town)
+		else if (DraggedItem.Owner == SP_ItemOwner::Player && DroppedItem.Owner == SP_ItemOwner::Town && MarketGold >= ItemCost)
 		{
 			Town->AddItem(DraggedItem);
 			PlayerPawn->RemoveItem(DraggedItem);
+			PlayerPawn->AddGold(ItemCost);
+			Town->MarketGold -= ItemCost;
 		}
 
 		HUD->UpdateTownMarket();
