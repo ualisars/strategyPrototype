@@ -17,21 +17,21 @@ FSP_Item USP_ItemFactory::CreateItem(SP_ItemType Type, SP_ItemOwner Owner)
 		case SP_ItemType::Apple:
 			return FSP_Item("Apple", Type, 2.0f, SP_ItemCategory::Food, Owner, true, 5, AppleTextureTextObj.Object);
 		case SP_ItemType::Axe:
-			return FSP_Item("Axe", Type, 5.0f, SP_ItemCategory::Weapon, Owner, AxeTextureTextObj.Object);
+			return FSP_Item("Axe", Type, 55.0f, SP_ItemCategory::Weapon, Owner, AxeTextureTextObj.Object);
 		case SP_ItemType::Bread:
-			return FSP_Item("Bread", Type, 2.0f, SP_ItemCategory::Food, Owner, true, 5, BreadTextureTextObj.Object);
+			return FSP_Item("Bread", Type, 10.0f, SP_ItemCategory::Food, Owner, true, 5, BreadTextureTextObj.Object);
 		case SP_ItemType::Copper:
-			return FSP_Item("Copper", Type, 2.0f, SP_ItemCategory::Resource, Owner, CopperTextureTextObj.Object);
+			return FSP_Item("Copper", Type, 70.0f, SP_ItemCategory::Resource, Owner, CopperTextureTextObj.Object);
 		case SP_ItemType::Helmet:
-			return FSP_Item("Helmet", Type, 2.0f, SP_ItemCategory::Armory, Owner, HelmetTextureTextObj.Object);
+			return FSP_Item("Helmet", Type, 40.0f, SP_ItemCategory::Armory, Owner, HelmetTextureTextObj.Object);
 		case SP_ItemType::Iron:
-			return FSP_Item("Iron", Type, 2.0f, SP_ItemCategory::Resource, Owner, IronTextureTextObj.Object);
+			return FSP_Item("Iron", Type, 100.0f, SP_ItemCategory::Resource, Owner, IronTextureTextObj.Object);
 		case SP_ItemType::Sword:
-			return FSP_Item("Sword", Type, 2.0f, SP_ItemCategory::Weapon, Owner, SwordTextureTextObj.Object);
+			return FSP_Item("Sword", Type, 120.0f, SP_ItemCategory::Weapon, Owner, SwordTextureTextObj.Object);
 		case SP_ItemType::Necklace:
 			return FSP_Item("Necklace", Type, 700.0f, SP_ItemCategory::Jewelry, Owner, NecklaceTextureTextObj.Object);
 		case SP_ItemType::Wood:
-			return FSP_Item("Wood", Type, 1.0f, SP_ItemCategory::Resource, Owner, WoodTextureTextObj.Object);
+			return FSP_Item("Wood", Type, 25.0f, SP_ItemCategory::Resource, Owner, WoodTextureTextObj.Object);
 		default:
 			UE_LOG(LogTemp, Warning, TEXT("This type is not implemented in ItemFactory"));
 			return FSP_Item();

@@ -34,6 +34,18 @@ public:
 	class UTextBlock* TextBarracks;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextUnitName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextUnitAttack;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextUnitDefense;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextUnitCost;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UScrollBox* ScrollBoxUnits;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))

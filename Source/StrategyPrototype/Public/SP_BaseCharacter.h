@@ -99,6 +99,7 @@ public:
 
 	FName GetName() const;
 
+	UFUNCTION(BlueprintCallable)
 	void AddGold(float Value);
 
 	float GetGold() const;
