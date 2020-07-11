@@ -67,7 +67,7 @@ void ASP_BaseCharacter::AddItem(FSP_Item& Item)
 	Food += Item.NutritionalValue;
 }
 
-void ASP_BaseCharacter::RemoveItem(const FSP_Item & Item)
+void ASP_BaseCharacter::RemoveItem(const FSP_Item& Item)
 {
 	Goods.RemoveSingle(Item);
 	Food -= Item.NutritionalValue;
@@ -88,13 +88,9 @@ float ASP_BaseCharacter::GetGold() const
 	return Gold;
 }
 
-void ASP_BaseCharacter::CalculateFood()
+TArray<FSP_Item> ASP_BaseCharacter::GetGoods() const
 {
-	Food = 0;
-	for (FSP_Item Item : Goods)
-	{
-		Food += Item.NutritionalValue;
-	}
+	return Goods;
 }
 
 void ASP_BaseCharacter::Tick(float DeltaTime)

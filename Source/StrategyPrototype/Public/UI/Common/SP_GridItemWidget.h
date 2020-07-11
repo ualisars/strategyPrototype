@@ -44,12 +44,12 @@ public:
 
 		if (Cast<ASP_Player>(GridItemActor))
 		{
-			Goods = Player->Goods;
+			Goods = Player->GetGoods();
 			MaxSlots = Player->MAX_INVENTORY_SLOTS;
 		}
 		else if (Cast<ASP_BaseCharacter>(GridItemActor))
 		{
-			Goods = NPC->Goods;
+			Goods = NPC->GetGoods();
 			MaxSlots = NPC->MAX_INVENTORY_SLOTS;
 		}
 		else if(Cast<ASP_Town>(GridItemActor))

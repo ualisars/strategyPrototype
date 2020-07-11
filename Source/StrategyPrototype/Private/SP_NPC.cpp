@@ -2,14 +2,18 @@
 
 ASP_NPC::ASP_NPC()
 {
+	Tags.Add(FName("NPC"));
+
 	FSP_Unit* Cavalry = new FSP_Unit("Cavalry", 70, 8);
 	Units.Add(Cavalry);
 
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::NPC));
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Sword, SP_ItemOwner::NPC));
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Necklace, SP_ItemOwner::NPC));
+	FSP_Item Item1 = USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::NPC);
+	FSP_Item Item2 = USP_ItemFactory::CreateItem(SP_ItemType::Sword, SP_ItemOwner::NPC);
+	FSP_Item Item3 = USP_ItemFactory::CreateItem(SP_ItemType::Necklace, SP_ItemOwner::NPC);
 
-	CalculateFood();
+	AddItem(Item1);
+	AddItem(Item2);
+	AddItem(Item3);
 }
 
 void ASP_NPC::BeginPlay()

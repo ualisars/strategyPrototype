@@ -26,14 +26,15 @@ class STRATEGYPROTOTYPE_API ASP_BaseCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+	TArray<FSP_Item> Goods;
+
 public:
 	ASP_BaseCharacter();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int MAX_INVENTORY_SLOTS = 15;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FSP_Item> Goods;
+	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Food = 0;
@@ -109,5 +110,6 @@ public:
 
 	float GetGold() const;
 
-	void CalculateFood();
+	UFUNCTION(BlueprintCallable)
+	TArray<FSP_Item> GetGoods() const;
 };

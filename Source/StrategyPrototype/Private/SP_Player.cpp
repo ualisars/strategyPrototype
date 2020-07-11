@@ -9,11 +9,13 @@ ASP_Player::ASP_Player()
 	Units.Add(Archer);
 	DisplayedUnits.Add(DisplayedUnit);
 
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Apple, SP_ItemOwner::Player));
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Axe, SP_ItemOwner::Player));
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Wood, SP_ItemOwner::Player));
+	FSP_Item Item1 = USP_ItemFactory::CreateItem(SP_ItemType::Apple, SP_ItemOwner::Player);
+	FSP_Item Item2 = USP_ItemFactory::CreateItem(SP_ItemType::Axe, SP_ItemOwner::Player);
+	FSP_Item Item3 = USP_ItemFactory::CreateItem(SP_ItemType::Wood, SP_ItemOwner::Player);
 
-	CalculateFood();
+	AddItem(Item1);
+	AddItem(Item2);
+	AddItem(Item3);
 }
 
 void ASP_Player::BeginPlay()
