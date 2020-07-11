@@ -47,7 +47,7 @@ SP_CharacterMode ASP_BaseCharacter::GetMode()
 	return Mode;
 }
 
-void ASP_BaseCharacter::AddItem(FSP_Item & Item)
+void ASP_BaseCharacter::AddItem(FSP_Item& Item)
 {
 	if (ActorHasTag("Player"))
 	{
@@ -64,11 +64,13 @@ void ASP_BaseCharacter::AddItem(FSP_Item & Item)
 	}
 
 	Goods.Add(Item);
+	Food += Item.NutritionalValue;
 }
 
 void ASP_BaseCharacter::RemoveItem(const FSP_Item & Item)
 {
 	Goods.RemoveSingle(Item);
+	Food -= Item.NutritionalValue;
 }
 
 FName ASP_BaseCharacter::GetName() const
@@ -84,6 +86,15 @@ void ASP_BaseCharacter::AddGold(float Value)
 float ASP_BaseCharacter::GetGold() const
 {
 	return Gold;
+}
+
+void ASP_BaseCharacter::CalculateFood()
+{
+	Food = 0;
+	for (FSP_Item Item : Goods)
+	{
+		Food += Item.NutritionalValue;
+	}
 }
 
 void ASP_BaseCharacter::Tick(float DeltaTime)

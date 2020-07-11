@@ -8,6 +8,8 @@ ASP_NPC::ASP_NPC()
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::NPC));
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Sword, SP_ItemOwner::NPC));
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Necklace, SP_ItemOwner::NPC));
+
+	CalculateFood();
 }
 
 void ASP_NPC::BeginPlay()

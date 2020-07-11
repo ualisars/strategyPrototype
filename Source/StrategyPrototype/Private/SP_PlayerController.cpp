@@ -135,8 +135,7 @@ void ASP_PlayerController::LeftMousePressed()
 	if (PlayerPawn != nullptr && Cast<ASP_Obstacle>(HitActor) == nullptr)
 	{
 		PlayerPawn->MoveToLocation(LeftMouseHitResult.Location);
-		ASP_Town* ChosenTown = Cast<ASP_Town>(HitActor);
-
+		
 		// character was hit, so move player to another character
 		if (ASP_BaseCharacter* HitCharacter = Cast<ASP_BaseCharacter>(HitActor))
 		{

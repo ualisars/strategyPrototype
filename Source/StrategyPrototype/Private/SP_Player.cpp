@@ -12,6 +12,8 @@ ASP_Player::ASP_Player()
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Apple, SP_ItemOwner::Player));
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Axe, SP_ItemOwner::Player));
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Wood, SP_ItemOwner::Player));
+
+	CalculateFood();
 }
 
 void ASP_Player::BeginPlay()
