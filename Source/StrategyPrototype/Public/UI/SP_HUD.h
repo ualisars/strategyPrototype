@@ -5,6 +5,7 @@
 #include "Components/WidgetComponent.h"
 #include "UI/Inventory/SP_InventoryWidget.h"
 #include "UI/NPCInteraction/SP_NPCInteractionWidget.h"
+#include "UI/Main/SP_MainInterfaceWidget.h"
 #include "UI/Town/SP_TownWidget.h"
 #include "SP_HUD.generated.h"
 
@@ -19,8 +20,11 @@ class STRATEGYPROTOTYPE_API ASP_HUD : public AHUD
 
 	USP_NPCInteractionWidget* NPCInteractionWidget;
 
-public:
+	USP_MainInterfaceWidget* MainInterfaceWidget;
 
+	void DisplayMainInterfaceWidget();
+
+public:
 	ASP_HUD();
 
 	virtual void DrawHUD() override;
@@ -37,6 +41,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> NPCInteractionWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> MainInterfaceWidgetClass;
 
 	UFUNCTION(BlueprintCallable)
 	void DisplayInventory();

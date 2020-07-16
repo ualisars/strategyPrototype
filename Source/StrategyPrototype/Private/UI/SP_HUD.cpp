@@ -1,5 +1,21 @@
 #include "UI/SP_HUD.h"
 
+void ASP_HUD::DisplayMainInterfaceWidget()
+{
+	if (MainInterfaceWidgetClass)
+	{
+		MainInterfaceWidget = CreateWidget<USP_MainInterfaceWidget>(GetWorld(), MainInterfaceWidgetClass);
+		if (MainInterfaceWidget)
+		{
+			MainInterfaceWidget->AddToViewport();
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Unable to get MainInterfaceWidgetClass in HUD"));
+	}
+}
+
 ASP_HUD::ASP_HUD()
 {
 }
@@ -12,6 +28,8 @@ void ASP_HUD::DrawHUD()
 void ASP_HUD::BeginPlay()
 {
 	Super::BeginPlay();
+
+	DisplayMainInterfaceWidget();
 }
 
 void ASP_HUD::Tick(float DeltaTime)
