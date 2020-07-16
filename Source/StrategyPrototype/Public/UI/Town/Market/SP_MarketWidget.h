@@ -34,13 +34,7 @@ public:
 	class UImage* ImageMarketGold;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UImage* ImagePlayerGold;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* TextPlayerGold;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* TextMarketGold;
+	class UWrapBox* PlayerStatsBox;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UImage* MarketGoodsBackgroundImage;

@@ -21,9 +21,6 @@ public:
 	class UOverlay* CharacterOverlayBox;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UImage* CharacterStatsBackgroundImage;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UHorizontalBox* CharacterStatsBox;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
