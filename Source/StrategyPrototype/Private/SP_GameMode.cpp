@@ -13,16 +13,12 @@ void ASP_GameMode::Clock()
 	int SecondsInHour = 3600;
 	int MinutesInHour = 60;
 	float TimeUnit = (Clockwork * SecondsInHour) / MinutesInHour;
-	Seconds = floor(fmod(TimeUnit, MinutesInHour));
+	Minutes = floor(fmod(TimeUnit, MinutesInHour));
 	float HoursAndMinutes = TimeUnit / MinutesInHour;
-	Minutes = floor(fmod(HoursAndMinutes, MinutesInHour));
-	int HoursInDay = 24;
-	float DaysAndHours = HoursAndMinutes / MinutesInHour;
-	Hours = floor(fmod(DaysAndHours, HoursInDay));
-
+	Hours = floor(fmod(HoursAndMinutes, MinutesInHour));
+	
 	GameTime[0] = Hours;
 	GameTime[1] = Minutes;
-	GameTime[2] = Seconds;
 }
 
 void ASP_GameMode::Calendar()
@@ -51,7 +47,7 @@ void ASP_GameMode::Calendar()
 ASP_GameMode::ASP_GameMode()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	GameTime.SetNum(3);
+	GameTime.SetNum(2);
 	GameDate = { 1, 1, 1 };
 }
 
