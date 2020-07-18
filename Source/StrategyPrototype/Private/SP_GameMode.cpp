@@ -46,7 +46,6 @@ void ASP_GameMode::Calendar()
 
 ASP_GameMode::ASP_GameMode()
 {
-	PrimaryActorTick.bCanEverTick = true;
 	GameTime.SetNum(2);
 	GameDate = { 1, 1, 1 };
 }

@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
-#include "SP_GameMode.h"
+#include "SP_GameStateBase.h"
 #include "Components/TextBlock.h"
 #include "SP_GameDateWidget.generated.h"
 
@@ -18,7 +18,7 @@ public:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	ASP_GameMode* GameMode;
+	ASP_GameStateBase* GameState;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UCanvasPanel* MainCanvasPanel;

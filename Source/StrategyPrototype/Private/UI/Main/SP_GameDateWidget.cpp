@@ -7,9 +7,9 @@ void USP_GameDateWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	if (ASP_GameMode* CurrentGameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(GetWorld())))
+	if (ASP_GameStateBase* CurrentGameState = Cast<ASP_GameStateBase>(UGameplayStatics::GetGameState(GetWorld())))
 	{
-		GameMode = CurrentGameMode;
+		GameState = CurrentGameState;
 	}
 	else
 	{
