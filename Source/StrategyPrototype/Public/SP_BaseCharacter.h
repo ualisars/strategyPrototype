@@ -45,7 +45,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_BaseCharacter* CharacterToMove;
 
-	TArray<FSP_Unit*> Units;
+	TArray<FSP_Unit> Units;
 
 protected:
 	virtual void BeginPlay() override;

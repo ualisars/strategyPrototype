@@ -72,5 +72,5 @@ class STRATEGYPROTOTYPE_API USP_UnitFactory : public UObject
 	GENERATED_BODY()
 
 public:
-	static FSP_Unit* CreateUnit(SP_UnitType);
+	static FSP_Unit CreateUnit(SP_UnitType);
 };

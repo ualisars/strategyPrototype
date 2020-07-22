@@ -22,13 +22,13 @@ void USP_InventoryWidget::DisplayPlayerUnits()
 	if (Player == nullptr)
 		return;
 
-	TArray<FSP_Unit*> Units = Player->Units;
+	TArray<FSP_Unit> Units = Player->Units;
 		
 	ScrollBoxUnits->ClearChildren();
 
-	for (FSP_Unit* Unit : Units)
+	for (FSP_Unit Unit : Units)
 	{
-		CreateInventoryUnitWidget(*Unit);
+		CreateInventoryUnitWidget(Unit);
 	}
 }
 

@@ -8,10 +8,10 @@ ASP_Town::ASP_Town()
 
 	Tags.Add(FName("Town"));
 
-	FSP_Unit Fermer = *USP_UnitFactory::CreateUnit(SP_UnitType::Fermer);
-	FSP_Unit Villager = *USP_UnitFactory::CreateUnit(SP_UnitType::Villager);
-	FSP_Unit Knight = *USP_UnitFactory::CreateUnit(SP_UnitType::Knight);
-	FSP_Unit Mercernary = *USP_UnitFactory::CreateUnit(SP_UnitType::Mercernary);
+	FSP_Unit Fermer = USP_UnitFactory::CreateUnit(SP_UnitType::Fermer);
+	FSP_Unit Villager = USP_UnitFactory::CreateUnit(SP_UnitType::Villager);
+	FSP_Unit Knight = USP_UnitFactory::CreateUnit(SP_UnitType::Knight);
+	FSP_Unit Mercernary = USP_UnitFactory::CreateUnit(SP_UnitType::Mercernary);
 	
 	AvailableUnits.Add(Fermer);
 	AvailableUnits.Add(Villager);

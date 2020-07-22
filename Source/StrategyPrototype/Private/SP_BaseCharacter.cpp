@@ -92,9 +92,9 @@ TArray<FSP_Item> ASP_BaseCharacter::GetGoods() const
 
 void ASP_BaseCharacter::ConsumeFood()
 {
-	for (FSP_Unit* Unit : Units)
+	for (FSP_Unit Unit : Units)
 	{
-		float Hunger = Unit->FoodConsumption;
+		float Hunger = Unit.FoodConsumption;
 		int CurrentIndex = 0;
 		while (Hunger > 0.0f && CurrentIndex < Goods.Num())
 		{
@@ -206,30 +206,28 @@ void ASP_BaseCharacter::StartBattle(ASP_BaseCharacter* OtherCharacter)
 	SetMode(SP_CharacterMode::Fighting);
 	OtherCharacter->SetMode(SP_CharacterMode::Fighting);
 
-	TArray<FSP_Unit*> CharacterUnitCopy = Units;
-	TArray<FSP_Unit*> OtherCharacterUnitCopy = OtherCharacter->Units;
+	TArray<FSP_Unit> CharacterUnitCopy = Units;
+	TArray<FSP_Unit> OtherCharacterUnitCopy = OtherCharacter->Units;
 
 	while (Units.Num() != 0 && OtherCharacter->Units.Num() != 0)
 	{
 		int Character1Index = SP_Random::GenerateRandomNumber(0, Units.Num() - 1);
 		int Character2Index = SP_Random::GenerateRandomNumber(0, OtherCharacter->Units.Num() - 1);
 
-		FSP_Unit* RandomCharacter1Unit = Units[Character1Index];
-		FSP_Unit* RandomCharacter2Unit = OtherCharacter->Units[Character2Index];
+		FSP_Unit RandomCharacter1Unit = Units[Character1Index];
+		FSP_Unit RandomCharacter2Unit = OtherCharacter->Units[Character2Index];
 
-		AttackUnit(RandomCharacter1Unit, RandomCharacter2Unit);
-		AttackUnit(RandomCharacter2Unit, RandomCharacter1Unit);
+		AttackUnit(&RandomCharacter1Unit, &RandomCharacter2Unit);
+		AttackUnit(&RandomCharacter2Unit, &RandomCharacter1Unit);
 
-		if (RandomCharacter1Unit->Health <= 0)
+		if (RandomCharacter1Unit.Health <= 0)
 		{
-			delete Units[Character1Index];
 			CharacterUnitCopy.RemoveAt(Character1Index);
 			Units = CharacterUnitCopy;
 		}
 
-		if (RandomCharacter2Unit->Health <= 0)
+		if (RandomCharacter2Unit.Health <= 0)
 		{
-			delete OtherCharacter->Units[Character2Index];
 			OtherCharacterUnitCopy.RemoveAt(Character2Index);
 			OtherCharacter->Units = OtherCharacterUnitCopy;
 		}

@@ -4,10 +4,9 @@ ASP_Player::ASP_Player()
 {
 	Tags.Add(FName("Player"));
 
-	FSP_Unit* Archer = USP_UnitFactory::CreateUnit(SP_UnitType::Archer);
-	FSP_Unit DisplayedUnit = FSP_Unit(Archer->Name, Archer->Health, Archer->Damage);
+	FSP_Unit Archer = USP_UnitFactory::CreateUnit(SP_UnitType::Archer);
 	Units.Add(Archer);
-	DisplayedUnits.Add(DisplayedUnit);
+	DisplayedUnits.Add(Archer);
 
 	FSP_Item Item1 = USP_ItemFactory::CreateItem(SP_ItemType::Apple, SP_ItemOwner::Player);
 	FSP_Item Item2 = USP_ItemFactory::CreateItem(SP_ItemType::Axe, SP_ItemOwner::Player);
@@ -63,8 +62,6 @@ void ASP_Player::NotifyActorEndOverlap(AActor* OtherActor)
 
 void ASP_Player::AddUnit(const FSP_Unit& PlayerUnit)
 {
-	FSP_Unit* Unit = new FSP_Unit(PlayerUnit.Name, PlayerUnit.Health, PlayerUnit.Damage);
-	FSP_Unit DisplayedUnit = FSP_Unit(PlayerUnit.Name, PlayerUnit.Health, PlayerUnit.Damage);
-	Units.Add(Unit);
-	DisplayedUnits.Add(DisplayedUnit);
+	Units.Add(PlayerUnit);
+	DisplayedUnits.Add(PlayerUnit);
 }
