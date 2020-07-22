@@ -16,9 +16,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_Town* TownToMove;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FSP_Unit> DisplayedUnits;
-
 	ASP_Town* OverlappingTown;
 
 protected:
@@ -41,9 +38,6 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void InteractWithTown();
-
-	UFUNCTION(BlueprintCallable)
-	void AddUnit(const FSP_Unit& PlayerUnit);
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void InteractWithCharacter() override;

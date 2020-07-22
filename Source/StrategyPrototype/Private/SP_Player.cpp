@@ -5,8 +5,8 @@ ASP_Player::ASP_Player()
 	Tags.Add(FName("Player"));
 
 	FSP_Unit Archer = USP_UnitFactory::CreateUnit(SP_UnitType::Archer);
+
 	Units.Add(Archer);
-	DisplayedUnits.Add(Archer);
 
 	FSP_Item Item1 = USP_ItemFactory::CreateItem(SP_ItemType::Apple, SP_ItemOwner::Player);
 	FSP_Item Item2 = USP_ItemFactory::CreateItem(SP_ItemType::Axe, SP_ItemOwner::Player);
@@ -58,10 +58,4 @@ void ASP_Player::NotifyActorEndOverlap(AActor* OtherActor)
 	{
 		OverlappingTown = nullptr;
 	}
-}
-
-void ASP_Player::AddUnit(const FSP_Unit& PlayerUnit)
-{
-	Units.Add(PlayerUnit);
-	DisplayedUnits.Add(PlayerUnit);
 }

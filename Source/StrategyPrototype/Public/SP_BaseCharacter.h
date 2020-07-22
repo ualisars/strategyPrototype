@@ -45,6 +45,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_BaseCharacter* CharacterToMove;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FSP_Unit> Units;
 
 protected:
@@ -84,6 +85,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetMode(SP_CharacterMode NewMode);
+
+	UFUNCTION(BlueprintCallable)
+	void AddUnit(const FSP_Unit& Unit);
 
 	void AttackUnit(FSP_Unit* AttackUnit, FSP_Unit* DefendUnit);
 

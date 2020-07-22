@@ -245,6 +245,11 @@ void ASP_BaseCharacter::StartBattle(ASP_BaseCharacter* OtherCharacter)
 	UE_LOG(LogTemp, Warning, TEXT("Fight is over"));
 }
 
+void ASP_BaseCharacter::AddUnit(const FSP_Unit& Unit)
+{
+	Units.Add(Unit);
+}
+
 void ASP_BaseCharacter::AttackUnit(FSP_Unit* AttackUnit, FSP_Unit* DefendUnit)
 {
 	if (AttackUnit->Health > 0)

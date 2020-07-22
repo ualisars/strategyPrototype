@@ -61,5 +61,4 @@ public:
 	void CreateItemRow(int CurrentSlotsInRow, const TArray<FSP_Item>& GoodsInRow);
 
 	void DisplayPlayerUnits();
-
 };
