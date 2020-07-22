@@ -4,7 +4,7 @@ ASP_NPC::ASP_NPC()
 {
 	Tags.Add(FName("NPC"));
 
-	FSP_Unit* Cavalry = new FSP_Unit("Cavalry", 70, 8);
+	FSP_Unit* Cavalry = USP_UnitFactory::CreateUnit(SP_UnitType::Cavalry);
 	Units.Add(Cavalry);
 
 	FSP_Item Item1 = USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::NPC);

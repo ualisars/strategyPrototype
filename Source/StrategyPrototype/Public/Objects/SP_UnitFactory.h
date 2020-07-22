@@ -2,7 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "SP_Object.generated.h"
+#include "SP_UnitFactory.generated.h"
+
+UENUM(BlueprintType)
+enum class SP_UnitType : uint8
+{
+	Archer,
+	Brigand,
+	Cavalry,
+	Fermer,
+	Knight,
+	Mercernary,
+	Villager
+};
 
 USTRUCT(BlueprintType)
 struct FSP_Unit
@@ -55,8 +67,10 @@ struct FSP_Unit
 };
 
 UCLASS()
-class STRATEGYPROTOTYPE_API USP_Object : public UObject
+class STRATEGYPROTOTYPE_API USP_UnitFactory : public UObject
 {
 	GENERATED_BODY()
-	
+
+public:
+	static FSP_Unit* CreateUnit(SP_UnitType);
 };

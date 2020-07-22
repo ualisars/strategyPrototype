@@ -5,7 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Utils/SP_Random.h"
-#include "Objects/SP_Object.h"
+#include "Objects/SP_UnitFactory.h"
 #include "Objects/SP_ItemFactory.h"
 #include "SP_BaseCharacter.generated.h"
 

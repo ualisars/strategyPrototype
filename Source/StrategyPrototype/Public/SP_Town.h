@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
-#include "Objects/SP_Object.h"
+#include "Objects/SP_UnitFactory.h"
 #include "Objects/SP_ItemFactory.h"
 #include "SP_Town.generated.h"
 

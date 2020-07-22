@@ -6,7 +6,6 @@
 #include "GameFramework/PlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_Obstacle.h"
-#include "Objects/SP_Object.h"
 #include "UI/SP_HUD.h"
 #include "SP_Player.h"
 #include "SP_PlayerController.generated.h"
