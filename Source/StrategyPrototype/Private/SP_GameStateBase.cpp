@@ -44,6 +44,29 @@ void ASP_GameStateBase::Calendar()
 	}
 }
 
+void ASP_GameStateBase::ConsumeFood()
+{
+	TSubclassOf<ASP_BaseCharacter> BaseCharacterClass = ASP_BaseCharacter::StaticClass();
+	TArray<AActor*> BaseCharacterActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), BaseCharacterClass, BaseCharacterActors);
+	for (AActor* Actor : BaseCharacterActors)
+	{
+		if (ASP_BaseCharacter* Character = Cast<ASP_BaseCharacter>(Actor))
+		{
+			Character->ConsumeFood();
+		}
+	}
+}
+
+void ASP_GameStateBase::CheckFoodConsumption(int CurrentHour)
+{
+	if (CurrentHour != LastEatHour && EatHours.Contains(CurrentHour))
+	{
+		ConsumeFood();
+		LastEatHour = CurrentHour;
+	}
+}
+
 ASP_GameStateBase::ASP_GameStateBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -60,6 +83,8 @@ void ASP_GameStateBase::Tick(float DeltaTime)
 	Clock();
 
 	Calendar();
+
+	CheckFoodConsumption(Hours);
 }
 
 void ASP_GameStateBase::BeginPlay()

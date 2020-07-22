@@ -18,6 +18,8 @@ struct FSP_Unit
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Cost;
 
+	float FoodConsumption = 0.5f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString StrHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

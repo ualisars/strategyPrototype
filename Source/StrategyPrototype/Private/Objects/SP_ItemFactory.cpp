@@ -15,11 +15,11 @@ FSP_Item USP_ItemFactory::CreateItem(SP_ItemType Type, SP_ItemOwner Owner)
 	switch (Type)
 	{
 		case SP_ItemType::Apple:
-			return FSP_Item("Apple", Type, 2.0f, SP_ItemCategory::Food, Owner, true, 5, AppleTextureTextObj.Object);
+			return FSP_Item("Apple", Type, 2.0f, SP_ItemCategory::Food, Owner, true, 5.0f, AppleTextureTextObj.Object);
 		case SP_ItemType::Axe:
 			return FSP_Item("Axe", Type, 55.0f, SP_ItemCategory::Weapon, Owner, AxeTextureTextObj.Object);
 		case SP_ItemType::Bread:
-			return FSP_Item("Bread", Type, 10.0f, SP_ItemCategory::Food, Owner, true, 15, BreadTextureTextObj.Object);
+			return FSP_Item("Bread", Type, 10.0f, SP_ItemCategory::Food, Owner, true, 15.0f, BreadTextureTextObj.Object);
 		case SP_ItemType::Copper:
 			return FSP_Item("Copper", Type, 70.0f, SP_ItemCategory::Resource, Owner, CopperTextureTextObj.Object);
 		case SP_ItemType::Helmet:

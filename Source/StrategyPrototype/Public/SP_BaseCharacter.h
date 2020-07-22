@@ -34,10 +34,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int MAX_INVENTORY_SLOTS = 15;
 
-	
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	int Food = 0;
+	float Food = 0.0f;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Medicines;
@@ -46,6 +44,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ASP_BaseCharacter* CharacterToMove;
+
+	TArray<FSP_Unit*> Units;
 
 protected:
 	virtual void BeginPlay() override;
@@ -82,8 +82,6 @@ public:
 	UFUNCTION()
 	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	TArray<FSP_Unit*> Units;
-
 	UFUNCTION(BlueprintCallable)
 	void SetMode(SP_CharacterMode NewMode);
 
@@ -112,4 +110,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	TArray<FSP_Item> GetGoods() const;
+
+	void ConsumeFood();
 };

@@ -2,8 +2,6 @@
 
 ASP_BaseCharacter::ASP_BaseCharacter()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
 	Tags.Add(FName("Character"));
 
 	CharacterCollisionComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("CharacterCollisionComp"));
@@ -24,7 +22,6 @@ ASP_BaseCharacter::ASP_BaseCharacter()
 void ASP_BaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void ASP_BaseCharacter::SetMode(SP_CharacterMode NewMode)
@@ -93,10 +90,39 @@ TArray<FSP_Item> ASP_BaseCharacter::GetGoods() const
 	return Goods;
 }
 
+void ASP_BaseCharacter::ConsumeFood()
+{
+	for (FSP_Unit* Unit : Units)
+	{
+		float Hunger = Unit->FoodConsumption;
+		int CurrentIndex = 0;
+		while (Hunger > 0.0f && CurrentIndex < Goods.Num())
+		{
+			if (Goods[CurrentIndex].Consumable)
+			{
+				if (Goods[CurrentIndex].NutritionalValue >= Hunger)
+				{
+					Goods[CurrentIndex].NutritionalValue -= Hunger;
+					Food -= Hunger;
+					Hunger = 0.0f;
+				}
+				else
+				{
+					RemoveItem(Goods[CurrentIndex]);
+					Food -= Goods[CurrentIndex].NutritionalValue;
+					Hunger -= Goods[CurrentIndex].NutritionalValue;
+				}
+				
+			}
+
+			CurrentIndex++;
+		}
+	}
+}
+
 void ASP_BaseCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ASP_BaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

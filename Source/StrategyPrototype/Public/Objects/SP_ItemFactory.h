@@ -57,7 +57,7 @@ struct FSP_Item
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool Consumable = false;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int NutritionalValue = 0;
+	float NutritionalValue = 0.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool bEmpty = true;
@@ -76,7 +76,7 @@ struct FSP_Item
 		ItemTexture = Texture;
 	}
 
-	FSP_Item(FString Name, SP_ItemType Type, float Cost, SP_ItemCategory Category, SP_ItemOwner Owner, bool Consumable, int NutritionalValue, UTexture2D* Texture)
+	FSP_Item(FString Name, SP_ItemType Type, float Cost, SP_ItemCategory Category, SP_ItemOwner Owner, bool Consumable, float NutritionalValue, UTexture2D* Texture)
 		:Name(Name), Type(Type), Cost(Cost), Category(Category), Owner(Owner), Consumable(Consumable), NutritionalValue(NutritionalValue), bEmpty(false) 
 	{
 		ItemTexture = Texture;

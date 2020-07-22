@@ -2,6 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
+#include "Kismet/GameplayStatics.h"
+#include "SP_BaseCharacter.h"
 #include <math.h>
 #include "SP_GameStateBase.generated.h"
 
@@ -12,7 +14,7 @@ class STRATEGYPROTOTYPE_API ASP_GameStateBase : public AGameStateBase
 
 	float TimeUnit = 2.5f;
 	float Clockwork = 0.0f;
-	int Hours = 0, Minutes = 0;
+	int Hours = 6, Minutes = 0;
 	int Day = 1, Month = 1, Year = 1;
 	int DayTick;
 
@@ -21,6 +23,16 @@ class STRATEGYPROTOTYPE_API ASP_GameStateBase : public AGameStateBase
 	void Clock();
 
 	void Calendar();
+
+	// Food Consumption
+
+	TArray<int> EatHours = { 9, 14, 20 };
+
+	int LastEatHour = -1;
+
+	void ConsumeFood();
+
+	void CheckFoodConsumption(int Hour);
 
 public:
 	ASP_GameStateBase();
