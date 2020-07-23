@@ -28,6 +28,8 @@ struct FSP_Unit
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Damage;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Payment;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Cost;
 
 	float FoodConsumption = 0.5f;
@@ -41,16 +43,16 @@ struct FSP_Unit
 
 	FSP_Unit() {}
 
-	FSP_Unit(FString UnitName, float UnitHealth, float UnitDamage, float UnitCost)
-		:Name(UnitName), Health(UnitHealth), Damage(UnitDamage), Cost(UnitCost)
+	FSP_Unit(FString UnitName, float UnitHealth, float UnitDamage, float UnitPayment, float UnitCost)
+		:Name(UnitName), Health(UnitHealth), Damage(UnitDamage), Payment(UnitPayment), Cost(UnitCost)
 	{
 		StrHealth = FString::SanitizeFloat(UnitHealth);
 		StrDamage = FString::SanitizeFloat(UnitDamage);
 		StrCost = FString::SanitizeFloat(UnitCost);
 	}
 
-	FSP_Unit(FString UnitName, float UnitHealth, float UnitDamage)
-		:Name(UnitName), Health(UnitHealth), Damage(UnitDamage)
+	FSP_Unit(FString UnitName, float UnitHealth, float UnitDamage, float UnitPayment)
+		:Name(UnitName), Health(UnitHealth), Damage(UnitDamage), Payment(Payment)
 	{
 		StrHealth = FString::SanitizeFloat(UnitHealth);
 		StrDamage = FString::SanitizeFloat(UnitDamage);

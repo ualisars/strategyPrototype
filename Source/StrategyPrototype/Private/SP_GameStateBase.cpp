@@ -44,12 +44,18 @@ void ASP_GameStateBase::Calendar()
 	}
 }
 
-void ASP_GameStateBase::ConsumeFood()
+TArray<AActor*> ASP_GameStateBase::GetCharacters()
 {
 	TSubclassOf<ASP_BaseCharacter> BaseCharacterClass = ASP_BaseCharacter::StaticClass();
 	TArray<AActor*> BaseCharacterActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), BaseCharacterClass, BaseCharacterActors);
-	for (AActor* Actor : BaseCharacterActors)
+	return BaseCharacterActors;
+}
+
+void ASP_GameStateBase::ConsumeFood()
+{
+	TArray<AActor*> CharacterActors = GetCharacters();
+	for (AActor* Actor : CharacterActors)
 	{
 		if (ASP_BaseCharacter* Character = Cast<ASP_BaseCharacter>(Actor))
 		{
@@ -64,6 +70,22 @@ void ASP_GameStateBase::CheckFoodConsumption(int CurrentHour)
 	{
 		ConsumeFood();
 		LastEatHour = CurrentHour;
+	}
+}
+
+void ASP_GameStateBase::MakeUnitPayment(int CurrentDay)
+{
+	if (Hours == PaymentHour && LastPaymentDay != CurrentDay)
+	{
+		TArray<AActor*> CharacterActors = GetCharacters();
+		for (AActor* Actor : CharacterActors)
+		{
+			if (ASP_BaseCharacter* Character = Cast<ASP_BaseCharacter>(Actor))
+			{
+				Character->PayUnitsWage();
+				LastPaymentDay = CurrentDay;
+			}
+		}
 	}
 }
 
@@ -85,6 +107,8 @@ void ASP_GameStateBase::Tick(float DeltaTime)
 	Calendar();
 
 	CheckFoodConsumption(Hours);
+
+	MakeUnitPayment(Day);
 }
 
 void ASP_GameStateBase::BeginPlay()

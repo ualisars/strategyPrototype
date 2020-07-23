@@ -40,6 +40,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Medicines;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float UnitPayment = 0.0f;
+
 	ASP_BaseCharacter* OverlappingCharacter;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -116,4 +119,6 @@ public:
 	TArray<FSP_Item> GetGoods() const;
 
 	void ConsumeFood();
+
+	void PayUnitsWage();
 };

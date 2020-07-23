@@ -120,6 +120,11 @@ void ASP_BaseCharacter::ConsumeFood()
 	}
 }
 
+void ASP_BaseCharacter::PayUnitsWage()
+{
+	Gold -= UnitPayment;
+}
+
 void ASP_BaseCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -248,6 +253,7 @@ void ASP_BaseCharacter::StartBattle(ASP_BaseCharacter* OtherCharacter)
 void ASP_BaseCharacter::AddUnit(const FSP_Unit& Unit)
 {
 	Units.Add(Unit);
+	UnitPayment += Unit.Payment;
 }
 
 void ASP_BaseCharacter::AttackUnit(FSP_Unit* AttackUnit, FSP_Unit* DefendUnit)

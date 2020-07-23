@@ -24,8 +24,9 @@ class STRATEGYPROTOTYPE_API ASP_GameStateBase : public AGameStateBase
 
 	void Calendar();
 
-	// Food Consumption
+	TArray<AActor*> GetCharacters();
 
+	// Food Consumption
 	TArray<int> EatHours = { 9, 14, 20 };
 
 	int LastEatHour = -1;
@@ -33,6 +34,13 @@ class STRATEGYPROTOTYPE_API ASP_GameStateBase : public AGameStateBase
 	void ConsumeFood();
 
 	void CheckFoodConsumption(int Hour);
+
+	// Unit Payment
+	int PaymentHour = 12;
+
+	int LastPaymentDay = 0;
+
+	void MakeUnitPayment(int CurrentDay);
 
 public:
 	ASP_GameStateBase();
