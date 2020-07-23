@@ -31,8 +31,6 @@ class STRATEGYPROTOTYPE_API ASP_GameStateBase : public AGameStateBase
 
 	int LastEatHour = -1;
 
-	void ConsumeFood();
-
 	void CheckFoodConsumption(int Hour);
 
 	// Unit Payment

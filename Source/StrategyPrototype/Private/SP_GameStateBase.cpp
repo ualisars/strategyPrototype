@@ -52,23 +52,18 @@ TArray<AActor*> ASP_GameStateBase::GetCharacters()
 	return BaseCharacterActors;
 }
 
-void ASP_GameStateBase::ConsumeFood()
-{
-	TArray<AActor*> CharacterActors = GetCharacters();
-	for (AActor* Actor : CharacterActors)
-	{
-		if (ASP_BaseCharacter* Character = Cast<ASP_BaseCharacter>(Actor))
-		{
-			Character->ConsumeFood();
-		}
-	}
-}
-
 void ASP_GameStateBase::CheckFoodConsumption(int CurrentHour)
 {
 	if (CurrentHour != LastEatHour && EatHours.Contains(CurrentHour))
 	{
-		ConsumeFood();
+		TArray<AActor*> CharacterActors = GetCharacters();
+		for (AActor* Actor : CharacterActors)
+		{
+			if (ASP_BaseCharacter* Character = Cast<ASP_BaseCharacter>(Actor))
+			{
+				Character->ConsumeFood();
+			}
+		}
 		LastEatHour = CurrentHour;
 	}
 }
@@ -83,9 +78,9 @@ void ASP_GameStateBase::MakeUnitPayment(int CurrentDay)
 			if (ASP_BaseCharacter* Character = Cast<ASP_BaseCharacter>(Actor))
 			{
 				Character->PayUnitsWage();
-				LastPaymentDay = CurrentDay;
 			}
 		}
+		LastPaymentDay = CurrentDay;
 	}
 }
 
