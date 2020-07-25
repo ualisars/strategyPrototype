@@ -5,5 +5,5 @@
 
 namespace BBKeys
 {
-	TCHAR const* const TargetLocation = TEXT("TargetLocation");
+	const TCHAR* const TargetLocation = TEXT("TargetLocation");
 }
