@@ -1,4 +1,8 @@
 #include "SP_AIController.h"
+#include "BehaviorTree/BehaviorTreeComponent.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "BehaviorTree/BlackboardComponent.h"
+#include "UObject/ConstructorHelpers.h"
 
 ASP_AIController::ASP_AIController(const FObjectInitializer& ObjectInitializer)
 {

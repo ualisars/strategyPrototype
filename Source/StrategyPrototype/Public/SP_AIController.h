@@ -2,10 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
-#include "BehaviorTree/BehaviorTreeComponent.h"
-#include "BehaviorTree/BehaviorTree.h"
-#include "BehaviorTree/BlackboardComponent.h"
-#include "UObject/ConstructorHelpers.h"
 #include "SP_AIController.generated.h"
 
 UCLASS()
@@ -14,12 +10,12 @@ class STRATEGYPROTOTYPE_API ASP_AIController : public AAIController
 	GENERATED_BODY()
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
-	UBehaviorTreeComponent* BehaviorTreeComponent;
+	class UBehaviorTreeComponent* BehaviorTreeComponent;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
-	UBehaviorTree* BehaviorTree;
+	class UBehaviorTree* BehaviorTree;
 
-	UBlackboardComponent* Blackboard;
+	class UBlackboardComponent* Blackboard;
 
 public:
 	ASP_AIController(const FObjectInitializer& ObjectInitializer);
@@ -28,5 +24,5 @@ public:
 
 	void SetPawn(APawn* InPawn) override;
 
-	UBlackboardComponent* GetBlackboard() const;
+	class UBlackboardComponent* GetBlackboard() const;
 };
