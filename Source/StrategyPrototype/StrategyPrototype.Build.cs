@@ -14,6 +14,7 @@ public class StrategyPrototype : ModuleRules
             "Engine",
             "InputCore",
             "AIModule",
+            "GameplayTasks",
             "NavigationSystem"
         });
 

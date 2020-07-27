@@ -13,16 +13,8 @@ class STRATEGYPROTOTYPE_API ASP_NPC : public ASP_BaseCharacter
 public:
 	ASP_NPC();
 
-	int CurrentTownIndex = 0;
-
-	void UpdateCurrentTownIndex();
-
-	void GetAllTowns();
-
 protected:
 	virtual void BeginPlay() override;
-
-	TArray<AActor*> Towns;
 
 public:	
 	virtual void Tick(float DeltaTime) override;
@@ -34,6 +26,4 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToActor(AActor* Actor);
-
-	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 };
