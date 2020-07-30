@@ -1,4 +1,5 @@
 #include "SP_NPC.h"
+#include "Kismet/GameplayStatics.h"
 
 ASP_NPC::ASP_NPC()
 {
@@ -31,9 +32,24 @@ void ASP_NPC::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+void ASP_NPC::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorBeginOverlap(OtherActor);
+
+	if (OtherActor && OtherActor != this && OtherActor->ActorHasTag("Town"))
+	{
+
+	}
+}
+
 float ASP_NPC::GetDailyFoodConsumption() const
 {
 	int FoodConsumptionPerDay = 3;
 	return FoodConsumption * FoodConsumptionPerDay;
+}
+
+void ASP_NPC::MoveToTown(AActor* Town)
+{
+	SetMode(SP_CharacterMode::GoingToTown);
 }
 

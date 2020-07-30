@@ -54,6 +54,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float FoodConsumption = 0.0f;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	class ASP_Town* TownToMove;
+
 protected:
 	virtual void BeginPlay() override;
 

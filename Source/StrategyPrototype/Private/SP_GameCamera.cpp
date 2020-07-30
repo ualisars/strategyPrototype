@@ -7,7 +7,7 @@ ASP_GameCamera::ASP_GameCamera()
 	RootScene = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
 	RootComponent = RootScene;
 
-	SpringArmComp = CreateAbstractDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
+	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
 	SpringArmComp->SetupAttachment(RootScene);
 	SpringArmComp->bDoCollisionTest = false;
 	SpringArmComp->SetRelativeRotation(FRotator(-50.0f, 0.0f, 0.0f));

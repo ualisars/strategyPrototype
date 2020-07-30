@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "SP_BaseCharacter.h"
-#include "Kismet/GameplayStatics.h"
 #include "SP_NPC.generated.h"
 
 UCLASS()
@@ -21,6 +20,8 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToLocation(const FVector& Location);
 
@@ -29,4 +30,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float GetDailyFoodConsumption() const;
+
+	void MoveToTown(AActor* Town);
 };

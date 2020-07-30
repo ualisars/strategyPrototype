@@ -13,9 +13,6 @@ class STRATEGYPROTOTYPE_API ASP_Player : public ASP_BaseCharacter
 public:
 	ASP_Player();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	ASP_Town* TownToMove;
-
 	ASP_Town* OverlappingTown;
 
 protected:
