@@ -53,7 +53,6 @@ UBlackboardComponent * ASP_AIController::GetBlackboard() const
 
 ASP_Town* ASP_AIController::GetNearestTown()
 {
-	UE_LOG(LogTemp, Warning, TEXT("GetNearestTown"));
 	APawn* NPC = GetPawn();
 	int NearestTownIndex = 0;
 	for (int i = 1; i < TownActors.Num(); ++i)

@@ -31,3 +31,9 @@ void ASP_NPC::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+float ASP_NPC::GetDailyFoodConsumption() const
+{
+	int FoodConsumptionPerDay = 3;
+	return FoodConsumption * FoodConsumptionPerDay;
+}
+

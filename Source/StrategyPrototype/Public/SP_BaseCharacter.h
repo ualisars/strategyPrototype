@@ -51,6 +51,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FSP_Unit> Units;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float FoodConsumption = 0.0f;
+
 protected:
 	virtual void BeginPlay() override;
 

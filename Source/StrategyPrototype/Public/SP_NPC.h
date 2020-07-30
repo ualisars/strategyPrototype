@@ -26,4 +26,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToActor(AActor* Actor);
+
+	UFUNCTION(BlueprintCallable)
+	float GetDailyFoodConsumption() const;
 };

@@ -254,6 +254,7 @@ void ASP_BaseCharacter::AddUnit(const FSP_Unit& Unit)
 {
 	Units.Add(Unit);
 	UnitPayment += Unit.Payment;
+	FoodConsumption += Unit.FoodConsumption;
 }
 
 void ASP_BaseCharacter::AttackUnit(FSP_Unit* AttackUnit, FSP_Unit* DefendUnit)
