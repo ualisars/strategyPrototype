@@ -1,5 +1,6 @@
 #include "SP_NPC.h"
 #include "Kismet/GameplayStatics.h"
+#include "SP_Town.h"
 
 ASP_NPC::ASP_NPC()
 {
@@ -48,8 +49,15 @@ float ASP_NPC::GetDailyFoodConsumption() const
 	return FoodConsumption * FoodConsumptionPerDay;
 }
 
-void ASP_NPC::MoveToTown(AActor* Town)
+void ASP_NPC::MoveToTown(ASP_Town* Town)
 {
 	SetMode(SP_CharacterMode::GoingToTown);
+	TownToMove = Town;
+	NPC_MoveToActor(Town);
+}
+
+void ASP_NPC::SetNPCTask(SP_NPCTask NewTask)
+{
+	Task = NewTask;
 }
 

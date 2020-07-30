@@ -4,18 +4,27 @@
 #include "SP_BaseCharacter.h"
 #include "SP_NPC.generated.h"
 
+UENUM(BlueprintType)
+enum class SP_NPCTask : uint8
+{
+	None,
+	BuyProvision,
+	HireUnits
+};
+
 UCLASS()
 class STRATEGYPROTOTYPE_API ASP_NPC : public ASP_BaseCharacter
 {
 	GENERATED_BODY()
 
-public:
-	ASP_NPC();
-
 protected:
 	virtual void BeginPlay() override;
 
+	SP_NPCTask Task;
+
 public:	
+	ASP_NPC();
+
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -31,5 +40,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	float GetDailyFoodConsumption() const;
 
-	void MoveToTown(AActor* Town);
+	void MoveToTown(class ASP_Town* Town);
+
+	void SetNPCTask(SP_NPCTask NewTask);
 };
