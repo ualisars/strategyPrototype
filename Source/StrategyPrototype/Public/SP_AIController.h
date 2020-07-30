@@ -17,6 +17,10 @@ class STRATEGYPROTOTYPE_API ASP_AIController : public AAIController
 
 	class UBlackboardComponent* Blackboard;
 
+	TArray<AActor*> TownActors;
+
+	void GetTowns();
+
 public:
 	ASP_AIController(const FObjectInitializer& ObjectInitializer);
 
@@ -25,4 +29,6 @@ public:
 	void SetPawn(APawn* InPawn) override;
 
 	class UBlackboardComponent* GetBlackboard() const;
+
+	class ASP_Town* GetNearestTown();
 };
