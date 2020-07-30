@@ -14,8 +14,9 @@ EBTNodeResult::Type USP_BuyProvisionTask::ExecuteTask(UBehaviorTreeComponent & O
 	ASP_NPC* NPC = Cast<ASP_NPC>(AIController->GetPawn());
 
 	ASP_Town* Town = AIController->GetNearestTown();
+	NPC->SetNPCTask(SP_NPCTask::BuyProvision);
 
-	NPC->NPC_MoveToActor(Town);
+	NPC->MoveToTown(Town);
 
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 

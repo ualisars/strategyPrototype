@@ -2,6 +2,11 @@
 #include "Kismet/GameplayStatics.h"
 #include "SP_Town.h"
 
+void ASP_NPC::BuyProvision()
+{
+	UE_LOG(LogTemp, Warning, TEXT("NPC buys provision"));
+}
+
 ASP_NPC::ASP_NPC()
 {
 	Tags.Add(FName("NPC"));
@@ -21,6 +26,8 @@ ASP_NPC::ASP_NPC()
 void ASP_NPC::BeginPlay()
 {
 	Super::BeginPlay();
+
+	SetNPCTask(SP_NPCTask::None);
 }
 
 void ASP_NPC::Tick(float DeltaTime)
@@ -39,7 +46,16 @@ void ASP_NPC::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	if (OtherActor && OtherActor != this && OtherActor->ActorHasTag("Town"))
 	{
-
+		if (ASP_Town* Town = Cast<ASP_Town>(OtherActor))
+		{
+			if (TownToMove != nullptr && TownToMove->Name == Town->Name && Mode == SP_CharacterMode::GoingToTown)
+			{
+				if (Task == SP_NPCTask::BuyProvision)
+				{
+					BuyProvision();
+				}
+			}
+		}
 	}
 }
 
@@ -59,5 +75,10 @@ void ASP_NPC::MoveToTown(ASP_Town* Town)
 void ASP_NPC::SetNPCTask(SP_NPCTask NewTask)
 {
 	Task = NewTask;
+}
+
+SP_NPCTask ASP_NPC::GetNPCTask() const
+{
+	return Task;
 }
 

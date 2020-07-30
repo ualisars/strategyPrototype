@@ -22,6 +22,8 @@ protected:
 
 	SP_NPCTask Task;
 
+	void BuyProvision();
+
 public:	
 	ASP_NPC();
 
@@ -43,4 +45,6 @@ public:
 	void MoveToTown(class ASP_Town* Town);
 
 	void SetNPCTask(SP_NPCTask NewTask);
+
+	SP_NPCTask GetNPCTask() const;
 };
