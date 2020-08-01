@@ -17,12 +17,16 @@ class STRATEGYPROTOTYPE_API ASP_NPC : public ASP_BaseCharacter
 {
 	GENERATED_BODY()
 
+	TArray<class ASP_Town*> VisitedTowns;
+
 protected:
 	virtual void BeginPlay() override;
 
 	SP_NPCTask Task;
 
 	void BuyProvision();
+
+	void BuyFood(TArray<FSP_Item>& TownFood);
 
 public:	
 	ASP_NPC();
@@ -33,6 +37,10 @@ public:
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
+	int MinDailyFoodSupply = 2;
+
+	int EssentialDailyFoodSupply = 5;
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToLocation(const FVector& Location);
 
@@ -42,9 +50,15 @@ public:
 	UFUNCTION(BlueprintCallable)
 	float GetDailyFoodConsumption() const;
 
+	UFUNCTION(BlueprintCallable)
+	int CountDailyFoodSupply();
+
 	void MoveToTown(class ASP_Town* Town);
 
 	void SetNPCTask(SP_NPCTask NewTask);
 
 	SP_NPCTask GetNPCTask() const;
+
+	UFUNCTION(BlueprintCallable)
+	bool NeedFood();
 };

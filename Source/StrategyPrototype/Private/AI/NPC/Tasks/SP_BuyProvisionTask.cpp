@@ -2,6 +2,8 @@
 #include "SP_AIController.h"
 #include "SP_NPC.h"
 #include "SP_Town.h"
+#include "BehaviorTree/BlackboardComponent.h"
+#include "AI/SP_BlackboardKeys.h"
 
 USP_BuyProvisionTask::USP_BuyProvisionTask(const FObjectInitializer& ObjectInitializer)
 {
@@ -17,6 +19,8 @@ EBTNodeResult::Type USP_BuyProvisionTask::ExecuteTask(UBehaviorTreeComponent & O
 	NPC->SetNPCTask(SP_NPCTask::BuyProvision);
 
 	NPC->MoveToTown(Town);
+
+	bool NeedFood = NPC->NeedFood();
 
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 
