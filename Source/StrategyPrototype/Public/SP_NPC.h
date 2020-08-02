@@ -17,8 +17,6 @@ class STRATEGYPROTOTYPE_API ASP_NPC : public ASP_BaseCharacter
 {
 	GENERATED_BODY()
 
-	TArray<class ASP_Town*> VisitedTowns;
-
 protected:
 	virtual void BeginPlay() override;
 
@@ -40,6 +38,8 @@ public:
 	int MinDailyFoodSupply = 2;
 
 	int EssentialDailyFoodSupply = 5;
+
+	TArray<class ASP_Town*> NoProvisionTowns;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToLocation(const FVector& Location);

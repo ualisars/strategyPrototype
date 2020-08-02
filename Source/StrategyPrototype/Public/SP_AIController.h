@@ -19,7 +19,7 @@ class STRATEGYPROTOTYPE_API ASP_AIController : public AAIController
 
 	TArray<AActor*> TownActors;
 
-	void GetTowns();
+	void SetTowns();
 
 public:
 	ASP_AIController(const FObjectInitializer& ObjectInitializer);
@@ -31,4 +31,6 @@ public:
 	class UBlackboardComponent* GetBlackboard() const;
 
 	class ASP_Town* GetNearestTown();
+
+	TArray<AActor*> GetTowns() const;
 };

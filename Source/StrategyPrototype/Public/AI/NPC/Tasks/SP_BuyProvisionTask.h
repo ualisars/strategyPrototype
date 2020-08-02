@@ -9,6 +9,8 @@ class STRATEGYPROTOTYPE_API USP_BuyProvisionTask : public UBTTask_BlackboardBase
 {
 	GENERATED_BODY()
 
+	AActor* FindProvisionTown(class ASP_NPC* NPC, TArray<AActor*> TownActors);
+
 public:
 	USP_BuyProvisionTask(const FObjectInitializer& ObjectInitializer);
 

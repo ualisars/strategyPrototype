@@ -18,8 +18,8 @@ ASP_Town::ASP_Town()
 	AvailableUnits.Add(Knight);
 	AvailableUnits.Add(Mercernary);
 
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::Town));
-	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::Town));
+	//Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::Town));
+	//Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::Town));
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Sword, SP_ItemOwner::Town));
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Helmet, SP_ItemOwner::Town));
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Iron, SP_ItemOwner::Town));

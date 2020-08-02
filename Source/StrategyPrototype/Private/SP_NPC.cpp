@@ -22,19 +22,22 @@ void ASP_NPC::BuyProvision()
 		{
 			SpentGoldPercentage = SpentGold / Gold;
 			BuyFood(TownFood);
-			
 		}
 
 		// remember current town to know it doesn't have enough food
 		if (CountDailyFoodSupply() <= MinDailyFoodSupply)
 		{
-			VisitedTowns.Add(TownToMove);
+			NoProvisionTowns.Add(TownToMove);
 		}
 		else
 		{
-			VisitedTowns.Empty();
+			NoProvisionTowns.Empty();
 		}
+
+		TownToMove = nullptr;
 	}
+
+	SetMode(SP_CharacterMode::Roaming);
 }
 
 void ASP_NPC::BuyFood(TArray<FSP_Item>& TownFood)
@@ -90,6 +93,7 @@ void ASP_NPC::NotifyActorBeginOverlap(AActor* OtherActor)
 			{
 				if (Task == SP_NPCTask::BuyProvision)
 				{
+					SetMode(SP_CharacterMode::InteractingWithTown);
 					BuyProvision();
 				}
 			}

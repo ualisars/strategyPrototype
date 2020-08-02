@@ -27,7 +27,7 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 	float MarketGold = 700.0f;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 	TArray<FSP_Item> Goods;
 
 	UFUNCTION(BlueprintCallable)

@@ -6,7 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "SP_Town.h"
 
-void ASP_AIController::GetTowns()
+void ASP_AIController::SetTowns()
 {
 	TSubclassOf<ASP_Town> TownClass = ASP_Town::StaticClass();
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), TownClass, TownActors);
@@ -34,7 +34,7 @@ void ASP_AIController::BeginPlay()
 	RunBehaviorTree(BehaviorTree);
 	BehaviorTreeComponent->StartTree(*BehaviorTree);
 
-	GetTowns();
+	SetTowns();
 }
 
 void ASP_AIController::SetPawn(APawn* InPawn)
@@ -64,4 +64,9 @@ ASP_Town* ASP_AIController::GetNearestTown()
 	}
 	
 	return Cast<ASP_Town>(TownActors[NearestTownIndex]);
+}
+
+TArray<AActor*> ASP_AIController::GetTowns() const
+{
+	return TownActors;
 }
