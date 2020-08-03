@@ -29,7 +29,6 @@ AActor* USP_BuyProvisionTask::FindProvisionTown(ASP_NPC* NPC, TArray<AActor*> To
 USP_BuyProvisionTask::USP_BuyProvisionTask(const FObjectInitializer& ObjectInitializer)
 {
 	NodeName = TEXT("BuyProvision");
-	bNotifyTaskFinished = true;
 }
 
 EBTNodeResult::Type USP_BuyProvisionTask::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8* NodeMemory)
@@ -55,7 +54,7 @@ EBTNodeResult::Type USP_BuyProvisionTask::ExecuteTask(UBehaviorTreeComponent & O
 	NPC->SetNPCTask(SP_NPCTask::BuyProvision);
 	NPC->TownToMove = Town;
 	
-	AIController->GetBlackboard()->SetValueAsVector(BBKeys::TargetLocation, Town->GetActorLocation());
+	AIController->GetBlackboard()->SetValueAsObject(BBKeys::TargetActor, Town);
 	
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;
