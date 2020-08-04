@@ -27,11 +27,11 @@ void ASP_NPC::BuyProvision()
 		// remember current town to know it doesn't have enough food
 		if (CountDailyFoodSupply() <= MinDailyFoodSupply)
 		{
-			NoProvisionTowns.Add(TownToMove);
+			VisitedTowns.Add(TownToMove);
 		}
 		else
 		{
-			NoProvisionTowns.Empty();
+			VisitedTowns.Empty();
 		}
 
 		TownToMove = nullptr;

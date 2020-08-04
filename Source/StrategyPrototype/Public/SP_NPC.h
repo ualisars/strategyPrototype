@@ -39,7 +39,7 @@ public:
 
 	int EssentialDailyFoodSupply = 5;
 
-	TArray<class ASP_Town*> NoProvisionTowns;
+	TArray<class ASP_Town*> VisitedTowns;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void NPC_MoveToLocation(const FVector& Location);

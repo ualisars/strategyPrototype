@@ -2,15 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/Tasks/BTTask_BlackboardBase.h"
-#include "SP_BuyProvisionTask.generated.h"
+#include "SP_HireUnitsTask.generated.h"
 
 UCLASS()
-class STRATEGYPROTOTYPE_API USP_BuyProvisionTask : public UBTTask_BlackboardBase
+class STRATEGYPROTOTYPE_API USP_HireUnitsTask : public UBTTask_BlackboardBase
 {
 	GENERATED_BODY()
 
 public:
-	USP_BuyProvisionTask(const FObjectInitializer& ObjectInitializer);
+	USP_HireUnitsTask(const FObjectInitializer& ObjectInitializer);
 
 	EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory);
 };
