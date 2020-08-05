@@ -40,6 +40,51 @@ void ASP_NPC::BuyProvision()
 	SetMode(SP_CharacterMode::Roaming);
 }
 
+void ASP_NPC::HireUnits()
+{
+	if (TownToMove)
+	{
+		TArray<FSP_Unit> TownUnits = TownToMove->AvailableUnits;
+		TownUnits.Sort([this](const FSP_Unit& CurrentUnit, const FSP_Unit& NextUnit)
+		{
+			return CurrentUnit.Cost > NextUnit.Cost;
+		});
+
+		while (Units.Num() <= RequiredUnits && TownToMove->AvailableUnits.Num() > 0)
+		{
+			FSP_Unit Unit = TownUnits.Top();
+			if (HireUnit(Unit))
+				TownUnits.Pop();
+		}
+
+		if (Units.Num() < RequiredUnits)
+		{
+			VisitedTowns.Add(TownToMove);
+		}
+		else
+		{
+			VisitedTowns.Empty();
+		}
+
+		TownToMove = nullptr;
+	}
+
+	SetMode(SP_CharacterMode::Roaming);
+}
+
+bool ASP_NPC::HireUnit(FSP_Unit& Unit)
+{
+	if (Gold >= Unit.Cost)
+	{
+		AddUnit(Unit);
+		TownToMove->RemoveFromAvailableUnits(Unit);
+		AddGold(-Unit.Cost);
+		return true;
+	}
+
+	return false;
+}
+
 void ASP_NPC::BuyFood(TArray<FSP_Item>& TownFood)
 {
 	FSP_Item Item = TownFood.Pop();
@@ -59,9 +104,13 @@ ASP_NPC::ASP_NPC()
 	
 	FSP_Item Item1 = USP_ItemFactory::CreateItem(SP_ItemType::Sword, SP_ItemOwner::NPC);
 	FSP_Item Item2 = USP_ItemFactory::CreateItem(SP_ItemType::Necklace, SP_ItemOwner::NPC);
+	FSP_Item Item3 = USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::NPC);
+	FSP_Item Item4 = USP_ItemFactory::CreateItem(SP_ItemType::Bread, SP_ItemOwner::NPC);
 
 	AddItem(Item1);
 	AddItem(Item2);
+	AddItem(Item3);
+	AddItem(Item4);
 }
 
 void ASP_NPC::BeginPlay()
@@ -95,6 +144,11 @@ void ASP_NPC::NotifyActorBeginOverlap(AActor* OtherActor)
 				{
 					SetMode(SP_CharacterMode::InteractingWithTown);
 					BuyProvision();
+				}
+				else if (Task == SP_NPCTask::HireUnits)
+				{
+					SetMode(SP_CharacterMode::InteractingWithTown);
+					HireUnits();
 				}
 			}
 		}

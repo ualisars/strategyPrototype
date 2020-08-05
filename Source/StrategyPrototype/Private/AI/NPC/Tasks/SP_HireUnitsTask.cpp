@@ -12,6 +12,8 @@ EBTNodeResult::Type USP_HireUnitsTask::ExecuteTask(UBehaviorTreeComponent& Owner
 	ASP_AIController* AIController = Cast<ASP_AIController>(OwnerComp.GetAIOwner());
 	ASP_NPC* NPC = Cast<ASP_NPC>(AIController->GetPawn());
 
+	NPC->SetNPCTask(SP_NPCTask::HireUnits);
+
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;
 }

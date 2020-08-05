@@ -1,9 +1,6 @@
 #include "AI/NPC/Tasks/SP_BuyProvisionTask.h"
 #include "SP_AIController.h"
 #include "SP_NPC.h"
-#include "SP_Town.h"
-#include "BehaviorTree/BlackboardComponent.h"
-#include "AI/SP_BlackboardKeys.h"
 
 
 USP_BuyProvisionTask::USP_BuyProvisionTask(const FObjectInitializer& ObjectInitializer)

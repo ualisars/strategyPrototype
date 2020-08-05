@@ -24,6 +24,10 @@ protected:
 
 	void BuyProvision();
 
+	void HireUnits();
+
+	bool HireUnit(FSP_Unit& Unit);
+
 	void BuyFood(TArray<FSP_Item>& TownFood);
 
 public:	
@@ -38,6 +42,9 @@ public:
 	int MinDailyFoodSupply = 2;
 
 	int EssentialDailyFoodSupply = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int RequiredUnits = 3;
 
 	TArray<class ASP_Town*> VisitedTowns;
 
