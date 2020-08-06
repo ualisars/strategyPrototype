@@ -1,5 +1,7 @@
 #include "SP_NPC.h"
 #include "Kismet/GameplayStatics.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
 #include <math.h>
 #include "SP_Town.h"
 
@@ -99,6 +101,8 @@ ASP_NPC::ASP_NPC()
 {
 	Tags.Add(FName("NPC"));
 
+	SetupStimulus();
+
 	FSP_Unit Cavalry = USP_UnitFactory::CreateUnit(SP_UnitType::Cavalry);
 	AddUnit(Cavalry);
 	
@@ -111,6 +115,13 @@ ASP_NPC::ASP_NPC()
 	AddItem(Item2);
 	AddItem(Item3);
 	AddItem(Item4);
+}
+
+void ASP_NPC::SetupStimulus()
+{
+	Stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	Stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
+	Stimulus->RegisterWithPerceptionSystem();
 }
 
 void ASP_NPC::BeginPlay()

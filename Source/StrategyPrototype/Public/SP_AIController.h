@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+#include "Perception/AIPerceptionTypes.h"
 #include "SP_AIController.generated.h"
 
 UCLASS()
@@ -9,6 +10,7 @@ class STRATEGYPROTOTYPE_API ASP_AIController : public AAIController
 {
 	GENERATED_BODY()
 
+	// Behavior Tree
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
 	class UBehaviorTreeComponent* BehaviorTreeComponent;
 
@@ -16,6 +18,14 @@ class STRATEGYPROTOTYPE_API ASP_AIController : public AAIController
 	class UBehaviorTree* BehaviorTree;
 
 	class UBlackboardComponent* Blackboard;
+
+	// Perception
+	class UAISenseConfig_Sight* SightConfig;
+	
+	UFUNCTION()
+	void OnTargetDetected(AActor* Actor, const FAIStimulus Stimulus);
+
+	void SetupPerceptionSystem();
 
 	TArray<AActor*> TownActors;
 

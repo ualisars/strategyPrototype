@@ -5,6 +5,37 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_Town.h"
+#include "Perception/AISenseConfig_Sight.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AIPerceptionComponent.h"
+#include "AI/SP_BlackboardKeys.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
+#include "GameFramework/Character.h"
+
+void ASP_AIController::OnTargetDetected(AActor* Actor, const FAIStimulus Stimulus)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Actor detected"));
+}
+
+void ASP_AIController::SetupPerceptionSystem()
+{
+	SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("Sight Config"));
+	SetPerceptionComponent(*CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("Perception Component")));
+	SightConfig->SightRadius = 500.0f;
+	SightConfig->LoseSightRadius = SightConfig->SightRadius + 50.0f;
+	SightConfig->PeripheralVisionAngleDegrees = 360.0f;
+	SightConfig->SetMaxAge(10.0f);
+	SightConfig->AutoSuccessRangeFromLastSeenLocation = 900.0f;
+	SightConfig->DetectionByAffiliation.bDetectEnemies = true;
+	SightConfig->DetectionByAffiliation.bDetectFriendlies = true;
+	SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
+
+	// add sight configuration component to perception component
+	GetPerceptionComponent()->SetDominantSense(*SightConfig->GetSenseImplementation());
+	GetPerceptionComponent()->OnTargetPerceptionUpdated.AddDynamic(this, &ASP_AIController::OnTargetDetected);
+	GetPerceptionComponent()->ConfigureSense(*SightConfig);
+}
 
 void ASP_AIController::SetTowns()
 {
@@ -26,6 +57,8 @@ ASP_AIController::ASP_AIController(const FObjectInitializer& ObjectInitializer)
 
 	BehaviorTreeComponent = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("BehaviorTreeComp"));
 	Blackboard = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
+
+	SetupPerceptionSystem();
 }
 
 void ASP_AIController::BeginPlay()

@@ -17,6 +17,10 @@ class STRATEGYPROTOTYPE_API ASP_NPC : public ASP_BaseCharacter
 {
 	GENERATED_BODY()
 
+	class UAIPerceptionStimuliSourceComponent* Stimulus;
+
+	void SetupStimulus();
+
 protected:
 	virtual void BeginPlay() override;
 
