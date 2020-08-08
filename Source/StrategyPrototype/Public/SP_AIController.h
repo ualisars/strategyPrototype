@@ -43,4 +43,6 @@ public:
 	class ASP_Town* GetNearestTown();
 
 	TArray<AActor*> GetTowns() const;
+
+	TArray<AActor*> GetVisibleActors();
 };

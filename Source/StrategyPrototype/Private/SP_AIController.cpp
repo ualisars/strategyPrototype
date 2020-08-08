@@ -103,3 +103,10 @@ TArray<AActor*> ASP_AIController::GetTowns() const
 {
 	return TownActors;
 }
+
+TArray<AActor*> ASP_AIController::GetVisibleActors()
+{
+	TArray<AActor*> VisibleActors;
+	GetPerceptionComponent()->GetCurrentlyPerceivedActors(*SightConfig->GetSenseImplementation(), VisibleActors);
+	return VisibleActors;
+}
