@@ -1,13 +1,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Utils/GridSystem/SP_Cell.h"
 
 class STRATEGYPROTOTYPE_API SP_GridSystem
 {
 	float mStartX, mStartY;
-	int mGridWidth, mGridHeight, mGridSize;
+	int mGridWidth, mGridHeight, mCellSize;
 
-	TArray<class SP_Cell> mGrid;
+	TArray<SP_Cell> mGrid;
+
+	int CalculateDistanceInCells(SP_Cell FromCell, SP_Cell ToCell);
 public:
 	SP_GridSystem();
 

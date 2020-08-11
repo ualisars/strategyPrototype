@@ -4,7 +4,7 @@ SP_Cell::SP_Cell()
 {
 }
 
-SP_Cell::SP_Cell(float X, float Y): mX(X), mY(Y)
+SP_Cell::SP_Cell(float X, float Y, int Size): mX(X), mY(Y), mSize(Size)
 {}
 
 void SP_Cell::SetSafety(int Safety)
@@ -29,6 +29,26 @@ void SP_Cell::AddSafety(int Value)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Unable to set safety, incorrect value passed"));
 	}
+}
+
+float SP_Cell::GetX()
+{
+	return mX;
+}
+
+float SP_Cell::GetY()
+{
+	return mY;
+}
+
+float SP_Cell::GetCenterX()
+{
+	return mX + mSize;
+}
+
+float SP_Cell::GetCenterY()
+{
+	return mY + mSize;
 }
 
 int SP_Cell::GetSafety()
