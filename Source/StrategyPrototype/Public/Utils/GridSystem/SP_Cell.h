@@ -12,18 +12,18 @@ class STRATEGYPROTOTYPE_API SP_Cell
 	short MaxSafety = 5;
 
 	int mSize;
+
+	int CalculateDistanceBetweenCellAndActor(const class AActor* Actor);
+
+	void SetSafety(int Safety);
 public:
 	SP_Cell();
 
 	SP_Cell(float X, float Y, int Size);
 
-	void SetSafety(int Safety);
+	void AssignSafety(const class AActor* Actor);
 
 	void AddSafety(int Value);
-
-	float GetX();
-
-	float GetY();
 
 	float GetCenterX();
 

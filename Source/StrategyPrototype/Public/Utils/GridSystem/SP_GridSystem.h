@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Utils/GridSystem/SP_Cell.h"
+#include "SP_BaseCharacter.h"
 
 class STRATEGYPROTOTYPE_API SP_GridSystem
 {
@@ -10,11 +11,12 @@ class STRATEGYPROTOTYPE_API SP_GridSystem
 
 	TArray<SP_Cell> mGrid;
 
-	int CalculateDistanceInCells(SP_Cell FromCell, SP_Cell ToCell);
 public:
 	SP_GridSystem();
 
-	void ConstructGrid(const class AActor* Actor);
+	void ConstructGrid(const AActor* Actor);
+
+	void ConstructGrid(const AActor* Actor, const TArray<AActor*>& VisibleActors);
 
 	~SP_GridSystem();
 };
