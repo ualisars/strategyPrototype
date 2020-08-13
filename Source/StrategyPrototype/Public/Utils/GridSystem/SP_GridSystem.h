@@ -14,9 +14,13 @@ class STRATEGYPROTOTYPE_API SP_GridSystem
 public:
 	SP_GridSystem();
 
+	SP_GridSystem(const AActor* Actor, int GridWidth, int GridHeight, int CellSize);
+
 	void ConstructGrid(const AActor* Actor);
 
 	void ConstructGrid(const AActor* Actor, const TArray<AActor*>& VisibleActors);
+
+	SP_Cell GetSafestCell();
 
 	~SP_GridSystem();
 };
