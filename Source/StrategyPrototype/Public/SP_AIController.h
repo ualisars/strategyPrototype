@@ -44,5 +44,6 @@ public:
 
 	TArray<AActor*> GetTowns() const;
 
+	UFUNCTION(BlueprintCallable)
 	TArray<AActor*> GetVisibleActors();
 };
