@@ -22,7 +22,7 @@ void ASP_AIController::SetupPerceptionSystem()
 {
 	SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("Sight Config"));
 	SetPerceptionComponent(*CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("Perception Component")));
-	SightConfig->SightRadius = 500.0f;
+	SightConfig->SightRadius = 200.0f;
 	SightConfig->LoseSightRadius = SightConfig->SightRadius + 50.0f;
 	SightConfig->PeripheralVisionAngleDegrees = 360.0f;
 	SightConfig->SetMaxAge(10.0f);

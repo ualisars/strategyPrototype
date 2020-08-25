@@ -45,6 +45,12 @@ void SP_GridSystem::ConstructGrid(const AActor* Actor, const TArray<AActor*>& Vi
 
 SP_Cell SP_GridSystem::GetSafestCell()
 {
+	if (mGrid.Num() == 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Grid does not contain any cells"));
+		return SP_Cell(0.0f, 0.0f, mCellSize);
+	}
+
 	int SafestCellIndex = 0;
 	for (int i = 1; i < mGrid.Num(); ++i)
 	{
@@ -53,7 +59,6 @@ SP_Cell SP_GridSystem::GetSafestCell()
 			SafestCellIndex = i;
 		}
 	}
-
 	return mGrid[SafestCellIndex];
 }
 
