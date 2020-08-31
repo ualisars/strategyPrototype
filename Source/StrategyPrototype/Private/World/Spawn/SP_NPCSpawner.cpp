@@ -1,7 +1,7 @@
 #include "World/Spawn/SP_NPCSpawner.h"
 #include "Engine/World.h"
 
-void USP_NPCSpawner::SpawnNPC(UWorld* World, TSubclassOf<ASP_NPC> NPCClass)
+void SP_NPCSpawner::SpawnNPC(UWorld* World, TSubclassOf<ASP_NPC> NPCClass)
 {
 	if (NPCClass)
 	{

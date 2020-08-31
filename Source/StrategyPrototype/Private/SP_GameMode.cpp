@@ -13,6 +13,6 @@ void ASP_GameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	USP_NPCSpawner NPCSpawner;
+	SP_NPCSpawner NPCSpawner;
 	NPCSpawner.SpawnNPC(GetWorld(), NPCClass);
 }
