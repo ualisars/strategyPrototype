@@ -10,6 +10,9 @@ class STRATEGYPROTOTYPE_API ASP_GameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class ASP_NPC> NPCClass;
+
 public:
 	ASP_GameMode();
 
