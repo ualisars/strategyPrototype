@@ -1,24 +1,14 @@
 #include "World/WorldState/SP_WorldState.h"
 
-SP_WorldState::SP_WorldState()
-{
-}
+uint8 USP_WorldState::mStability = 0;
+uint8 USP_WorldState::mStarvation = 0;
 
-SP_WorldState::~SP_WorldState()
-{
-}
-
-short SP_WorldState::GetSafery()
-{
-	return mSafety;
-}
-
-short SP_WorldState::GetStability()
+uint8 USP_WorldState::GetStability()
 {
 	return mStability;
 }
 
-short SP_WorldState::GetStarvation()
+uint8 USP_WorldState::GetStarvation()
 {
 	return mStarvation;
 }

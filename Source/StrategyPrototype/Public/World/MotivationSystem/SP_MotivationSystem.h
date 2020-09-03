@@ -36,5 +36,5 @@ class STRATEGYPROTOTYPE_API USP_MotivationSystem : public UObject
 	GENERATED_BODY()
 
 public:
-	static FSP_Motivation AssignMotivation();
+	static FSP_Motivation DeriveMotivation();
 };

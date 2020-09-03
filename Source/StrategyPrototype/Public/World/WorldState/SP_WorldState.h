@@ -1,20 +1,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
+#include "SP_WorldState.generated.h"
 
-class STRATEGYPROTOTYPE_API SP_WorldState
+UCLASS()
+class STRATEGYPROTOTYPE_API USP_WorldState : public UObject
 {
-	short mSafety = 0;
-	short mStability = 0;
-	short mStarvation = 0;
+	GENERATED_BODY()
+
+	static uint8 mStability;
+	static uint8 mStarvation;
+
 public:
-	SP_WorldState();
+	UFUNCTION(BlueprintCallable)
+	static uint8 GetStability();
 
-	~SP_WorldState();
-
-	short GetSafery();
-
-	short GetStability();
-
-	short GetStarvation();
+	UFUNCTION(BlueprintCallable)
+	static uint8 GetStarvation();
 };
