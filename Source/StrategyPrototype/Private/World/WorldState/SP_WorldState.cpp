@@ -12,3 +12,8 @@ uint8 USP_WorldState::GetStarvation()
 {
 	return mStarvation;
 }
+
+void USP_WorldState::Update()
+{
+	UE_LOG(LogTemp, Warning, TEXT("World State has been changed"));
+}

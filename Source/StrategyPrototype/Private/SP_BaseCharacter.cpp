@@ -27,6 +27,8 @@ void ASP_BaseCharacter::BeginPlay()
 void ASP_BaseCharacter::SetMode(SP_CharacterMode NewMode)
 {
 	Mode = NewMode;
+
+	NotifyObservers();
 }
 
 void ASP_BaseCharacter::StopMovement()
@@ -123,6 +125,25 @@ void ASP_BaseCharacter::ConsumeFood()
 void ASP_BaseCharacter::PayUnitsWage()
 {
 	Gold -= UnitPayment;
+}
+
+void ASP_BaseCharacter::AddObserver(SP_Observer* Observer)
+{
+	mObservers.Add(Observer);
+}
+
+void ASP_BaseCharacter::RemoveObserver(SP_Observer* Observer)
+{
+	mObservers.RemoveSingle(Observer);
+}
+
+void ASP_BaseCharacter::NotifyObservers()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Notify Observers"));
+	for (SP_Observer* Observer : mObservers)
+	{
+		Observer->Update();
+	}
 }
 
 void ASP_BaseCharacter::Tick(float DeltaTime)

@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 
-
 class STRATEGYPROTOTYPE_API SP_Observer
 {
 public:

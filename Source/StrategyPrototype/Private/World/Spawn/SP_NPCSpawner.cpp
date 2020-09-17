@@ -1,5 +1,8 @@
 #include "World/Spawn/SP_NPCSpawner.h"
 #include "Engine/World.h"
+#include "SP_GameMode.h"
+#include "World/WorldState/SP_WorldState.h"
+#include "Kismet/GameplayStatics.h"
 
 void SP_NPCSpawner::SpawnNPC(UWorld* World, TSubclassOf<ASP_NPC> NPCClass)
 {
@@ -19,7 +22,23 @@ void SP_NPCSpawner::SpawnNPC(UWorld* World, TSubclassOf<ASP_NPC> NPCClass)
 
 		if (NPC)
 		{
-			NPC->SpawnDefaultController();
+			if (ASP_GameMode* GameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(World)))
+			{
+				NPC->SpawnDefaultController();
+				
+				if (USP_WorldState* WorldState = GameMode->GetWorldState())
+				{
+					NPC->AddObserver(WorldState);
+				}
+				else
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Failed to add observer in NPC"));
+				}
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Failed to cast GameMode in NPC Spawner"));
+			}
 		}
 		else
 		{

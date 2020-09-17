@@ -7,7 +7,10 @@
 #include "Utils/SP_Random.h"
 #include "Objects/SP_UnitFactory.h"
 #include "Objects/SP_ItemFactory.h"
+#include "Utils/EventSystem/SP_Subject.h"
 #include "SP_BaseCharacter.generated.h"
+
+class SP_Observer;
 
 UENUM(BlueprintType)
 enum class SP_CharacterMode : uint8
@@ -22,11 +25,13 @@ enum class SP_CharacterMode : uint8
 };
 
 UCLASS()
-class STRATEGYPROTOTYPE_API ASP_BaseCharacter : public ACharacter
+class STRATEGYPROTOTYPE_API ASP_BaseCharacter : public ACharacter, public SP_Subject
 {
 	GENERATED_BODY()
 
 	TArray<FSP_Item> Goods;
+
+	TArray<SP_Observer*> mObservers;
 
 public:
 	ASP_BaseCharacter();
@@ -127,4 +132,11 @@ public:
 	void ConsumeFood();
 
 	void PayUnitsWage();
+
+	// Observer
+	virtual void AddObserver(SP_Observer* Observer) override;
+
+	virtual void RemoveObserver(SP_Observer* Observer) override;
+
+	virtual void NotifyObservers() override;
 };

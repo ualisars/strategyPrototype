@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Utils/EventSystem/SP_Observer.h"
 #include "SP_WorldState.generated.h"
 
 UCLASS()
-class STRATEGYPROTOTYPE_API USP_WorldState : public UObject
+class STRATEGYPROTOTYPE_API USP_WorldState : public UObject, public SP_Observer
 {
 	GENERATED_BODY()
 
@@ -18,4 +19,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	static uint8 GetStarvation();
+
+	virtual void Update() override;
 };
