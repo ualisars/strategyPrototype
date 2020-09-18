@@ -1,4 +1,5 @@
 #include "SP_BaseCharacter.h"
+#include "Utils/EventSystem/Events/SP_FightEvent.h"
 
 ASP_BaseCharacter::ASP_BaseCharacter()
 {
@@ -28,7 +29,8 @@ void ASP_BaseCharacter::SetMode(SP_CharacterMode NewMode)
 {
 	Mode = NewMode;
 
-	NotifyObservers();
+	SP_FightEvent FightEvent;
+	NotifyObservers(SP_EventType::FightOccured, FightEvent);
 }
 
 void ASP_BaseCharacter::StopMovement()
@@ -125,25 +127,6 @@ void ASP_BaseCharacter::ConsumeFood()
 void ASP_BaseCharacter::PayUnitsWage()
 {
 	Gold -= UnitPayment;
-}
-
-void ASP_BaseCharacter::AddObserver(SP_Observer* Observer)
-{
-	mObservers.Add(Observer);
-}
-
-void ASP_BaseCharacter::RemoveObserver(SP_Observer* Observer)
-{
-	mObservers.RemoveSingle(Observer);
-}
-
-void ASP_BaseCharacter::NotifyObservers()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Notify Observers"));
-	for (SP_Observer* Observer : mObservers)
-	{
-		Observer->Update();
-	}
 }
 
 void ASP_BaseCharacter::Tick(float DeltaTime)

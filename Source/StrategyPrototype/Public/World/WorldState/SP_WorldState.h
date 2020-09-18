@@ -14,11 +14,13 @@ class STRATEGYPROTOTYPE_API USP_WorldState : public UObject, public SP_Observer
 	static uint8 mStarvation;
 
 public:
+	USP_WorldState();
+
 	UFUNCTION(BlueprintCallable)
 	static uint8 GetStability();
 
 	UFUNCTION(BlueprintCallable)
 	static uint8 GetStarvation();
 
-	virtual void Update() override;
+	virtual void Update(const SP_Event& Event) override;
 };

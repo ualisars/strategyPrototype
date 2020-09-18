@@ -31,8 +31,6 @@ class STRATEGYPROTOTYPE_API ASP_BaseCharacter : public ACharacter, public SP_Sub
 
 	TArray<FSP_Item> Goods;
 
-	TArray<SP_Observer*> mObservers;
-
 public:
 	ASP_BaseCharacter();
 
@@ -132,11 +130,4 @@ public:
 	void ConsumeFood();
 
 	void PayUnitsWage();
-
-	// Observer
-	virtual void AddObserver(SP_Observer* Observer) override;
-
-	virtual void RemoveObserver(SP_Observer* Observer) override;
-
-	virtual void NotifyObservers() override;
 };
