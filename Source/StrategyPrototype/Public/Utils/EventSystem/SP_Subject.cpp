@@ -24,3 +24,7 @@ void SP_Subject::NotifyObservers(const SP_EventType& EventType, const SP_Event& 
 
 SP_Subject::~SP_Subject()
 {}
+
+SP_Subject::SP_Subject()
+{
+}

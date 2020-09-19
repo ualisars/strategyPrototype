@@ -16,4 +16,6 @@ public:
 	virtual void NotifyObservers(const SP_EventType& EventType, const SP_Event& Event);
 
 	virtual ~SP_Subject();
+
+	SP_Subject();
 };

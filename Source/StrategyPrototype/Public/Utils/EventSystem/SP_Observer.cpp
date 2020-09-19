@@ -10,3 +10,7 @@ bool SP_Observer::IsSubscribedForEvent(const SP_EventType& EventType)
 {
 	return mEventTypes.Contains(EventType);
 }
+
+SP_Observer::SP_Observer()
+{
+}
