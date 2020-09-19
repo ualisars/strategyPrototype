@@ -7,7 +7,7 @@
 #include "Utils/SP_Random.h"
 #include "Objects/SP_UnitFactory.h"
 #include "Objects/SP_ItemFactory.h"
-#include "Utils/EventSystem/SP_Subject.h"
+#include "Utils/EventSystem/SP_EventDispatcher.h"
 #include "SP_BaseCharacter.generated.h"
 
 class SP_Observer;
@@ -25,7 +25,7 @@ enum class SP_CharacterMode : uint8
 };
 
 UCLASS()
-class STRATEGYPROTOTYPE_API ASP_BaseCharacter : public ACharacter, public SP_Subject
+class STRATEGYPROTOTYPE_API ASP_BaseCharacter : public ACharacter, public SP_EventDispatcher
 {
 	GENERATED_BODY()
 

@@ -5,7 +5,6 @@ uint8 USP_WorldState::mStarvation = 0;
 
 USP_WorldState::USP_WorldState()
 {
-	UE_LOG(LogTemp, Warning, TEXT("World State constructor"));
 	SubscribeForEvent(SP_EventType::FightOccured);
 }
 
@@ -19,7 +18,7 @@ uint8 USP_WorldState::GetStarvation()
 	return mStarvation;
 }
 
-void USP_WorldState::Update(const SP_Event& Event)
+void USP_WorldState::OnEvent(const SP_Event& Event)
 {
 	if (Event.GetType() == SP_EventType::FightOccured)
 	{

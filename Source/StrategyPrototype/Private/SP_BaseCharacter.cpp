@@ -30,7 +30,7 @@ void ASP_BaseCharacter::SetMode(SP_CharacterMode NewMode)
 	Mode = NewMode;
 
 	SP_FightEvent FightEvent;
-	NotifyObservers(SP_EventType::FightOccured, FightEvent);
+	Dispatch(SP_EventType::FightOccured, FightEvent);
 }
 
 void ASP_BaseCharacter::StopMovement()

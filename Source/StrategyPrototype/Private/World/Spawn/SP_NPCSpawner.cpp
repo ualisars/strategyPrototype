@@ -28,7 +28,7 @@ void SP_NPCSpawner::SpawnNPC(UWorld* World, TSubclassOf<ASP_NPC> NPCClass)
 				
 				if (USP_WorldState* WorldState = GameMode->GetWorldState())
 				{
-					NPC->AddObserver(WorldState);
+					NPC->AddListener(WorldState);
 				}
 				else
 				{
