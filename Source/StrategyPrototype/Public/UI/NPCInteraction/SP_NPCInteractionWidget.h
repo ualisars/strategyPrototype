@@ -16,6 +16,9 @@ class STRATEGYPROTOTYPE_API USP_NPCInteractionWidget : public UUserWidget
 	UFUNCTION()
 	void DisplayNPCTradeWidget();
 
+	UFUNCTION()
+	void AttackNPC();
+
 public:
 	USP_NPCInteractionWidget(const FObjectInitializer& ObjectInitializer);
 

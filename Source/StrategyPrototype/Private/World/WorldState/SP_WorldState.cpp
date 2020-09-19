@@ -21,5 +21,8 @@ uint8 USP_WorldState::GetStarvation()
 
 void USP_WorldState::Update(const SP_Event& Event)
 {
-	UE_LOG(LogTemp, Warning, TEXT("World State has been changed"));
+	if (Event.GetType() == SP_EventType::FightOccured)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("World State has been changed due to the fight"));
+	}
 }

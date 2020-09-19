@@ -254,6 +254,11 @@ SP_GameState ASP_PlayerController::GetGameState() const
 	return GameState;
 }
 
+ASP_Player* ASP_PlayerController::GetPlayerPawn() const
+{
+	return PlayerPawn;
+}
+
 void ASP_PlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();

@@ -76,4 +76,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	SP_GameState GetGameState() const;
+
+	UFUNCTION(BlueprintCallable)
+	ASP_Player* GetPlayerPawn() const;
 };

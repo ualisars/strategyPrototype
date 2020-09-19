@@ -14,4 +14,6 @@ public:
 	virtual void RemoveObserver(SP_Observer* Observer);
 
 	virtual void NotifyObservers(const SP_EventType& EventType, const SP_Event& Event);
+
+	virtual ~SP_Subject();
 };
