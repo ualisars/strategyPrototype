@@ -22,12 +22,12 @@ struct FSP_Motivation
 
 	SP_MotivationObjective Objective;
 
-	unsigned char Passion = 0;
+	unsigned char Aggression = 0;
 
 	FSP_Motivation() {}
 
-	FSP_Motivation(AActor* Actor, SP_MotivationObjective Objective, unsigned short Passion)
-		: TargetActor(Actor), Objective(Objective), Passion(Passion) {}
+	FSP_Motivation(AActor* Actor, SP_MotivationObjective Objective, unsigned short Aggression)
+		: TargetActor(Actor), Objective(Objective), Aggression(Aggression) {}
 };
 
 UCLASS()
