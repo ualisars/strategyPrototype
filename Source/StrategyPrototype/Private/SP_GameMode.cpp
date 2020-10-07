@@ -60,4 +60,9 @@ void ASP_GameMode::BeginPlay()
 	mActorSpawner->Init(GetWorld());
 
 	mActorSpawner->SpawnPlayer(PlayerClass, CameraClass, Location, Rotation);
+
+	FVector NPCLocation = FVector(0.0f, 0.0f, 0.0f);
+	FRotator NPCRotation = FRotator(0.0f, -90.0f, 0.0f);
+
+	mActorSpawner->SpawnNPC(NPCClass, NPCLocation, NPCRotation);
 }

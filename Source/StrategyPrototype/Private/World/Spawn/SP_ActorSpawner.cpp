@@ -65,7 +65,9 @@ void USP_ActorSpawner::Init(UWorld* World)
 }
 
 void USP_ActorSpawner::SpawnNPC(TSubclassOf<ASP_BaseCharacter> NPCClass, const FVector& Location, const FRotator& Rotation)
-{}
+{
+	SpawnCharacter(NPCClass, Location, Rotation);
+}
 
 void USP_ActorSpawner::SpawnPlayer(TSubclassOf<ASP_BaseCharacter> PlayerClass, TSubclassOf<class ASP_GameCamera> CameraClass, const FVector& PlayerLocation, const FRotator& PlayerRotation)
 {
