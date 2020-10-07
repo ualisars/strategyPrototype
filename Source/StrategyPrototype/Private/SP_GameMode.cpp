@@ -1,5 +1,4 @@
 #include "SP_GameMode.h"
-#include "World/Spawn/SP_NPCSpawner.h"
 #include "Kismet/GameplayStatics.h"
 
 void ASP_GameMode::SetWorldState()
@@ -12,13 +11,28 @@ void ASP_GameMode::SetWorldState()
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Failed to create World State"));
+		UE_LOG(LogTemp, Warning, TEXT("Failed to create World State in Game Mode"));
+	}
+}
+
+void ASP_GameMode::SetActorSpawner()
+{
+	USP_ActorSpawner* ActorSpawner = NewObject<USP_ActorSpawner>(USP_ActorSpawner::StaticClass());
+
+	if (ActorSpawner)
+	{
+		mActorSpawner = ActorSpawner;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to create Actor Spawner in Game Mode"));
 	}
 }
 
 ASP_GameMode::ASP_GameMode()
 {
 	SetWorldState();
+	SetActorSpawner();
 }
 
 void ASP_GameMode::Tick(float DeltaTime)
@@ -31,10 +45,15 @@ USP_WorldState* ASP_GameMode::GetWorldState() const
 	return mWorldState;
 }
 
+USP_ActorSpawner * ASP_GameMode::GetActorSpawner() const
+{
+	return mActorSpawner;
+}
+
 void ASP_GameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SP_NPCSpawner NPCSpawner;
-	NPCSpawner.SpawnNPC(GetWorld(), NPCClass);
+	mActorSpawner->Init(GetWorld());
+	mActorSpawner->SpawnCharacter(NPCClass);
 }
