@@ -18,6 +18,9 @@ class STRATEGYPROTOTYPE_API ASP_GameMode : public AGameModeBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ASP_BaseCharacter> PlayerClass;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class ASP_GameCamera> CameraClass;
+
 	USP_WorldState* mWorldState;
 
 	USP_ActorSpawner* mActorSpawner;
