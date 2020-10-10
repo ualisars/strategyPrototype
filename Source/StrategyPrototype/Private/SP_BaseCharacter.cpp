@@ -1,5 +1,6 @@
 #include "SP_BaseCharacter.h"
 #include "Utils/EventSystem/Events/SP_FightEvent.h"
+#include "World/Interaction/SP_UnitFight.h"
 
 ASP_BaseCharacter::ASP_BaseCharacter()
 {
@@ -28,9 +29,6 @@ void ASP_BaseCharacter::BeginPlay()
 void ASP_BaseCharacter::SetMode(SP_CharacterMode NewMode)
 {
 	Mode = NewMode;
-
-	SP_FightEvent FightEvent;
-	Dispatch(SP_EventType::FightOccured, FightEvent);
 }
 
 void ASP_BaseCharacter::StopMovement()
@@ -161,7 +159,7 @@ void ASP_BaseCharacter::NotifyActorBeginOverlap(AActor* OtherActor)
 				if (Mode == SP_CharacterMode::Attacking || OtherCharacter->Mode == SP_CharacterMode::Attacking)
 				{
 					UE_LOG(LogTemp, Warning, TEXT("Fight is starting"));
-					StartBattle(OtherCharacter);
+					SP_UnitFight::StartFight(this, OtherCharacter);
 				}
 			}
 			else
@@ -215,42 +213,13 @@ void ASP_BaseCharacter::StartBattle(ASP_BaseCharacter* OtherCharacter)
 	SetMode(SP_CharacterMode::Fighting);
 	OtherCharacter->SetMode(SP_CharacterMode::Fighting);
 
-	TArray<FSP_Unit> CharacterUnitCopy = Units;
-	TArray<FSP_Unit> OtherCharacterUnitCopy = OtherCharacter->Units;
-
-	while (Units.Num() != 0 && OtherCharacter->Units.Num() != 0)
-	{
-		int Character1Index = SP_Random::GenerateRandomNumber(0, Units.Num() - 1);
-		int Character2Index = SP_Random::GenerateRandomNumber(0, OtherCharacter->Units.Num() - 1);
-
-		FSP_Unit RandomCharacter1Unit = Units[Character1Index];
-		FSP_Unit RandomCharacter2Unit = OtherCharacter->Units[Character2Index];
-
-		AttackUnit(&RandomCharacter1Unit, &RandomCharacter2Unit);
-		AttackUnit(&RandomCharacter2Unit, &RandomCharacter1Unit);
-
-		if (RandomCharacter1Unit.Health <= 0)
-		{
-			CharacterUnitCopy.RemoveAt(Character1Index);
-			Units = CharacterUnitCopy;
-		}
-
-		if (RandomCharacter2Unit.Health <= 0)
-		{
-			OtherCharacterUnitCopy.RemoveAt(Character2Index);
-			OtherCharacter->Units = OtherCharacterUnitCopy;
-		}
-	}
-
-	if (Units.Num() == 0)
-	{
-		Destroy();
-	}
-	else if (OtherCharacter->Units.Num() == 0)
+	if (ActorHasTag("Player"))
 	{
 		OtherCharacter->Destroy();
 	}
-
+	
+	SP_FightEvent FightEvent;
+	Dispatch(SP_EventType::FightOccured, FightEvent);
 	UE_LOG(LogTemp, Warning, TEXT("Fight is over"));
 }
 
