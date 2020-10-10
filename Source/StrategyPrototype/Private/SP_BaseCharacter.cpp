@@ -1,6 +1,5 @@
 #include "SP_BaseCharacter.h"
 #include "Utils/EventSystem/Events/SP_FightEvent.h"
-#include "World/Interaction/SP_UnitFight.h"
 
 ASP_BaseCharacter::ASP_BaseCharacter()
 {
@@ -159,7 +158,7 @@ void ASP_BaseCharacter::NotifyActorBeginOverlap(AActor* OtherActor)
 				if (Mode == SP_CharacterMode::Attacking || OtherCharacter->Mode == SP_CharacterMode::Attacking)
 				{
 					UE_LOG(LogTemp, Warning, TEXT("Fight is starting"));
-					SP_UnitFight::StartFight(this, OtherCharacter);
+					StartBattle(OtherCharacter);
 				}
 			}
 			else
