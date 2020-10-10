@@ -4,7 +4,7 @@
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_NPC.h"
-#include "World/Spawn/SP_NPCSpawner.h"
+#include "World/Spawn/SP_ActorSpawner.h"
 
 USP_SpawnChecker::USP_SpawnChecker()
 {
@@ -32,8 +32,8 @@ void USP_SpawnChecker::CheckSpawn(const SP_Event& Event)
 	{
 		if (Event.GetType() == SP_EventType::FightOccured && WorldState->GetStarvation() > 50)
 		{
-			SP_NPCSpawner NPCSpawner;
-			NPCSpawner.SpawnNPC(GetWorld(), ASP_NPC::StaticClass());
+			USP_ActorSpawner* ActorSpawner = mGameMode->GetActorSpawner();
+			ActorSpawner->SpawnNPC(ASP_NPC::StaticClass(), FVector(FVector(-420.0f, 120.0f, 0.0f)), FRotator(0.0f, -90.0f, 0.0f));
 		}
 	}
 }
