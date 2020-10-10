@@ -25,9 +25,13 @@ class STRATEGYPROTOTYPE_API ASP_GameMode : public AGameModeBase
 
 	USP_ActorSpawner* mActorSpawner;
 
+	class USP_SpawnChecker* mSpawnChecker;
+
 	void SetWorldState();
 
 	void SetActorSpawner();
+
+	void SetSpawnChecker();
 
 public:
 	ASP_GameMode();
@@ -37,6 +41,8 @@ public:
 	USP_WorldState* GetWorldState() const;
 
 	USP_ActorSpawner* GetActorSpawner() const;
+
+	class USP_SpawnChecker* GetSpawnChecker() const;
 
 protected:
 	void BeginPlay() override;

@@ -1,4 +1,5 @@
 #include "SP_GameMode.h"
+#include "World/Spawn/SP_SpawnChecker.h"
 #include "Kismet/GameplayStatics.h"
 
 void ASP_GameMode::SetWorldState()
@@ -29,6 +30,20 @@ void ASP_GameMode::SetActorSpawner()
 	}
 }
 
+void ASP_GameMode::SetSpawnChecker()
+{
+	USP_SpawnChecker* SpawnChecker = NewObject<USP_SpawnChecker>(USP_SpawnChecker::StaticClass());
+
+	if (SpawnChecker)
+	{
+		mSpawnChecker = SpawnChecker;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to create Spawn Checker in Game Mode"));
+	}
+}
+
 ASP_GameMode::ASP_GameMode()
 {
 	SetWorldState();
@@ -48,6 +63,11 @@ USP_WorldState* ASP_GameMode::GetWorldState() const
 USP_ActorSpawner* ASP_GameMode::GetActorSpawner() const
 {
 	return mActorSpawner;
+}
+
+USP_SpawnChecker * ASP_GameMode::GetSpawnChecker() const
+{
+	return mSpawnChecker;
 }
 
 void ASP_GameMode::BeginPlay()
