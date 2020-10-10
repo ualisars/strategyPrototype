@@ -7,16 +7,7 @@
 #include "World/Spawn/SP_ActorSpawner.h"
 
 USP_SpawnChecker::USP_SpawnChecker()
-{
-	if (ASP_GameMode* GameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(GetWorld())))
-	{
-		mGameMode = GameMode;
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Unable to get Game Mode in SpawnChecker"));
-	}
-}
+{}
 
 void USP_SpawnChecker::OnEvent(const SP_Event& Event)
 {
@@ -35,6 +26,18 @@ void USP_SpawnChecker::CheckSpawn(const SP_Event& Event)
 			USP_ActorSpawner* ActorSpawner = mGameMode->GetActorSpawner();
 			ActorSpawner->SpawnNPC(ASP_NPC::StaticClass(), FVector(FVector(-420.0f, 120.0f, 0.0f)), FRotator(0.0f, -90.0f, 0.0f));
 		}
+	}
+}
+
+void USP_SpawnChecker::Init(const UWorld* World)
+{
+	if (ASP_GameMode* GameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(World)))
+	{
+		mGameMode = GameMode;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Unable to get Game Mode in SpawnChecker"));
 	}
 }
 

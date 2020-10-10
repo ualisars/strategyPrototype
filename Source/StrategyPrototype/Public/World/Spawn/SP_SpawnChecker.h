@@ -19,4 +19,6 @@ public:
 	virtual void OnEvent(const SP_Event& Event) override;
 
 	void CheckSpawn(const SP_Event& Event);
+
+	void Init(const UWorld* World);
 };

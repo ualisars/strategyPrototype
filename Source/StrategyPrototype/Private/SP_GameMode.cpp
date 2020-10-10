@@ -48,6 +48,7 @@ ASP_GameMode::ASP_GameMode()
 {
 	SetWorldState();
 	SetActorSpawner();
+	SetSpawnChecker();
 }
 
 void ASP_GameMode::Tick(float DeltaTime)
@@ -78,6 +79,7 @@ void ASP_GameMode::BeginPlay()
 	FRotator Rotation = FRotator(0.0f, -90.0f, 0.0f);
 
 	mActorSpawner->Init(GetWorld());
+	mSpawnChecker->Init(GetWorld());
 
 	mActorSpawner->SpawnPlayer(PlayerClass, CameraClass, Location, Rotation);
 
