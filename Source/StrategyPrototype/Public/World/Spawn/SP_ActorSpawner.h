@@ -14,6 +14,7 @@ class STRATEGYPROTOTYPE_API USP_ActorSpawner : public UObject
 	class ASP_GameMode* mGameMode;
 	UWorld* mWorld;
 	class USP_WorldState* mWorldState;
+	class USP_SpawnChecker* mSpawnChecker;
 
 	void SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterClass, const FVector& Location, const FRotator& Rotation);
 

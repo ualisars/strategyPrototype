@@ -4,6 +4,7 @@
 #include "SP_NPC.h"
 #include "SP_Player.h"
 #include "World/WorldState/SP_WorldState.h"
+#include "World/Spawn/SP_SpawnChecker.h"
 #include "SP_GameCamera.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_GameMode.h"
@@ -26,6 +27,7 @@ void USP_ActorSpawner::SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterCl
 	if (mWorldState)
 	{
 		Character->AddListener(mWorldState);
+		Character->AddListener(mSpawnChecker);
 	}
 	else
 	{
@@ -56,6 +58,7 @@ void USP_ActorSpawner::Init(UWorld* World)
 	if (mGameMode)
 	{
 		mWorldState = mGameMode->GetWorldState();
+		mSpawnChecker = mGameMode->GetSpawnChecker();
 	}
 	else
 	{

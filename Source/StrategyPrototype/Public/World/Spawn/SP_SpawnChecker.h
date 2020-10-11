@@ -13,6 +13,10 @@ class STRATEGYPROTOTYPE_API USP_SpawnChecker : public UObject, public SP_EventLi
 
 	class ASP_GameMode* mGameMode;
 
+	class USP_WorldState* mWorldState;
+
+	class USP_ActorSpawner* mActorSpawner;
+
 public:
 	USP_SpawnChecker();
 
