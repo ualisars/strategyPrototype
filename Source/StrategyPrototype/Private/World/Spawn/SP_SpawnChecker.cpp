@@ -3,6 +3,7 @@
 #include "SP_GameMode.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+#include "World/Generation/SP_WorldGenerator.h"
 #include "SP_NPC.h"
 #include "World/Spawn/SP_ActorSpawner.h"
 
@@ -19,9 +20,6 @@ void USP_SpawnChecker::OnEvent(const SP_Event& Event)
 
 void USP_SpawnChecker::CheckSpawn(const SP_Event& Event)
 {
-	if (mGameMode == nullptr)
-		return;
-
 	if (mWorldState)
 	{
 		if (Event.GetType() == SP_EventType::FightOccured && mWorldState->GetStarvation() > 50)
@@ -32,23 +30,29 @@ void USP_SpawnChecker::CheckSpawn(const SP_Event& Event)
 	}
 }
 
-void USP_SpawnChecker::Init(const UWorld* World)
+void USP_SpawnChecker::Init(UWorld* World, USP_ActorSpawner* ActorSpawner)
 {
+	mActorSpawner = ActorSpawner;
+
+	/*
+	if (mActorSpawner == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Unable to get Actor Spawner in SpawnChecker"));
+	}
+
 	if (ASP_GameMode* GameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(World)))
 	{
-		mGameMode = GameMode;
-		mWorldState = mGameMode->GetWorldState();
-		mActorSpawner = mGameMode->GetActorSpawner();
+		mWorldState = GameMode->GetWorldState();
 		
-		if (mWorldState == nullptr)
+		if (mWorldState)
+		{
 			UE_LOG(LogTemp, Warning, TEXT("Unable to get World State in SpawnChecker"));
-
-		if (mActorSpawner == nullptr)
-			UE_LOG(LogTemp, Warning, TEXT("Unable to get Actor Spawner in SpawnChecker"));
+		}
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Unable to get Game Mode in SpawnChecker"));
 	}
+	*/
 }
 

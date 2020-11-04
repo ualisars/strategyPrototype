@@ -11,8 +11,6 @@ class STRATEGYPROTOTYPE_API USP_SpawnChecker : public UObject, public SP_EventLi
 {
 	GENERATED_BODY()
 
-	class ASP_GameMode* mGameMode;
-
 	class USP_WorldState* mWorldState;
 
 	class USP_ActorSpawner* mActorSpawner;
@@ -24,5 +22,5 @@ public:
 
 	void CheckSpawn(const SP_Event& Event);
 
-	void Init(const UWorld* World);
+	void Init(UWorld* World, class USP_ActorSpawner* ActorSpawner);
 };

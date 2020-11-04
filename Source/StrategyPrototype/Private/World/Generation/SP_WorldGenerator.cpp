@@ -36,9 +36,6 @@ void ASP_WorldGenerator::InitWorld()
 	FVector Location = FVector(-520.0f, 130.0f, 58.0f);
 	FRotator Rotation = FRotator(0.0f, -90.0f, 0.0f);
 
-	mActorSpawner->Init(GetWorld());
-	mSpawnChecker->Init(GetWorld());
-
 	mActorSpawner->SpawnPlayer(PlayerClass, CameraClass, Location, Rotation);
 
 	FVector NPCLocation = FVector(0.0f, 0.0f, 0.0f);
@@ -49,6 +46,15 @@ void ASP_WorldGenerator::InitWorld()
 
 ASP_WorldGenerator::ASP_WorldGenerator()
 {
+	// Hides visible components
+	SetActorHiddenInGame(true);
+
+	// Disables collision components
+	SetActorEnableCollision(false);
+
+	// Stops the Actor from ticking
+	SetActorTickEnabled(false);
+
 	SetActorSpawner();
 	SetSpawnChecker();
 }
@@ -56,6 +62,9 @@ ASP_WorldGenerator::ASP_WorldGenerator()
 void ASP_WorldGenerator::BeginPlay()
 {
 	Super::BeginPlay();
+
+	mActorSpawner->Init(GetWorld());
+	//mSpawnChecker->Init(GetWorld(), mActorSpawner);
 
 	InitWorld();
 }

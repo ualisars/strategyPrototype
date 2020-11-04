@@ -6,6 +6,7 @@
 #include "World/WorldState/SP_WorldState.h"
 #include "World/Spawn/SP_SpawnChecker.h"
 #include "SP_GameCamera.h"
+#include "World/Generation/SP_WorldGenerator.h"
 #include "Kismet/GameplayStatics.h"
 #include "SP_GameMode.h"
 #include "GameFramework/Actor.h"
@@ -45,25 +46,27 @@ void USP_ActorSpawner::Init(UWorld* World)
 {
 	mWorld = World;
 
-	if (mWorld)
+	if (ASP_GameMode* GameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(World)))
 	{
-		mGameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(mWorld));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Unable to get world reference in ActorSpawner"));
-		return;
-	}
+		mWorldState = GameMode->GetWorldState();
 
-	if (mGameMode)
-	{
-		mWorldState = mGameMode->GetWorldState();
-		mSpawnChecker = mGameMode->GetSpawnChecker();
+		if (mWorldState == nullptr)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Unable to get World State in SpawnChecker"));
+		}
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Failed to get GameMode in ActorSpawner"));
-		return;
+	}
+
+	if (ASP_WorldGenerator* WorldGenerator = Cast<ASP_WorldGenerator>(UGameplayStatics::GetActorOfClass(World, ASP_WorldGenerator::StaticClass())))
+	{
+		mSpawnChecker = WorldGenerator->GetSpawnChecker();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to get WorldGenerator in ActorSpawner"));
 	}
 }
 

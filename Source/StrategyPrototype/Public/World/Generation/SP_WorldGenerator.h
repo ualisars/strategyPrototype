@@ -35,7 +35,7 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	USP_ActorSpawner* GetActorSpawner() const;
+	class USP_ActorSpawner* GetActorSpawner() const;
 
 	class USP_SpawnChecker* GetSpawnChecker() const;
 };

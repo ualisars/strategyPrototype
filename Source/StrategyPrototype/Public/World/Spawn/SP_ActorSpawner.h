@@ -11,7 +11,6 @@ class STRATEGYPROTOTYPE_API USP_ActorSpawner : public UObject
 {
 	GENERATED_BODY()
 
-	class ASP_GameMode* mGameMode;
 	UWorld* mWorld;
 	class USP_WorldState* mWorldState;
 	class USP_SpawnChecker* mSpawnChecker;
