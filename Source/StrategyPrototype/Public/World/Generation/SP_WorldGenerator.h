@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Utils/EventSystem/SP_EventListener.h"
 #include "SP_WorldGenerator.generated.h"
 
 UCLASS()
-class STRATEGYPROTOTYPE_API ASP_WorldGenerator : public AActor
+class STRATEGYPROTOTYPE_API ASP_WorldGenerator : public AActor, public SP_EventListener
 {
 	GENERATED_BODY()
 
@@ -22,9 +23,11 @@ class STRATEGYPROTOTYPE_API ASP_WorldGenerator : public AActor
 
 	class USP_SpawnChecker* mSpawnChecker;
 
+	class USP_WorldState* mWorldState;
+
 	void SetActorSpawner();
 
-	void SetSpawnChecker();
+	void GetWorldState();
 
 	void InitWorld();
 	
@@ -37,5 +40,7 @@ protected:
 public:
 	class USP_ActorSpawner* GetActorSpawner() const;
 
-	class USP_SpawnChecker* GetSpawnChecker() const;
+	virtual void OnEvent(const SP_Event& Event) override;
+
+	void CheckSpawn(const SP_Event& Event);
 };

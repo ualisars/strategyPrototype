@@ -1,6 +1,8 @@
 #include "World/Generation/SP_WorldGenerator.h"
+#include "SP_GameMode.h"
 #include "World/Spawn/SP_ActorSpawner.h"
-#include "World/Spawn/SP_SpawnChecker.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
 
 
 void ASP_WorldGenerator::SetActorSpawner()
@@ -17,17 +19,20 @@ void ASP_WorldGenerator::SetActorSpawner()
 	}
 }
 
-void ASP_WorldGenerator::SetSpawnChecker()
+void ASP_WorldGenerator::GetWorldState()
 {
-	USP_SpawnChecker* SpawnChecker = NewObject<USP_SpawnChecker>(USP_SpawnChecker::StaticClass());
-
-	if (SpawnChecker)
+	if (ASP_GameMode* GameMode = Cast<ASP_GameMode>(UGameplayStatics::GetGameMode(GetWorld())))
 	{
-		mSpawnChecker = SpawnChecker;
+		mWorldState = GameMode->GetWorldState();
+
+		if (mWorldState)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Unable to get World State in World Generator"));
+		}
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Failed to create Spawn Checker in World Generator"));
+		UE_LOG(LogTemp, Warning, TEXT("Unable to get Game Mode in World Generator"));
 	}
 }
 
@@ -55,17 +60,20 @@ ASP_WorldGenerator::ASP_WorldGenerator()
 	// Stops the Actor from ticking
 	SetActorTickEnabled(false);
 
-	SetActorSpawner();
-	SetSpawnChecker();
+	// Event Subscription
+	SubscribeForEvent(SP_EventType::FightOccured);
 }
 
 void ASP_WorldGenerator::BeginPlay()
 {
 	Super::BeginPlay();
 
-	mActorSpawner->Init(GetWorld());
-	//mSpawnChecker->Init(GetWorld(), mActorSpawner);
+	GetWorldState();
 
+	SetActorSpawner();
+
+	mActorSpawner->Init(GetWorld());
+	
 	InitWorld();
 }
 
@@ -74,8 +82,21 @@ USP_ActorSpawner* ASP_WorldGenerator::GetActorSpawner() const
 	return mActorSpawner;
 }
 
-USP_SpawnChecker* ASP_WorldGenerator::GetSpawnChecker() const
+void ASP_WorldGenerator::OnEvent(const SP_Event& Event)
 {
-	return mSpawnChecker;
+	UE_LOG(LogTemp, Warning, TEXT("On Event Check World Generator"));
+	CheckSpawn(Event);
+}
+
+void ASP_WorldGenerator::CheckSpawn(const SP_Event& Event)
+{
+	if (mWorldState)
+	{
+		if (Event.GetType() == SP_EventType::FightOccured)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Spawn NPC in World Generator"));
+			mActorSpawner->SpawnNPC(NPCClass, FVector(FVector(0.0f, 0.0f, 0.0f)), FRotator(0.0f, -90.0f, 0.0f));
+		}
+	}
 }
 

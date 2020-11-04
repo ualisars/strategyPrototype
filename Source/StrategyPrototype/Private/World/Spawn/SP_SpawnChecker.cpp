@@ -14,7 +14,7 @@ USP_SpawnChecker::USP_SpawnChecker()
 
 void USP_SpawnChecker::OnEvent(const SP_Event& Event)
 {
-	UE_LOG(LogTemp, Warning, TEXT("On Event Check Spawner"));
+	UE_LOG(LogTemp, Warning, TEXT("On Event Check World Generator"));
 	CheckSpawn(Event);
 }
 
@@ -24,7 +24,7 @@ void USP_SpawnChecker::CheckSpawn(const SP_Event& Event)
 	{
 		if (Event.GetType() == SP_EventType::FightOccured && mWorldState->GetStarvation() > 50)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Spawn NPC in Check Spawner"));
+			UE_LOG(LogTemp, Warning, TEXT("Spawn NPC in World Generator"));
 			mActorSpawner->SpawnNPC(ASP_NPC::StaticClass(), FVector(FVector(0.0f, 0.0f, 0.0f)), FRotator(0.0f, -90.0f, 0.0f));
 		}
 	}

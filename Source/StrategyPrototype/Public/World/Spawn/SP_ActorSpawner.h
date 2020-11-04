@@ -13,7 +13,7 @@ class STRATEGYPROTOTYPE_API USP_ActorSpawner : public UObject
 
 	UWorld* mWorld;
 	class USP_WorldState* mWorldState;
-	class USP_SpawnChecker* mSpawnChecker;
+	class ASP_WorldGenerator* mWorldGenerator;
 
 	void SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterClass, const FVector& Location, const FRotator& Rotation);
 

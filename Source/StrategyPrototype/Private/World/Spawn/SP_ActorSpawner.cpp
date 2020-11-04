@@ -4,7 +4,6 @@
 #include "SP_NPC.h"
 #include "SP_Player.h"
 #include "World/WorldState/SP_WorldState.h"
-#include "World/Spawn/SP_SpawnChecker.h"
 #include "SP_GameCamera.h"
 #include "World/Generation/SP_WorldGenerator.h"
 #include "Kismet/GameplayStatics.h"
@@ -28,7 +27,7 @@ void USP_ActorSpawner::SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterCl
 	if (mWorldState)
 	{
 		Character->AddListener(mWorldState);
-		Character->AddListener(mSpawnChecker);
+		Character->AddListener(mWorldGenerator);
 	}
 	else
 	{
@@ -62,7 +61,7 @@ void USP_ActorSpawner::Init(UWorld* World)
 
 	if (ASP_WorldGenerator* WorldGenerator = Cast<ASP_WorldGenerator>(UGameplayStatics::GetActorOfClass(World, ASP_WorldGenerator::StaticClass())))
 	{
-		mSpawnChecker = WorldGenerator->GetSpawnChecker();
+		mWorldGenerator = WorldGenerator;
 	}
 	else
 	{
