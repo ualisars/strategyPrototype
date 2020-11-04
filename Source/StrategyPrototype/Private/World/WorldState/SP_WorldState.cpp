@@ -1,7 +1,7 @@
 #include "World/WorldState/SP_WorldState.h"
 
 uint8 USP_WorldState::mStability = 0;
-uint8 USP_WorldState::mStarvation = 60;
+uint8 USP_WorldState::mStarvation = 0;
 
 USP_WorldState::USP_WorldState()
 {

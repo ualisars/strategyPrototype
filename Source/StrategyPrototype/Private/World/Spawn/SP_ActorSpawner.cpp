@@ -1,5 +1,4 @@
 #include "World/Spawn/SP_ActorSpawner.h"
-#include "Engine/World.h"
 #include "SP_BaseCharacter.h"
 #include "SP_NPC.h"
 #include "SP_Player.h"
@@ -51,7 +50,7 @@ void USP_ActorSpawner::Init(UWorld* World)
 
 		if (mWorldState == nullptr)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Unable to get World State in SpawnChecker"));
+			UE_LOG(LogTemp, Warning, TEXT("Unable to get World State in ActorSpawner"));
 		}
 	}
 	else
