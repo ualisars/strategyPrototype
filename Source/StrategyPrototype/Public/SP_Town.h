@@ -7,13 +7,31 @@
 #include "Objects/SP_ItemFactory.h"
 #include "SP_Town.generated.h"
 
+UENUM(BlueprintType)
+enum class SP_BuildingType : uint8
+{
+	Pasture,
+	WheatField
+};
+
 UCLASS()
 class STRATEGYPROTOTYPE_API ASP_Town : public AActor
 {
 	GENERATED_BODY()
 
+	// town stats
+	TArray<FSP_Item> mShortage;
+	TArray<FSP_Item> mExcess;
+	unsigned char mWealth = 0;
+	unsigned char mFood = 0;
+	unsigned char mPopulation = 0;
+
+	TArray<SP_BuildingType> mBuildings;
+
 public:	
 	ASP_Town();
+
+	void Init(FName TownName, TArray<SP_BuildingType> Buildings, unsigned char Population);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MAX_MARKET_SLOTS = 40;

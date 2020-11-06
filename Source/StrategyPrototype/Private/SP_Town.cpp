@@ -26,6 +26,13 @@ ASP_Town::ASP_Town()
 	Goods.Add(USP_ItemFactory::CreateItem(SP_ItemType::Copper, SP_ItemOwner::Town));
 }
 
+void ASP_Town::Init(FName TownName, TArray<SP_BuildingType> Buildings, unsigned char Population)
+{
+	Name = TownName;
+	mBuildings = Buildings;
+	mPopulation = Population;
+}
+
 void ASP_Town::RemoveFromAvailableUnits(const FSP_Unit& Unit)
 {
 	AvailableUnits.Remove(Unit);

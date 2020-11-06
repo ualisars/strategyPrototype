@@ -37,9 +37,6 @@ void USP_ActorSpawner::SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterCl
 USP_ActorSpawner::USP_ActorSpawner()
 {}
 
-void USP_ActorSpawner::SpawnActor(TSubclassOf<AActor> ActorClass)
-{}
-
 void USP_ActorSpawner::Init(UWorld* World)
 {
 	mWorld = World;
@@ -66,6 +63,20 @@ void USP_ActorSpawner::Init(UWorld* World)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Failed to get WorldGenerator in ActorSpawner"));
 	}
+}
+
+void USP_ActorSpawner::SpawnTown(
+	TSubclassOf<ASP_Town> TownClass,
+	const FVector& Location,
+	const FRotator& Rotation,
+	FName Name,
+	TArray<SP_BuildingType> Buildings,
+	unsigned char Population
+)
+{
+	FActorSpawnParameters SpawnParams;
+	ASP_Town* Town = mWorld->SpawnActor<ASP_Town>(TownClass, Location, Rotation, SpawnParams);
+	Town->Init(Name, Buildings, Population);
 }
 
 void USP_ActorSpawner::SpawnNPC(TSubclassOf<ASP_BaseCharacter> NPCClass, const FVector& Location, const FRotator& Rotation)

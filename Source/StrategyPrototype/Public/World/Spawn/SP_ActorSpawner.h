@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "SP_Town.h"
 #include "SP_ActorSpawner.generated.h"
 
 class ASP_BaseCharacter;
@@ -20,9 +21,16 @@ class STRATEGYPROTOTYPE_API USP_ActorSpawner : public UObject
 public:
 	USP_ActorSpawner();
 
-	void SpawnActor(TSubclassOf<AActor> ActorClass);
-
 	void Init(UWorld* World);
+
+	void SpawnTown(
+		TSubclassOf<ASP_Town> TownClass, 
+		const FVector& Location, 
+		const FRotator& Rotation, 
+		FName Name,
+		TArray<SP_BuildingType> Buildings,
+		unsigned char Population
+	);
 
 	void SpawnNPC(TSubclassOf<ASP_BaseCharacter> NPCClass, const FVector& Location, const FRotator& Rotation);
 
