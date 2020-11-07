@@ -73,7 +73,7 @@ void ASP_BaseCharacter::RemoveItem(const FSP_Item& Item)
 
 FName ASP_BaseCharacter::GetName() const
 {
-	return Name;
+	return CharacterName;
 }
 
 void ASP_BaseCharacter::AddGold(float Value)
@@ -124,6 +124,11 @@ void ASP_BaseCharacter::ConsumeFood()
 void ASP_BaseCharacter::PayUnitsWage()
 {
 	Gold -= UnitPayment;
+}
+
+void ASP_BaseCharacter::Init(FName Name)
+{
+	CharacterName = Name;
 }
 
 void ASP_BaseCharacter::Tick(float DeltaTime)

@@ -16,7 +16,12 @@ class STRATEGYPROTOTYPE_API USP_ActorSpawner : public UObject
 	class USP_WorldState* mWorldState;
 	class ASP_WorldGenerator* mWorldGenerator;
 
-	void SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterClass, const FVector& Location, const FRotator& Rotation);
+	void SpawnCharacter(
+		TSubclassOf<ASP_BaseCharacter> CharacterClass,
+		const FVector& Location,
+		const FRotator& Rotation,
+		FName Name
+	);
 
 public:
 	USP_ActorSpawner();
@@ -32,7 +37,18 @@ public:
 		unsigned char Population
 	);
 
-	void SpawnNPC(TSubclassOf<ASP_BaseCharacter> NPCClass, const FVector& Location, const FRotator& Rotation);
+	void SpawnNPC(
+		TSubclassOf<ASP_BaseCharacter> NPCClass,
+		const FVector& Location,
+		const FRotator& Rotation,
+		FName Name
+	);
 
-	void SpawnPlayer(TSubclassOf<ASP_BaseCharacter> PlayerClass, TSubclassOf<class ASP_GameCamera> CameraClass, const FVector& Location, const FRotator& Rotation);
+	void SpawnPlayer(
+		TSubclassOf<ASP_BaseCharacter> PlayerClass,
+		TSubclassOf<class ASP_GameCamera> CameraClass,
+		const FVector& Location,
+		const FRotator& Rotation,
+		FName Name
+	);
 };

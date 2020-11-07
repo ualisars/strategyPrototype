@@ -66,7 +66,7 @@ protected:
 	SP_CharacterMode Mode;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
-	FName Name;
+	FName CharacterName;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float Gold = 300.0f;
@@ -80,7 +80,10 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Components")
 	UCapsuleComponent* CharacterCollisionComp;
 
-public:	
+public:
+
+	void Init(FName Name);
+
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -117,6 +120,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RemoveItem(const FSP_Item& Item);
 
+	UFUNCTION(BlueprintCallable)
 	FName GetName() const;
 
 	UFUNCTION(BlueprintCallable)

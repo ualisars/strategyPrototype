@@ -9,7 +9,12 @@
 #include "SP_GameMode.h"
 #include "GameFramework/Actor.h"
 
-void USP_ActorSpawner::SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterClass, const FVector& Location, const FRotator& Rotation)
+void USP_ActorSpawner::SpawnCharacter(
+	TSubclassOf<ASP_BaseCharacter> CharacterClass,
+	const FVector& Location,
+	const FRotator& Rotation,
+	FName Name
+)
 {
 	FActorSpawnParameters SpawnParams;
 
@@ -21,6 +26,7 @@ void USP_ActorSpawner::SpawnCharacter(TSubclassOf<ASP_BaseCharacter> CharacterCl
 		return;
 	}
 
+	Character->Init(Name);
 	Character->SpawnDefaultController();
 
 	if (mWorldState)
@@ -79,17 +85,28 @@ void USP_ActorSpawner::SpawnTown(
 	Town->Init(Name, Buildings, Population);
 }
 
-void USP_ActorSpawner::SpawnNPC(TSubclassOf<ASP_BaseCharacter> NPCClass, const FVector& Location, const FRotator& Rotation)
+void USP_ActorSpawner::SpawnNPC(
+	TSubclassOf<ASP_BaseCharacter> NPCClass,
+	const FVector& Location,
+	const FRotator& Rotation,
+	FName Name
+)
 {
-	SpawnCharacter(NPCClass, Location, Rotation);
+	SpawnCharacter(NPCClass, Location, Rotation, Name);
 }
 
-void USP_ActorSpawner::SpawnPlayer(TSubclassOf<ASP_BaseCharacter> PlayerClass, TSubclassOf<class ASP_GameCamera> CameraClass, const FVector& PlayerLocation, const FRotator& PlayerRotation)
+void USP_ActorSpawner::SpawnPlayer(
+	TSubclassOf<ASP_BaseCharacter> PlayerClass,
+	TSubclassOf<class ASP_GameCamera> CameraClass,
+	const FVector& PlayerLocation,
+	const FRotator& PlayerRotation,
+	FName Name
+)
 {
 	FActorSpawnParameters SpawnParams;
 	FVector Location = FVector(PlayerLocation.X + 60.0f, PlayerLocation.Y, PlayerLocation.Z);
 	FRotator Rotation = FRotator(0.0f, 0.0f, 0.0f);
 	mWorld->SpawnActor<ASP_GameCamera>(CameraClass, Location, Rotation, SpawnParams);
 
-	SpawnCharacter(PlayerClass, Location, Rotation);
+	SpawnCharacter(PlayerClass, Location, Rotation, Name);
 }

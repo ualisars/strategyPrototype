@@ -41,12 +41,12 @@ void ASP_WorldGenerator::InitWorld()
 	FVector Location = FVector(-520.0f, 130.0f, 58.0f);
 	FRotator Rotation = FRotator(0.0f, -90.0f, 0.0f);
 
-	mActorSpawner->SpawnPlayer(PlayerClass, CameraClass, Location, Rotation);
+	mActorSpawner->SpawnPlayer(PlayerClass, CameraClass, Location, Rotation, "Lux");
 
 	FVector NPCLocation = FVector(0.0f, 0.0f, 0.0f);
 	FRotator NPCRotation = FRotator(0.0f, -90.0f, 0.0f);
 
-	mActorSpawner->SpawnNPC(NPCClass, NPCLocation, NPCRotation);
+	mActorSpawner->SpawnNPC(NPCClass, NPCLocation, NPCRotation, "Feol");
 
 	FRotator TownRotation = FRotator(0.0f, 0.0f, 0.0f);
 
@@ -54,7 +54,7 @@ void ASP_WorldGenerator::InitWorld()
 	mActorSpawner->SpawnTown(TownClass, WenlisLocation, TownRotation, FName("Wenlis"), {SP_BuildingType::Pasture}, 200);
 	
 	FVector TerriumLocation = FVector(1330.0f, -600.0f, 0.0f);
-	mActorSpawner->SpawnTown(TownClass, TerriumLocation, TownRotation, FName("Terrium"), { SP_BuildingType::WheatField }, 150);
+	mActorSpawner->SpawnTown(TownClass, TerriumLocation, TownRotation, FName("Terrium"), {SP_BuildingType::WheatField }, 150);
 }
 
 ASP_WorldGenerator::ASP_WorldGenerator()
@@ -103,7 +103,10 @@ void ASP_WorldGenerator::CheckSpawn(const SP_Event& Event)
 		if (Event.GetType() == SP_EventType::FightOccured)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Spawn NPC in World Generator"));
-			mActorSpawner->SpawnNPC(NPCClass, FVector(FVector(0.0f, 0.0f, 0.0f)), FRotator(0.0f, -90.0f, 0.0f));
+
+			// TODO: make random name generator
+			FName NPCName = "NPC";
+			mActorSpawner->SpawnNPC(NPCClass, FVector(FVector(0.0f, 0.0f, 0.0f)), FRotator(0.0f, -90.0f, 0.0f), NPCName);
 		}
 	}
 }
