@@ -47,6 +47,14 @@ void ASP_WorldGenerator::InitWorld()
 	FRotator NPCRotation = FRotator(0.0f, -90.0f, 0.0f);
 
 	mActorSpawner->SpawnNPC(NPCClass, NPCLocation, NPCRotation);
+
+	FRotator TownRotation = FRotator(0.0f, 0.0f, 0.0f);
+
+	FVector WenlisLocation = FVector(-780.0f, 750.0f, 0.0f);
+	mActorSpawner->SpawnTown(TownClass, WenlisLocation, TownRotation, FName("Wenlis"), {SP_BuildingType::Pasture}, 200);
+	
+	FVector TerriumLocation = FVector(1330.0f, -600.0f, 0.0f);
+	mActorSpawner->SpawnTown(TownClass, TerriumLocation, TownRotation, FName("Terrium"), { SP_BuildingType::WheatField }, 150);
 }
 
 ASP_WorldGenerator::ASP_WorldGenerator()

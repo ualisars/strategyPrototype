@@ -19,6 +19,9 @@ class STRATEGYPROTOTYPE_API ASP_WorldGenerator : public AActor, public SP_EventL
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ASP_GameCamera> CameraClass;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class ASP_Town> TownClass;
+
 	class USP_ActorSpawner* mActorSpawner;
 
 	class USP_SpawnChecker* mSpawnChecker;

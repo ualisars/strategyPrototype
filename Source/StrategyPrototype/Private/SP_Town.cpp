@@ -6,6 +6,8 @@ ASP_Town::ASP_Town()
 	MeshComp->SetCanEverAffectNavigation(false);
 	RootComponent = MeshComp;
 
+	SetActorScale3D(FVector(1.75f, 1.75f, 1.0f));
+
 	Tags.Add(FName("Town"));
 
 	FSP_Unit Fermer = USP_UnitFactory::CreateUnit(SP_UnitType::Fermer);
